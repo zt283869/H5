@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+#div1{width:150px; height:100px; position:absolute; top:40%; left:-150px; background:#9CF;}
+#div1 span{width:20px; position:absolute; top:15px; left:150px; background:#9C9;}
+
+</style>
+
+<script type="text/javascript">
+window.onload=function(){
+	var oDiv = document.getElementById("div1");
+	oDiv.onmouseover = function(){
+		startMove(this, {left:0});
+	}
+	oDiv.onmouseout = function(){
+		startMove(this, {left:-150});
+	}
+}
+function startMove(obj, json){
+	clearInterval(obj.timer);
+	var target = json["left"];
+	var speed = (target - parseInt(getStyle(obj)["left"]))/8; 
+	obj.timer = setInterval(function(){
+		speed = (target - parseInt(getStyle(obj)["left"]))/8;
+		if(speed < 2 && speed>=0) speed = 1;
+		if(speed < 0 && speed> -2) speed = -1;
+		if( Math.abs( parseInt(getStyle(obj)["left"]) - target) < speed){
+			clearInterval(obj.timer);
+			return;
+		} 
+		obj.style.left = parseInt(getStyle(obj)["left"])+speed+"px";
+	},30);
+}
+
+function getStyle(obj){
+	if(obj.currentStyle){
+		return obj.currentStyle;
+	} else{
+		return getComputedStyle(obj, false);
+	}
+}
+</script>
+</head>
+
+<body>
+<div id="div1"><span >分享到</span></div>
+</body>
+</html>
+ 

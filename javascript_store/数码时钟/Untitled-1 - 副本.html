@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script type="text/javascript">
+	var imglist = null;
+	window.onload=function(){ 
+		imglist = document.getElementById("timer").children;	
+		showTime();
+		setInterval(showTime,1000);
+	}
+	
+	function showTime(){
+		var now = new Date();
+		//console.log(now);
+		var hour = now.getHours();
+		var min = now.getMinutes();
+		var sec = now.getSeconds();
+		console.log(hour+":"+min+":"+sec)
+		
+		var arr = [parseInt(hour/10),hour%10,parseInt(min/10),min%10,parseInt(sec/10),sec%10];
+		//alert(arr);
+		tabImg(arr);
+	}
+	
+	function tabImg(arr){
+		for(var i=0;i<imglist.length;i++){
+			imglist[i].src = "img/"+arr[i]+".png";
+		}
+	}
+	
+</script>
+</head>
+
+<body>
+	
+	<div id="timer">
+		<img src="img/0.png" />
+		<img src="img/0.png" />时
+		<img src="img/0.png" />
+		<img src="img/0.png" />分
+		<img src="img/0.png" />
+		<img src="img/0.png" />秒
+	</div>
+</body>
+</html>

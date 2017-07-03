@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>兼容所有浏览器的CSS3圆角</title>
+	<script type="text/javascript" src="js/curvycorners.js"></script>  	
+	<style type="text/css">
+		    body{
+			    background-color:rgb(177, 208,224); font: normal 12px Trebuchet MS; color:#000;
+		    }
+		    .roundedCorners{ 
+			    width:220px; padding:10px;
+			    background-color:#DDEEF6; 
+			    box-shadow: 0px 0px 10px 0px #888888;
+			    border:1px solid #DDEEF6;
+			    border-radius:6px;
+			    margin: auto;
+		    }
+		    .roundedCorners-textbox{ 
+				border:1px solid #999; width:160px;
+		    }
+			.checkbox {
+				margin-left: 30px;
+				border:1px solid #999; width:20px;
+			}
+	</style>
+</head>
+<script type="text/javascript" src="js/base.js" ></script>
+<script>
+	function getCookie(key){
+		var cookiestr = document.cookie;
+		var list = cookiestr.split(";");
+		for(var i in list){
+			var arr = list[i].split("=");
+			if(trim(arr[0]) == key){
+				return arr[1];
+			}
+		}
+		return null;
+	}
+	
+	function trim(str){
+		return str.replace(/\s+/g,"");
+	}
+	
+	window.onload = function(){
+		//alert(trim(document.cookie));
+		document.getElementById("username").value = getCookie("username");
+		document.getElementById("password").value = getCookie("password");
+		document.getElementById("submitbtn").onclick = function(){
+			var username = document.getElementById("username").value;
+			var password = document.getElementById("password").value;
+			var box = document.getElementsByName("saveNP")[0];
+			if(box.checked){
+				var d = new Date();
+				var currentTime = d.getTime();
+				currentTime += 10*24*60*60*1000;
+				d.setTime(currentTime);
+				console.log(username);
+				console.log(password);
+				document.cookie = "username="+username+";expires="+d;
+				document.cookie = "password="+password+";expires="+d;
+			}
+			//数据校验
+			//提交表单
+		}
+	}
+	
+</script>
+<body>
+	<form action="http://www.baidu.com" method="get">	
+		<div class="roundedCorners">
+			<label>账号</label>&nbsp;
+			<input id="username" type="text" class="roundedCorners-textbox" /><br /><br />
+			<label>密码</label>&nbsp;
+			<input id="password" type="text" class="roundedCorners-textbox" /><br /><br />	
+		    	<input name="saveNP" type="checkbox" class="checkbox" />
+				<label>10天内免登陆</label>
+		    	<br/><br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<button id="submitbtn" >确定</button>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="reset" value="清空" />
+		</div>
+	</form>	
+</body>
+</html>

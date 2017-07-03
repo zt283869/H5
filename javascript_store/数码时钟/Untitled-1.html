@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script type="text/javascript">
+
+function toDouble(str){
+	if(str<10){
+		str='0'+str;
+	}
+	return str;
+}
+function showTime(){
+	oDiv=document.getElementById('timer')
+	aImg=oDiv.getElementsByTagName('img')
+	timer=new Date();
+	
+	var atr=''+toDouble(timer.getHours())+toDouble(timer.getMinutes())+toDouble(timer.getSeconds())
+	
+	for(i=0;i<aImg.length;i++){		
+		aImg[i].src="img/"+atr[i]+".png";
+	}
+}
+
+window.onload=function(){
+	setInterval(showTime,1000);
+	showTime();
+}
+
+
+</script>
+</head>
+
+<body>
+
+<div id="timer">
+	<img src="img/0.png" />
+	<img src="img/0.png" />时
+	<img src="img/0.png" />
+	<img src="img/0.png" />分
+	<img src="img/0.png" />
+	<img src="img/0.png" />秒</div>
+</body>
+</html>

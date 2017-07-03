@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>无标题文档</title>
+		<style type="text/css">
+			#img1{filter:alpha(opacity:30); opacity:0.3;}
+		</style>
+		<script type="text/javascript">
+			window.onload = function(){
+				var img = document.getElementById("img1");
+				img.onmouseover = function(){
+					clearInterval(img.timer);
+					img.timer = setInterval(function(){
+						var op = Number(window.getComputedStyle(img, null).opacity);
+						if(op >= 1){
+							clearInterval(img.timer);
+							return;
+						}
+						//alert(op + 0.02);
+						img.style.opacity = op + 0.02;
+					},30);
+				}
+				
+				img.onmouseout = function(){
+					clearInterval(img.timer);
+					img.timer = setInterval(function(){
+						var op = Number(window.getComputedStyle(img, null).opacity);
+						if(op <= 0.2){
+							clearInterval(img.timer);
+							return;
+						}
+						//alert(op + 0.02);
+						img.style.opacity = op - 0.02;
+					},30);
+				}
+			}
+			
+			
+			
+		</script>
+
+	</head>
+
+	<body>
+		<img src="images/2.jpg" id="img1" />
+	</body>
+
+</html>

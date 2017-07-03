@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script type="text/javascript">
+function setCookie(name,value,iDate){
+oDate=new Date()
+oDate.setDate(oDate.getDate()+iDate)
+document.cookie=name+"="+value+";expires="+oDate
+
+}
+
+function getCookie(name){
+	var arr=document.cookie.split('; ')
+	for(i=0;i<arr.length;i++){
+		arr2=arr[i].split('=')
+		if(arr2[0]==name){
+			return arr2[1]
+			}
+		
+		}
+	 return ''
+	}
+function removeCookie(name){
+	setCookie(name,'1',-1)
+	}
+window.onload=function(){
+	var oDiv=document.getElementById('div1');
+	x=getCookie('x');
+	y=getCookie('y');
+	if(x){
+		oDiv.style.top=y+'px'
+		oDiv.style.left=x+'px'
+		
+		}
+	
+	oDiv.onmousedown=function(ev){
+		var oEvent=ev || event;
+		var disX=oEvent.clientX-oDiv.offsetLeft;
+		var disY=oEvent.clientY-oDiv.offsetTop;
+		document.onmousemove=function(ev){
+			var oEvent=ev || event;
+			oDiv.style.top=oEvent.clientY-disY+'px';
+			oDiv.style.left=oEvent.clientX-disX+'px'
+			
+			}
+			document.onmouseup=function(){
+				document.onmousemove=null;
+				document.onmouseup=null;
+				removeCookie('x')
+				removeCookie('y')
+				setCookie('x',oDiv.offsetLeft,10)
+				setCookie('y',oDiv.offsetTop,10)
+				}
+		
+		
+		}
+		return false;
+	
+	}
+
+</script>
+</head>
+
+<body>
+<div id="div1" style="width:100px; height:100px; background:red; position:absolute;"></div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>购物车</title>
+	</head>
+	<script type="text/javascript" src="js/base.js"></script>
+
+	<script>
+		window.onload = function() {
+			var aList = Base.getByTag("ul").getElementsByTagName("a");
+			for(var index in aList) {
+				aList[index].onclick = function() { //给每个a添加单击事件
+					//通过dom获取第一个span标签
+					var key = this.parentNode.parentNode.firstElementChild.innerHTML;
+					//通过dom获取第二个span标签
+					var value = this.parentNode.parentNode.firstElementChild.nextElementSibling.innerHTML;
+					//将内容保存至cookie
+					Cookie.put(key, value, DateUtil.getSday(7));
+				}
+			}
+		}
+	</script>
+
+	<body>
+		<ul>
+			<li><span>商品1</span><span>RMB45</span><span><a href="javascript:void(0)">加入购物车</a></span></li>	
+			<li><span>商品2</span><span>RMB45</span><span><a href="javascript:void(0)">加入购物车</a></span></li>	
+			<li><span>商品3</span><span>RMB45</span><span><a href="javascript:void(0)">加入购物车</a></span></li>	
+			<li><span>商品4</span><span>RMB45</span><span><a href="javascript:void(0)">加入购物车</a></span></li>	
+			<li><span>商品5</span><span>RMB45</span><span><a href="javascript:void(0)">加入购物车</a></span></li>	
+			<li><span>商品6</span><span>RMB45</span><span><a href="javascript:void(0)">加入购物车</a></span></li>	
+		</ul>
+		<a href="cart.html">查看购物车</a>
+	</body>
+
+</html>

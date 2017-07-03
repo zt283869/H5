@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<style>
+		.pname{
+			font-family: "微软雅黑";
+			font-size: 20px;
+			background: #D1D3D6;
+			width: 70px;
+			padding: 20px;
+			position: relative;
+			display: inline-block;
+			
+		}
+		.vs{
+			font-family: "微软雅黑";
+			font-size: 20px;
+			color: red;
+			position: relative;
+			display: inline-block;
+		}
+		.pkbtn {
+			font-family: "微软雅黑";	font-size: 28px;
+			background: linear-gradient(rgba(219,219,219,0.9) 48%, rgba(169,169,169,0.7) 48%);
+			border-radius: 3px;	width: 100px;
+			border-style: solid; border-width: thin; border-color: darkgreen;
+			position: relative;
+			margin: auto;
+			cursor: pointer;
+		} 
+		.pkcontent {
+			font-family: "微软雅黑";	font-size: 16px;
+			border-radius: 3px;	width: 600px;
+			position: relative;
+			margin: auto;
+		}
+	</style>
+	<script>
+		var isPking = false;
+		var namelist = ["孙玉鹏","韩东","王略略","王杰","童永琦","陈杰琼","李雪","常大骞","朱剑","董沙沙","汪碧琪",
+		"刘晓莹","许跃","燕艳","戴超群","许钦瑞","和慧","孟睿","蔡智隆","王晓敏","李晨晨","宋亚军","祁艺","王亚琪",
+		"王志强","张尔翼","张静","周月阳","李梦尧","阎树兵","窦博林","袁诗函","靳宇攀","李宇超","姚奇","程涛",
+		"侯衍超","徐竹","江传胜","赵宇","胡瀚文","林垚","温颖颖","苏月","徐江丽","李季","刘艳","任小焕","耿凯旋",
+		"冯珍","王晓慧","张先帅","谢凯","曹文凤"]; //54个
+		
+		var sklist = ["发起了猛烈的进攻，打的他满地找牙, 对方损失了",
+					"使用了大招，对方的假发被打掉了！损失了",
+					"使用了魅惑技能，对方被迷的神魂颠倒，瞬间掉了2W的粉丝，损失了",
+					"查看了葵花宝典，逼格提升了51%，对方被吓破了胆，损失了",
+					"炫耀了他的大块肌肉，对方损失了",
+					"狠狠的鄙视了对方一下，造成了巨大伤害，对方损失",
+					"使用了情侣花式虐狗秀恩爱，一下子打中了对方的小心脏，对方损失"
+					];
+		window.onload = function() {
+			var index = parseInt(Math.random()*54);
+			var oPerson1 = document.getElementsByClassName("pname")[0];
+			oPerson1.innerHTML = namelist[index];
+			
+			index = parseInt(Math.random()*54);
+			var oPerson2 = document.getElementsByClassName("pname")[1];
+			oPerson2.innerHTML = namelist[index];
+			
+			
+		}
+		
+		function startPK(){
+			if(isPking) {
+				return;
+			}
+			
+			isPking = true;
+			var oContent = document.getElementsByClassName("pkcontent")[0];
+			oContent.innerHTML = "";
+			var times = 1;//当前是第几轮攻击
+			var turn = 1;//轮到谁攻击，1 是 A  -1 是 B
+			var oPerson1 = document.getElementsByClassName("pname")[0];
+			oPerson1.hp = 100;
+			var oPerson2 = document.getElementsByClassName("pname")[1];
+			oPerson2.hp = 110;
+			var timer = setInterval(fight,200);
+			
+			function fight() {
+				var oP = document.createElement("p");
+				var kill = sklist[parseInt(Math.random()*7)]; //本轮使用的技能
+				var damage = parseInt(Math.random()*30); //本轮造成的伤害
+				if(turn > 0) {
+					oP.innerHTML = "第"+times+"轮：【"+oPerson1.innerHTML+"】"+kill+damage+"点血量";
+					oPerson2.hp -= damage;
+				} else {
+					oP.innerHTML = "第"+times+"轮：【"+oPerson2.innerHTML+"】"+kill+damage+"点血量";
+					oPerson1.hp -= damage;
+				}
+				oContent.appendChild(oP);
+				if(oPerson1.hp <= 0 || oPerson2.hp <= 0) {
+					clearInterval(timer);//清理定时器
+					var over = document.createElement("p");
+					over.style.color = "red";
+					over.innerHTML = (oPerson1.hp < 0 ? oPerson1.innerHTML : oPerson2.innerHTML) +"精疲力尽，挂掉了！";
+					oContent.appendChild(over);//增加最后一行，输出游戏结束
+					isPking = false; //打斗标识设为false,标识打完了
+				} 
+				times++; //进入下一轮攻击
+				turn *= -1; //转为下一个人攻击
+				document.getElementById("msg_end").scrollIntoView();//滚动条自动滚动至底部
+			}
+			
+		}
+	</script>
+	<body>
+		<p style="">
+			<div class="pname" style="left:500px">键盘侠</div>
+			<div class="vs" style="left: 550px;">VS</div>
+			<div class="pname" style="left:600px">小龙虾</div>
+		</p>
+		<p></p>
+		<p>
+			<div class="pkbtn" onclick="startPK()">开始PK</div>
+		</p>
+		<p>
+			<div class="pkcontent">
+			
+			</div>
+		</p>
+		<div id="msg_end" style="height:0px; overflow:hidden"></div>
+	</body>
+</html>

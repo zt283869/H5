@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<style>
+		.up {
+			display: none; width: 100px; height: 100px; background: red; 
+			position: fixed; right: 10px; bottom: 20px;
+		}
+	</style>
+	<script>
+		var num = 0;
+		window.onscroll = function(){
+			var up = document.getElementById("top");
+			//当前页面滚动的距离？？
+			var _top = document.body.scrollTop || document.documentElement.scrollTop;
+			if(_top >= 1000){
+				up.style.display = "block";
+			} else {
+				up.style.display = "none";
+			}
+		}
+		function goTop(){
+			document.body.scrollTop = document.documentElement.scrollTop = 0;
+		}
+	</script>
+	<body>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+		<div id="top" class="up" onclick="goTop()" >回到顶部</div>
+	</body>
+</html>

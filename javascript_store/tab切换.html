@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+body{padding:0; margin:0; font-size:12px;}
+.nav{background:#FFC; width:400px; height:24px; line-height:24px;}
+.nav a{display:block; float:left; width:80px; text-align:center; text-decoration:none; color:#C00; }
+.div{width:398px; height:200px; border:1px solid  #F96 ; border-top:none;}
+
+
+</style>
+<script type="text/javascript">
+	window.onload = function(){
+		var nav0 = document.getElementById("nav0");
+		var nav1 = document.getElementById("nav1");
+		var div0 = document.getElementById("keji_div");
+		var div1 = document.getElementById("tansuo_div");
+		
+		nav0.onclick = function(){
+			this.style.background = "#F96";
+			this.style.color = "#fff";
+			nav1.style = "";
+			div0.style.display = "block";
+			div1.style.display = "none";
+		}
+		nav1.onclick = function(){
+			this.style.background = "#F96";
+			this.style.color = "#fff";
+			nav0.style = "";
+			div0.style.display = "none";
+			div1.style.display = "block";
+		}
+	}
+</script>
+</head>
+
+<body>
+<div class="nav">
+	<a href="#" style="background:#F96; color:#fff;" id="nav0" >科技</a>
+	<a href="#" id="nav1">探索</a>
+</div>
+<div class="div" id="keji_div">科技科技科技科技科技科技科技科技</div>
+<div class="div " id="tansuo_div" style="display:none;" >探索探索探索探索探索探索探索探索探索探索</div>
+</body>
+</html>

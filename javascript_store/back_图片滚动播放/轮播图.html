@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+	*{
+		padding: 0;
+		margin: 0;
+	}
+	
+	.big-pic{
+		position: relative;
+		width: 810px;
+		height: 320px;
+		margin: 50px auto;
+		padding:10px 10px;
+		background: grey;
+	}
+	.big-pic ul{
+		padding:5px 5px 5px;
+		list-style: none;
+		position: absolute;
+		left:5px;	top:5px;
+		width: 3240px;
+		height: 320px;
+		background: red;
+	}
+	.big-pic li{
+		float: left;
+		width:810px;
+		height: 320px;
+	}
+	.big-pic img{
+		width:810px;
+		height: 320px;
+	}
+	#nav-list{
+		list-style: none;
+		position: absolute;
+		left:600px;	top:280px;
+		width: 120px;
+		height: 20px;
+		background: red;
+	}
+	.big-pic .nav-li{		
+		text-align: center;
+		font-size: 16px;
+		float: left;
+		margin: 0px 5px 0px;
+		width: 20px;
+		height: 20px;
+		background: yellow;
+		cursor: pointer;
+	}
+</style>
+<script  src="startMove.js"></script>
+<script type="text/javascript">
+	
+</script>
+</head>
+
+<body>
+
+	<div class="big-pic">
+		<ul>
+			<li><img src="images/001.jpg"/></li>
+			<li><img src="images/002.jpg"/></li>
+			<li><img src="images/003.jpg"/></li>
+			<li><img src="images/004.jpg"/></li>
+		</ul>
+		<ul id="nav-list">
+			<li class="nav-li">1</li>
+			<li class="nav-li">2</li>
+			<li class="nav-li">3</li>
+			<li class="nav-li">4</li>
+		</ul>
+	</div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+div{width:10px; height:10px; background:red; position:absolute; top:0; left:0;}
+</style>
+<script type="text/javascript">
+	//使用鼠标的移动事件
+	document.onmousemove=function(ev){
+		var aDiv=document.getElementsByTagName('div');
+		var oEvent=ev||event;
+		//遍历所有DIV，从第二个开始到结束
+		for(var i=aDiv.length-1;i>0; i--){
+			//将第N个的坐标 赋给 第N+1个（即第N+1个跟随第N个）
+			aDiv[i].style.top=aDiv[i-1].style.top;
+			aDiv[i].style.left=aDiv[i-1].style.left;	
+		}
+		//最后将鼠标位置赋给第一个
+		aDiv[0].style.left=oEvent.clientX+'px'
+		aDiv[0].style.top=oEvent.clientY+'px'
+	}
+	
+</script>
+</head>
+
+<body>
+	<div></div><div></div><div></div><div></div><div></div><div></div>
+	<div></div><div></div><div></div><div></div><div></div><div></div>
+	<div></div><div></div><div></div><div></div><div></div><div></div>
+	<div></div><div></div><div></div><div></div><div></div><div></div>
+	<div></div><div></div><div></div><div></div><div></div><div></div>
+	<div></div><div></div><div></div><div></div><div></div><div></div>
+	<div></div><div></div><div></div><div></div><div></div><div></div>
+	<div></div><div></div><div></div><div></div><div></div><div></div>
+	<div></div><div></div><div></div><div></div><div></div><div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+</body>
+</html>

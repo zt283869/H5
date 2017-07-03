@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>购物车</title>
+	</head>
+	<script type="text/javascript" src="js/base.js"></script>
+
+	<script>
+		window.onload = function() {
+			//获取table元素
+			var table  = Base.getById("datalist");
+			//按照;进行分割cookie内容
+			var arr = document.cookie.split("; ");
+			for(var i=0; i<arr.length; i++) {
+				var kv = arr[i].split("=");//按照=号分割-->[商品1，RMB45]
+				
+				var domTr = document.createElement("tr");//创建一个TR
+				var domTd1 = document.createElement("td"); //创建一个TD
+				domTd1.innerHTML = kv[0];
+				var domTd2 = document.createElement("td"); //再创建一个TD
+				domTd2.innerHTML = kv[1];
+				
+				//td放在TR里面
+				domTr.appendChild(domTd1);
+				domTr.appendChild(domTd2);
+				//tr放在tbody里面
+				table.lastChild.appendChild(domTr);
+			}
+		}
+	</script>
+
+	<body>
+		我是购物车
+		<table id="datalist" border=1>
+			<tr>
+				<th>商品名称</th>
+				<th>商品价格</th>
+			</tr>
+		</table>
+	</body>
+
+</html>

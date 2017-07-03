@@ -1,0 +1,85 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>点击表格切换图片 </title>	
+		
+    </head>
+    <style>
+        .td-class{
+            width:50px;
+            height: 50px;
+        }
+    </style>
+    <script type="text/javascript">  
+		
+		/*
+			var num = 1;
+			var timer = setInterval(function(){
+				if(num > 3) num = 1;
+				change(num++);
+			},1000);
+        */ 
+		/*		
+		function change(num){
+			
+			var td = document.getElementsByClassName("td-class")[num-1];
+			var list = td.parentNode.childNodes;
+			for(var i=0; i<list.length; i++){
+				if(list[i]==td || list[i].nodeType==3) continue;
+				list[i].style.background = "";
+			}
+			td.style.background = "blue";
+			
+			document.getElementById("showImg").src = "images/"+num+".jpg";
+		}
+		*/
+		
+		//document.getElementById("tab");
+		/*
+		window.onload = function(){
+			var list = document.getElementsByTagName("td");
+			for(var i=0; i<list.length; i++){
+				list[i].index = i+1;
+				list[i].onclick = function(){
+					for(var k=0; k<list.length; k++){
+						list[k].style.background = "";
+					}
+					this.style.background = "blue";
+					var oImg = document.getElementById("showImg");
+					oImg.src = "images/"+this.index+".jpg";
+				}
+			}
+		}
+		*/
+		
+		window.onload = function(){
+			var table = document.getElementById("tab");
+			var tdlist = table.children[0].children[0].children;
+			//alert(tdlist.length);
+			for(var i in tdlist){
+				tdlist[i].num = Number(i)+1;
+				tdlist[i].onclick = function(){
+					this.style.background = "blue";
+					for(var k=0; k<tdlist.length; k++){
+						if(tdlist[k] == this){
+							continue;
+						}
+						tdlist[k].style.background = "";
+					}
+					var oImg = table.nextSibling.nextSibling;
+					oImg.src = "images/"+this.num+".jpg";
+				}
+			}
+		}
+    </script>
+	<body >
+        <table id="tab" border="1">
+            <tr>
+                <td class="td-class" style="background:blue"></td>
+                <td class="td-class"></td>
+                <td class="td-class"></td>
+            </tr>
+        </table>
+        <img id="showImg" src="images/1.jpg" style="width:300px"/> 
+	</body>
+</html>

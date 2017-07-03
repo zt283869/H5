@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+#ul{position:relative; }
+#ul li{position:absolute; top:0; left:0; width:500px; height:300px;  padding:0 200px; opacity:0}
+img{width:500px; height:300px; }          
+
+</style>
+<script src="startMove.js"></script>
+
+</head>
+
+
+<body>
+<ul id="ul" style="list-style:none;">
+<li style="background:#06F; opacity:1"><img src="images/1.jpg"  width="200" height="200"/></li>
+<li style="background:#093;"><img src="images/2.jpg"  width="200" height="200"/></li>
+<li style="background:#FF0;"><img src="images/3.jpg"  width="200" height="200"/></li>
+</ul>
+</body>
+</html>
+<script type="text/javascript">
+	var count = 1;
+	var lilist = document.getElementById("ul").children;
+	setInterval(function(){
+		//显示第count张
+		for(var i=0; i<lilist.length; i++){
+			lilist[i].style.opacity = 0;
+		}
+		var t = setInterval(function(){
+			if(lilist[count-1].style.opacity >= 1) {
+				//停止当前这个定时器
+				clearInterval(t);
+				//终止当前这个函数
+				return;
+			}
+			//alert(lilist[count-1].style.opacity);
+			lilist[count-1].style.opacity = Number(lilist[count-1].style.opacity) + 0.05;
+		},50);
+		
+		//++count > 3 ? count=1 : "";
+		count++;
+		if(count > 3) {
+			count = 1;
+		}
+		
+	},5000);
+	
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

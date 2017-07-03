@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0036)http://fgm.cc/learn/lesson10/10.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>放烟花效果</title>
+<style type="text/css">
+html,body{overflow:hidden;}
+body,div,p{margin:0;padding:0;}
+body{background:#000;font:12px/1.5 arial;color:#7A7A7A;}
+a{text-decoration:none;outline:none;}
+#tips,#copyright{position:absolute;width:100%;height:50px;text-align:center;background:#171717;border:2px solid #484848;}
+#tips{top:0;border-width:0 0 2px;}
+#tips a{font:14px/30px arial;color:#FFF;background:#F06;display:inline-block;margin:10px 5px 0;padding:0 15px;border-radius:15px;}
+#tips a.active{background:#FE0000;}
+#copyright{bottom:0;line-height:50px;border-width:2px 0 0;}
+#copyright a{color:#FFF;background:#7A7A7A;padding:2px 5px;border-radius:10px;}
+#copyright a:hover{background:#F90;}
+p{position:absolute;top:55px;width:100%;text-align:center;}
+.fire {
+	width: 3px;
+	height: 30px;
+	background: white;
+	position: absolute;
+} 
+.spark {
+	position: absolute;
+	width: 3px;
+	height: 3px;
+}
+</style>
+<script src="startMove.js"></script>
+<script type="text/javascript">
+	document.onclick = function(evt){
+		var e = evt || event;
+		launch({x:e.clientX, y:e.clientY});//将单击的坐标作为参数传给launch函数
+	}
+	//发射
+	function launch(target_coord){
+		var fire = document.createElement("div");
+		fire.className = "fire";
+		fire.style.left = target_coord.x + "px";
+		fire.style.top = document.body.clientHeight || document.documentElement.clientHeight - 100 + "px";
+		document.body.appendChild(fire);
+		
+		startMove(fire, {height: 3,top:target_coord.y},function(){
+			document.body.removeChild(fire);
+			explode(target_coord);
+		});
+	}
+	//爆炸
+	function explode(target_coord){
+		//生产很多DIV
+		var count = Math.ceil(Math.random()*50) + 30;  //随机个数 范围30-80
+		for(var i=0; i<count; i++){
+			var spark = document.createElement("div");
+			var s = new SPARK(spark, target_coord);
+			s.randMove();
+		}
+	}
+	
+	
+	function SPARK(ele, pos){
+		this.target = ele;
+		this.pos = pos;
+		this.speedX = null;// 速度X
+		this.speedY = null;// 速度Y
+		this.timer = null;// 定时器
+		this.init = function(){ //初始化
+			this.target.className = "spark";
+			this.target.style.background = "#"+Math.ceil(Math.random()*0xFFFFFF).toString(16); //颜色
+			this.target.style.left = pos.x + "px";
+			this.target.style.top = pos.y + "px";
+			this.speedX = (Math.ceil(Math.random()*20)+1) * (Math.random()>=0.5 ? 1 : -1);
+			this.speedY = (Math.ceil(Math.random()*20)+1) * (Math.random()>=0.5 ? 1 : -1);
+			document.body.appendChild(this.target);
+		}
+		this.randMove = function(){
+			this.init();//先做初始化
+			var that = this;
+			this.timer = setInterval(function(){
+				that.target.style.left = that.target.offsetLeft + that.speedX + "px";
+				that.target.style.top = that.target.offsetTop + that.speedY++ + "px";
+				if(that.target.offsetTop >= (document.documentElement.clientHeight || document.body.clientHeight)){
+					clearInterval(that.timer);
+					document.body.removeChild(that.target);
+				}
+			},30);
+		}
+				
+	}
+	
+</script>
+</head>
+<body>
+<div id="tips"><a id="manual" href="javascript:;" class="active">手动放烟花</a><a id="auto" href="javascript:;" class="">自动放烟花</a><a id="stop" href="javascript:;" class="">停止放烟花</a></div>
+<p>由于浏览器渲染能力有限, 当浏览器为IE或选择自动放烟花时, 随机生成的烟花碎片范围自动调整至20-30</p>
+<div id="copyright">建议使用Firefox, Chrome浏览器预览效果. 如蒙转载请注明出处 <a href="http://js.fgm.cc/">Fgm.cc</a> , By — Ferris, QQ:21314130</div>
+</body></html>

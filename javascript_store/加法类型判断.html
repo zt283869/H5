@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script type="text/javascript">
+window.onload=function(){
+	
+	var oBtn=document.getElementById('btn');
+	
+	
+	oBtn.onclick=function(){
+		var oTxt1=document.getElementById('txt1');
+		var oTxt2=document.getElementById('txt2');
+		var iResult = iResult=parseInt(oTxt1.value)+parseFloat(oTxt2.value);
+		if(isNaN(iResult)){
+			alert('您输入的不是数字')
+		} else{
+			alert(iResult)
+		}
+	}
+	
+}
+
+</script>
+
+
+</head>
+
+<body>
+<input type="text"  id="txt1"/>
+<input type="text" id="txt2" />
+<input type="button" id="btn" value="=" />
+</body>
+</html>

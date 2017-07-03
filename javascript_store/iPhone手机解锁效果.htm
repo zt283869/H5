@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html>
+<meta charset="utf-8"/>
+<title>iPhone手机解锁效果</title>
+<style type="text/css">
+#iphone{position:relative;width:426px;height:640px;margin:10px auto;background:url(iphoneUnlock/iphone.jpg) no-repeat;}
+#lock{position:absolute;left:50%;bottom:33px;width:358px;height:62px;margin-left:-179px;}
+#lock span{position:absolute;width:93px;height:62px;cursor:pointer;background:url(iphoneUnlock/unlock_btn.jpg) no-repeat;}
+</style>
+<script type="text/javascript">
+	window.onload = function(){
+		var btn = document.getElementById("lock").children[0];
+		btn.onmousedown = function(evt){
+			var disx = evt.offsetX;
+			var disy = evt.offsetY;
+			this.onmousemove = function(evt){
+				var offsetLeft = this.parentNode.parentNode.offsetLeft;
+				var x = evt.clientX - disx - offsetLeft - this.parentNode.offsetLeft;
+				x = x<0 ? 0 : (x>(this.parentNode.offsetWidth-this.offsetWidth) ? (this.parentNode.offsetWidth-this.offsetWidth) : x);
+				this.style.left = x + "px";
+			}
+		}
+		btn.onmouseup = function(evt){
+			this.onmousemove = "";
+			if(this.offsetLeft < (this.parentNode.offsetWidth-this.offsetWidth)/2){
+				//this.style.left = "0px";
+				move(this, {left:0});
+			} else {
+				this.style.left = this.parentNode.offsetWidth-this.offsetWidth+"px";
+			}
+		}
+	}
+	
+	function move(ele, obj){
+		var speed = 3;
+		var timer = setInterval(function(){
+			if(Math.abs(ele.offsetLeft - obj.left) < speed) {
+				clearInterval(timer);
+				ele.style.left = obj.left+"px";
+				return;
+			}
+			ele.style.left = ele.offsetLeft - speed + "px";
+		},50);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</script>
+</head>
+<body>
+<div id="iphone">
+	<div id="lock"><span></span></div>
+</div>
+
+
+</body></html>

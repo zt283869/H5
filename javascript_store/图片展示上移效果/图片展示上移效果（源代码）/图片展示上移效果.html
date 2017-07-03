@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title></title>
+<meta charset='utf-8'/>
+<style type="text/css">
+body, ul, li, ol {
+	list-style: none;
+	padding: 10px;
+	margin: 20px;
+	font-size: 12px;
+	font-family: 微软雅黑;
+}
+img {
+	border: 0px;
+}
+.picList {
+	width: 100%;
+	float: left;
+}
+.picList .col {
+	width: 300px;
+	height: 200px;
+	position: relative;
+	overflow: hidden;
+	float: left;
+	margin: 10px 0 0 10px;
+}
+.picList .col img, .col a {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+}
+.picList .col img {
+	width: 100%;
+}
+.picList .col a {
+	display: block;
+	width: 280px;
+	height: 180px;
+	top: 160px;
+	background:#000;
+	color: white;
+	font-style: normal;
+	line-height: 25px;
+	padding: 10px;
+	opacity: 0.8;
+	text-decoration: none;
+}
+
+</style>
+<script language="javascript" src="startMove.js"></script>
+</head>
+<body>
+<div class='picList' id="picList">
+	<div class='col' id="pic1" > 
+	   <img src="1.jpg" />
+	   <a href='#'>学会html5 <br/>
+	 本课程由浅入深，逐步推进，以示例为主线，详细完整地介绍HTML5的新功能与新特征
+	   </a> 
+	</div>
+	<div class='col' id="pic2"> 
+	   <img src="2.jpg" />
+	   <a href='#'>圆角水晶按钮制作<br/>
+	网页中的圆角按钮和宽度自适应按钮就这么轻松制作！
+	   </a> 
+	</div>
+	<div class='col' id="pic3"> 
+	   <img src="3.jpg" />
+	   <a href='#'>导航条菜单的制作<br/>
+	30分钟教你轻松制作出各种形式的网站导航条菜单
+	   </a> 
+	</div>
+</div>
+<script>
+/**
+	当鼠标划入子元素时，子元素触发onmouseover事件，同时父元素触发onmouseout事件
+	同时，如果不阻止冒泡，父元素会再次被触发onmouseover事件
+*/
+
+var t = null;
+window.onload = function(){
+    var Div = document.getElementById('picList').getElementsByTagName('div');
+	var alink = document.getElementsByTagName('a');
+	var divHeight = 160;
+	for(var i =0;i<Div.length;i++){
+		
+		Div[i].onmouseover = function(){
+			clearTimeout(t);
+			startMove(this.getElementsByTagName("a")[0],{top:0});
+		};
+
+		Div[i].onmouseout = function(){
+			var aa = this.getElementsByTagName("a")[0];
+			t = setTimeout(function(){
+				aa.style.top = divHeight+'px';
+			},300);
+			//startMove(alink,{top:divHeight});
+		};
+		
+	}	
+}
+
+
+
+
+</script>
+<span id="data">aaa</span>
+</body>
+</html>
+

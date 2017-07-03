@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script type="text/ecmascript">
+/*
+function leo(n){
+	
+	var navUi = document.getElementById("m"+n);
+	if(navUi.style.display != "block"){
+		for(var i=0;i<=5;i++){
+			document.getElementById("m"+i).style.display = "none";
+		}
+		navUi.style.display = "block";
+	}else{
+		navUi.style.display = "none";
+	}
+}
+*/
+
+window.onload = function(){
+	var arrLis = document.getElementsByClassName("navLink");
+	for(var i=0; i<arrLis.length; i++){
+		arrLis[i].index = i;
+		arrLis[i].onclick = function(){
+			var oUL = document.getElementById("m"+this.index);
+			
+			//判断当前的UL是否隐藏
+			if(oUL.style.display == "block") {
+				oUL.style.display = "none";
+			} else {
+				var arrULs = document.getElementsByClassName("menu");
+				for(var j=0; j<arrULs.length; j++){
+					arrULs[j].style.display = "none";
+				}
+				oUL.style.display = "block";
+			}
+		}
+	}
+}
+</script>
+<style type="text/css">
+body ul{
+	list-style:none;
+	width:120px;
+}
+.navLink{
+	width:160px;
+	display: block;
+	height: 22px;
+	background: url("navLink.gif") repeat-x;
+}
+.menu{
+	display: none;
+	background: url("menu.gif");
+	backgrouond-repeat:repeat-y;
+}
+
+</style>
+</head>
+
+<body>
+
+<ul id="nav">
+	<li><a href="#" class="navLink"><img src="nav.gif" class="img" />javascript基础</a></li>
+    <ul id="m0" class="menu">
+        <li><a href="#" class="menuLink"><img src="nav2.gif" class="img2" />变量</a></li>
+        <li><a href="#" class="menuLink"><img src="nav2.gif" class="img2" />数据类型</a></li>
+        <li><a href="#" class="menuLink"><img src="nav2.gif" class="img2" />语句体</a></li>
+        <li><a href="#" class="menuLink"><img src="nav2.gif" class="img2" />函数</a></li>
+    </ul>
+    <li><a href="#" class="navLink"><img src="nav.gif" class="img" />BOM</a></li>
+    <ul id="m1" class="menu">
+        <li><a href="#" class="menuLink"><img src="nav2.gif" class="img2" />BOM对象介绍</a></li>
+        <li><a href="#" class="menuLink"><img src="nav2.gif" class="img2" />常用属性</a></li>
+        <li><a href="#" class="menuLink"><img src="nav2.gif" class="img2" />常用方法</a></li>
+        <li><a href="#" class="menuLink"><img src="nav2.gif" class="img2" />案例制作</a></li>
+    </ul>
+    <li><a href="#" class="navLink"><img src="nav.gif" class="img" />DOM</a></li>
+    <ul id="m2" class="menu">
+        <li><a href="#" class="menuLink"><img src="nav2.gif" class="img2" />DOM对象介绍</a></li>
+        <li><a href="#" class="menuLink"><img src="nav2.gif" class="img2" />选择节点</a></li>
+        <li><a href="#" class="menuLink"><img src="nav2.gif" class="img2" />添加节点</a></li>
+        <li><a href="#" class="menuLink"><img src="nav2.gif" class="img2" />删除节点</a></li>
+    </ul>
+    <li><a href="#" class="navLink"><img src="nav.gif" class="img" />后台交互</a></li>
+    <ul id="m3" class="menu">
+        <li><a href="#" class="menuLink"><img src="nav2.gif" class="img2" />cookie</a></li>
+        <li><a href="#" class="menuLink"><img src="nav2.gif" class="img2" />Ajax介绍</a></li>
+        <li><a href="#" class="menuLink"><img src="nav2.gif" class="img2" />Ajax应用</a></li>
+        <li><a href="#" class="menuLink"><img src="nav2.gif" class="img2" />案例应用</a></li>
+    </ul>
+    <li><a href="#" class="navLink"><img src="nav.gif" class="img" />运动框架</a></li>
+    <ul id="m4" class="menu">
+        <li><a href="#" class="menuLink"><img src="nav2.gif" class="img2" />初级框架</a></li>
+        <li><a href="#" class="menuLink"><img src="nav2.gif" class="img2" />中级框架</a></li>
+        <li><a href="#" class="menuLink"><img src="nav2.gif" class="img2" />高级框架</a></li>
+        <li><a href="#" class="menuLink"><img src="nav2.gif" class="img2" />完美框架</a></li>
+    </ul>
+    <li><a href="#" class="navLink"><img src="nav.gif" class="img" />面向对象</a></li>
+    <ul id="m5" class="menu">
+        <li><a href="#" class="menuLink"><img src="nav2.gif" class="img2" />了解面向对象</a></li>
+        <li><a href="#" class="menuLink"><img src="nav2.gif" class="img2" />面向对象基础</a></li>
+        <li><a href="#" class="menuLink"><img src="nav2.gif" class="img2" />面向对象中级</a></li>
+        <li><a href="#" class="menuLink"><img src="nav2.gif" class="img2" />面向对象高级</a></li>
+    </ul>
+</ul>
+    
+    
+	
+
+</body>
+</html>

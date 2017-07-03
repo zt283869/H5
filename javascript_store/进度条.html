@@ -1,0 +1,68 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>进度条 </title>	
+	</head>
+	<style>
+		#progress{
+			position: relative;
+			margin: auto;
+			top: 200px;
+			display: block;
+			width: 200px;
+			height: 20px;
+			border-style: dotted;
+			border-width: thin;
+			border-color: darkgreen;
+		}
+		#filldiv{
+			position:absolute;
+			top: 0px;
+			left: 0px;
+			width: 0px;
+			height: 20px;
+			background: blue;
+		}
+		#percent{
+			position: absolute;
+			top: 0px;
+			left: 200px;
+			
+		}
+	</style>
+	<script type="text/javascript" src="js/base.js"></script>
+	<script>
+		window.onload = function(){
+			var fdiv = document.getElementById("filldiv");
+			var percent = document.getElementById("percent");
+			var timer = setInterval(function(){
+				
+				//使用JS无法获取，非行内样式
+				var _width = getStyle(fdiv).width;
+				
+				if(parseInt(_width) >= 200){
+					clearInterval(timer);
+					return;
+				}
+				fdiv.style.width = parseInt(_width)+ 2 + "px"; 
+				
+				percent.innerHTML = parseInt(percent.innerHTML) + 1 +"%";
+			},50);
+		}
+		
+		//用测试驱动，极限编程  XP
+		function getStyle(ele){
+			if(document.currentStyle){
+				return ele.currentStyle;
+			} else {
+				return getComputedStyle(ele, null);
+			}
+		}
+	</script>
+	<body>
+		<div id="progress">
+			<div id="filldiv"></div>
+			<span id="percent">0</span>
+		</div>
+	</body>
+</html>

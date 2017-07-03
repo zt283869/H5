@@ -1,0 +1,61 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>广告自动关闭</title>	
+	</head>
+	<style>
+		.tip{
+			position: fixed;
+			top: 100px;
+			left: 400px;
+			display: block;
+			width: 400px;
+			height: 200px;
+			border-style: dotted;
+			border-width: thin;
+			border-color: darkgreen;
+			background: #f0c;
+			z-index: 100;
+		}
+		
+	</style>
+	<script type="text/javascript" src="js/base.js"></script>
+	<script>
+		/*
+		window.onload = function(){
+			var timer = setInterval(function(){
+				var _span = document.getElementsByTagName("span")[0];
+				_span.innerHTML -= 1;
+				
+				if(_span.innerHTML == 0){
+					clearInterval(timer);
+					document.getElementById("ad").style.display = "none";
+				}
+			},1000);
+		}
+		*/
+		
+		window.onload = function(){
+			var num = 5;
+			var oDiv = document.getElementById("ad");
+			var t = setInterval(function(){
+				countDown();
+				if(num == 0) {
+					clearInterval(t);
+					oDiv.style.display = "none";
+				}
+			},1000);
+		
+			function countDown(){
+				oDiv.children[0].innerHTML -= 1; 
+				num--;
+			}
+		}
+	</script>
+	<body>
+		<div id="ad" class="tip">
+			我是一条广告，谢谢！
+			<span style="color:yellow; font-weight:bold;">5</span>秒钟后自动关闭
+		</div>
+	</body>
+</html>

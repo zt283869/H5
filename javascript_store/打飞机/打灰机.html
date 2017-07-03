@@ -1,0 +1,89 @@
+<!DOCTYPE html >
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>无标题文档</title>
+		<link rel="stylesheet" href="dahuiji.css" />
+		<script src="js/common.js"></script>
+		<script src="js/yintao.move.js"></script>
+		<script src="Engine.js"></script>
+		<script src="MyPlane.js"></script>
+		<script src="Bullet.js"></script>
+		<script src="Enemy.js"></script>
+		<script>
+		window.onload = function() {
+			Engine.ele = document.getElementById("body_main");
+			
+			document.getElementById("options").addEventListener("click",function(event){
+				event.stopPropagation();
+				var val = event.target.getAttribute("value");
+				switch(val){
+					case '1' : MyPlane.frequency = 600; break;
+					case '2' : MyPlane.frequency = 400; break;
+					case '3' : MyPlane.frequency = 200; break;
+					case '4' : MyPlane.frequency = 50; break;
+				}
+				alert("要开始了哦！");
+				Engine.init().loading();
+				this.style.display = "none";
+			},true);
+		}
+		
+		/** LOGO */
+		var Logo = {
+			ele: document.createElement("div"),
+			show: function() {
+				this.ele.className = "logo";
+				document.body.appendChild(this.ele);
+			},
+			hide: function() {
+				this.ele.style.display = "none";
+			}
+		}
+		
+		function isImpact(bullet, enemy){
+			if(!bullet || !enemy) return false;
+			var ele1 = bullet.ele;
+			var ele2 = enemy.ele;
+			var point = {
+				x : ele1.offsetLeft + ele1.offsetWidth/2,
+				y : ele1.offsetTop + ele1.offsetHeight/2
+			}
+			var leftSide = ele2.offsetLeft - ele1.offsetWidth/2;
+			var rightSide = ele2.offsetLeft + ele2.offsetWidth + ele1.offsetWidth/2;
+			var upSide = ele2.offsetTop - ele1.offsetHeight/2;
+			var downSide = ele2.offsetTop + ele2.offsetHeight + ele1.offsetHeight/2;
+//			console.log("x:"+point.x+",left:"+leftSide+",right:"+rightSide)
+			if(point.x > leftSide && point.x < rightSide && point.y > upSide && point.y < downSide){
+				return true;
+			}
+			return false;
+		}
+		
+		function getPosition(obj) {
+			var topValue = 0,
+				leftValue = 0;
+			while (obj) {
+				leftValue += obj.offsetLeft;
+				topValue += obj.offsetTop;
+				obj = obj.offsetParent;
+			}
+			finalvalue = leftValue + "," + topValue;
+			return finalvalue;
+		}
+		</script>
+	</head>
+
+	<body>
+		<div id="body_main" class="main">
+			<ul id="options" class="options">
+				<li value="1">超级困难</li>
+				<li value="2">非常困难</li>
+				<li value="3">比较困难</li>
+				<li value="4">就选我吧</li>
+			</ul>
+		</div>
+	</body>
+	
+</html>
