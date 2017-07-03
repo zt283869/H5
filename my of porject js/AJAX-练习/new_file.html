@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			//创建xhr对象
+			var xhr = new XMLHttpRequest();
+			//console.log(xhr);
+			//创建连接属性
+			xhr.open("GET","one.json");
+			//发送
+			xhr.send();
+			//设置响应返回结果处理
+			xhr.onreadystatechange = function(){
+				//console.log(1);
+				//console.log(xhr.readyState);
+//				if(xhr.readyState==4&&xhr.status==200){
+//					//console.log(xhr.responseText);
+//					var data = xhr.responseText;
+//					 	console.log(data);
+//				
+//			}
+				console.log(xhr.responseText);
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			function ajax(url,fn){
+				var xhr = new XMLHttpRequest();
+				xhr.open("GET",url);
+				xhr.send();
+				xhr.onreadystatechange = function(){
+					if(xhr.readyState==4&&xhr.status){
+						var data = JSON.parse(xhr.responseText);//返回一个对象
+							fn(data);
+					}
+				}
+			}
+			ajax("222.json",function(a){
+				console.log(a);
+			})
+		</script>
+	</body>
+</html>

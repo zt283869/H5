@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<meta charset="utf-8"/>
+<head>
+<title></title>
+<style>
+*{}
+ul,li{list-style-type:none;}
+img{width:560px;
+				height:300px;}
+ul li{
+				width:560px;
+				height:300px;
+				position:relative;
+				
+				overflow:hidden;
+				margin:20px;
+			}
+#pop{
+				position:absolute;
+				width:100%;
+				height:100%;
+				background:rgba(0,0,0,0.5);
+				left:0;
+				top:100%;
+				font-size:100px;
+				color:#fff;
+				text-align:center;
+				transition: all 0.5s ease-in-out;
+			}
+</style>
+</head>
+<body>
+	<ul>
+		<li>
+			<img src="../img/4.jpg">
+			<div  id="pop">
+			<p>图片</p>
+			</div>
+		</li>
+		<li>
+			<img src="../img/3.jpg">
+			<div  id="pop">
+			<p>图片</p>
+			</div>
+		</li>
+		<li>
+			<img src="../img/2.jpg">
+			<div  id="pop">
+			<p>图片</p>
+			</div>
+		</li>
+	</ul>
+<script>
+var oLi = document.getElementsByTagName("li");
+var OpO = document.getElementById("pop");
+      for(var i=0;i<oLi.length;i++){
+			oLi[i].onmouseover = function(){
+					this.getElementsByTagName("div")[0].style.top = "0px";
+			}
+			oLi[i].onmouseout = function(){
+					this.getElementsByTagName("div")[0].style.top = "100%";
+			}
+	  }
+</script>
+</body>
+</html>

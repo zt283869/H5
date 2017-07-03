@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>瀑布流</title>
+		<style>
+			*{margin: 0;padding: 0;}
+			ul,li{list-style-type: none;}
+			div{margin: 0 auto;}
+			#container{position: relative;}
+			#container .item{padding: 8px;border: 2px solid #666;width: 270px;position: absolute;left:0;top:0}
+			#loadMore{background: rgba(0,0,0,0.3);text-align: center;cursor: pointer;}
+		</style>
+	</head>
+	<body>
+		<div id="container">
+			<div class="item">
+				<h2>瀑布流</h2>
+				<img src="images/1.jpg" width="100%"/>
+				<p>瀑布流瀑布流瀑布流瀑布流</p>
+			</div>
+			<div class="item">
+				<h2>瀑布流</h2>
+				<img src="images/2.jpg" width="100%"/>
+				<p>瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流</p>
+			</div>
+			<div class="item">
+				<h2>瀑布流</h2>
+				<img src="images/3.jpg" width="100%"/>
+				<p>瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流</p>
+			</div>
+			<div class="item">
+				<h2>瀑布流</h2>
+				<img src="images/4.jpg" width="100%"/>
+				<p>瀑布流瀑布流</p>
+			</div>
+			<div class="item">
+				<h2>瀑布流</h2>
+				<img src="images/5.jpg" width="100%"/>
+				<p>瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流</p>
+			</div>
+			
+			<div class="item">
+				<h2>瀑布流</h2>
+				<img src="images/6.jpg" width="100%"/>
+				<p>瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流</p>
+			</div>
+			
+			<div class="item">
+				<h2>瀑布流</h2>
+				<img src="images/7.jpg" width="100%"/>
+				<p>瀑布流瀑布流瀑布流瀑布流</p>
+			</div>
+			
+			<div class="item">
+				<h2>瀑布流</h2>
+				<img src="images/8.jpg" width="100%"/>
+				<p>瀑布流瀑布流瀑布流瀑布流瀑布流</p>
+			</div>
+						<div class="item">
+				<h2>瀑布流</h2>
+				<img src="images/9.jpg" width="100%"/>
+				<p>瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流</p>
+			</div>
+			<div class="item">
+				<h2>瀑布流</h2>
+				<img src="images/10.jpg" width="100%"/>
+				<p>瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流</p>
+			</div>
+		</div>
+		<div id="loadMore">加载更多.......</div>
+		<script src="js/ajax.js"></script>
+		<script>
+		//通过定位来实现瀑布流，每添加一个元素的时候把他加在高度最低的那一列，每次如此这样就能实现
+		    var container = document.getElementById("container");
+			var item = document.getElementsByClassName("item");
+			var iWidth =item[0].offsetWidth;
+			var w;    //定义可视区域宽度
+			var space = 5;   //定义每个元素之间的距离
+			var columNum = 4;  //定义列数，在进行修改是重新计算列数
+			var columnHeight = [];  //定义一个数组，用来存放,每一列的高度
+			var loadMore = document.getElementById("loadMore");
+		//	offsetwidth  clientWidth  offsetLeft  offsetTop
+//			console.log(item[0].offsetWidth);
+//			console.log(item[0].offsetLeft);
+//			console.log(item[1].offsetHeight);
+			
+			//求最小高度
+			function minTop(){
+				var min = columnHeight[0];
+				var index=0;
+				for(var i=0;i<columNum;i++){
+					if(min>columnHeight[i]){
+						min = columnHeight[i];
+						index = i;
+					}	
+				}
+				return index;
+			}
+			
+//			最大高度
+			function maxTop(){
+				var max = columnHeight[0];
+				var index = 0;
+				for(var i=0;i<columNum;i++){
+					if(max<columnHeight[i]){
+						max = columnHeight[i];
+						index = i;
+					}
+				}
+				return index;
+			}
+			
+			//修改left top值
+			function masonry(){
+				var w = document.body.clientWidth;
+				columNum = w/(iWidth+space)<1?1:parseInt(w/(iWidth+space));
+				for(var i=0;i<columNum;i++){ //高度数组赋初始值
+					columnHeight[i] = space;
+				}
+				for(var i=0;i<item.length;i++){
+					var index = minTop(); // 求出最小高度的列数
+					
+					item[i].style.left = index*iWidth +(index+1)*space+"px";
+					item[i].style.top = columnHeight[index]+"px";  //动态修改left top
+					
+					columnHeight[index] += item[i].offsetHeight+space;  //这一列的高度值变化，改变高度的数组
+					
+					var m = maxTop();  //最大高度列
+//					给容器赋值宽高
+					container.style.width = columNum*iWidth + (columNum+1)*space+"px";
+					container.style.height = columnHeight[m] + space+"px";
+				}
+			}
+			window.onload = function(){
+				masonry();
+			};
+			
+			window.onresize = function(){
+				masonry();	
+			}
+			
+			loadMore.onclick = function(){
+				ajax("img.json",function(data){
+					var res = JSON.parse(data);
+					for(var i=0;i<res.length;i++){
+						container.innerHTML += "<div class='item'><h2>"+res[i].title+"</h2><img src='"+res[i].imgUrl+"' width='100%'/><p>"+res[i].txt+"</p></div>";
+					}
+					masonry();
+				})
+			}
+		</script>
+	</body>
+</html>

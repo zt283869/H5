@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Date对象</title>
+</head>
+<body>
+<p id="timer"></p>
+	<img src="img/0.png" id="img0"/><img src="img/0.png" id="img1"/>:
+	<img src="img/0.png" id="img2"/><img src="img/0.png" id="img3"/>:
+	<img src="img/0.png" id="img4"/><img src="img/0.png" id="img5"/>
+<script src="wb.js"></script>
+<script>
+var txt=document.getElementById("timer");
+	function time(){
+		var d1=new Date();
+		var _Year=d1.getFullYear();
+		var _month=d1.getMonth();
+		var _date=d1.getDate();
+		var _week=d1.getDay();
+		var _hou=d1.getHours();
+		var _min=d1.getMinutes();
+		var _sec=d1.getSeconds();
+		var week=["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+		function fig(num){
+		return num>10?num:"0"+num;
+	}
+	txt.innerHTML=_Year+"年"+(_month+1)+"月"+_date+"日"+week[_week]+" "+fig(_hou)+":"+fig(_min)+":"+fig(_sec);
+	//图
+	var now=""+fig(_hou)+fig(_min)+fig(_sec);
+	for(var i=0;i<6;i++){
+		getId("img"+i).src="img/"+now[i]+".png";
+		}	
+	}
+	time();
+		setInterval(function(){
+			time();
+		},1000)
+</script>
+</body>
+</html>

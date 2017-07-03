@@ -1,0 +1,51 @@
+﻿<!doctype html>
+<html>
+<head>
+<title></title>
+<script>
+
+/*var sum=0;
+for(var i=1;i<=100;i++){
+sum+=i;
+}
+sonlse.log(sum);*/
+
+
+//五位数一换。
+///*
+var sum=0;
+var flag=0;
+for(var i=1;i<=99;i++){
+	sum=i;
+	if(sum%7==0||sum%10==7||parseInt(sum/10)==7){
+		document.write(sum+"&nbsp;");
+		flag++;
+		if(flag%5==0){
+		document.write("<br/>");
+		}
+	}	
+	
+}
+
+
+
+
+//倒着的三角形/*
+var n=6;
+for(var i=1;i<=n;i++){
+	for(var j=1;j<=n;j++){
+		if(j<=n-i){
+		document.write("&nbsp;");	
+		}else{
+			document.write("*");
+		}
+	}
+	document.write("<br/>");
+}
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

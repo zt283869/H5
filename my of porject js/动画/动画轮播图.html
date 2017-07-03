@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			a {
+				text-decoration: none;
+			}
+			
+			ul li {
+				list-style: none;
+				float: left;
+			}
+			
+			ul {}
+			
+			#list {
+				width: 300px;
+				height: 200px;
+				position: relative;
+				border: 1px solid red;
+				margin: 20px;
+				overflow: hidden;
+			}
+			
+			#pop {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 9999px;
+			}
+			
+			img {
+				width: 300px;
+				height: 200px;
+			}
+			
+			#a1 {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 30px;
+				height: 25px;
+				color: #fff;
+				background: rgba(0, 0, 0, 0.5);
+				font-size: 25px;
+				align-content: center;
+				line-height: 25px;
+				margin-top: 30%;
+				cursor: pointer;
+			}
+			
+			#a2 {
+				position: absolute;
+				top: 0;
+				right: 0;
+				width: 30px;
+				height: 25px;
+				color: #fff;
+				background: rgba(0, 0, 0, 0.5);
+				font-size: 25px;
+				align-content: center;
+				cursor: pointer;
+				line-height: 25px;
+				margin-top: 30%;
+			}
+			
+			#ball {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+			}
+			
+			#ball li {
+				width: 15px;
+				height: 15px;
+				border-radius: 50%;
+				background: #aaa;
+				text-align: center;
+				line-height: 15px;
+				cursor: pointer;
+			}
+			
+			#ball .active {
+				background: indianred;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="list">
+			<ul id="pop">
+				<li><img src="../img/1.jpg" /></li>
+				<li><img src="../img/2.jpg" /></li>
+				<li><img src="../img/3.jpg" /></li>
+				<li><img src="../img/4.jpg" /></li>
+				<li><img src="../img/5.jpg" /></li>
+				<li><img src="../img/1.jpg" /></li>
+			</ul>
+			<a id="a1">&lt;</a>
+			<a id="a2">&gt;</a>
+			<ul id="ball">
+				<li class="active">1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+			</ul>
+		</div>
+		<script src="move.js"></script>
+		<script>
+			//获取css样式
+			function getStyle(obj, attr) {
+				if (obj.currentStyle) { //ie
+					return obj.currentStyle[attr];
+				} else {
+					return getComputedStyle(obj, null)[attr];
+				}
+			}
+
+			function getId(str) {
+				return document.getElementById(str);
+			}
+			var oList = getId("list");
+			var Pop = getId("pop");
+			var Ball = getId("ball");
+			var oLi = Ball.getElementsByTagName("li");
+			var timer = null;
+			var m = 0;
+			var _oLi = oLi.length;
+			var onumber = parseInt(getStyle(oList, "width"));
+//			console.log(onumber);
+			var Ball = getId("ball")
+			var Ballli = Ball.getElementsByTagName("li");
+//			console.log(Ballli);
+			var _left = getId("a1");
+			var _top = getId("a2");
+			Pop.innerHTML += Pop.innerHTML;
+			//自动播放
+			function autoplay() {
+				clearInterval(timer);
+				timer = setInterval(function() {
+					m++;
+					if (m == (_oLi + 1)) {
+						Pop.style.left = "0";
+						m = 1;
+					}
+					//				console.log(-1*(m*onumber)+"px");								
+					//顏色變化
+					for (j = 0; j < Ballli.length; j++) {
+						Ballli[j].className = "";
+					}
+					Ballli[m % _oLi].className = "active";
+					move(Pop, {
+						"left": -1 * (m * onumber) + "px"
+					});
+
+				}, 1000)
+			}
+			autoplay();
+			//鼠標放上暫停播放
+			oList.onmouseover = function() {
+				clearInterval(timer);
+			}
+			oList.onmouseout = function() {
+				autoplay();
+			}
+
+			//左鍵點擊切換
+			_left.onclick = function() {
+				m--;
+				if (m == -1) {
+					m = _oLi - 1;
+					pop.style.left = -1 * (_oLi * onumber) + "px";
+				}
+				move(Pop, {
+					"left": -1 * (m * onumber) + "px"
+				});
+				for (j = 0; j < Ballli.length; j++) {
+					Ballli[j].className = "";
+				}
+				Ballli[m % _oLi].className = "active";
+			}
+
+			//右鍵點擊才切換
+			_top.onclick = function() {
+				m++;
+				if (m == _oLi + 1) {
+					Pop.style.left = 0;
+					m = 1;
+				}
+				move(Pop, {
+					"left": -1 * (m * onumber) + "px"
+				});
+
+				for (j = 0; j < Ballli.length; j++) {
+					Ballli[j].className = "";
+				}
+				Ballli[m % _oLi].className = "active";
+
+			}
+
+			//鼠標放ball查看
+			for (var i = 0; i < Ballli.length; i++) {
+				Ballli[i].index = i;
+				Ballli[i].onmousemove = function() {
+
+					for (j = 0; j < Ballli.length; j++) {
+						Ballli[j].className = "";
+					}
+					this.className = "active";
+
+					move(Pop, {
+						"left": -1 * (m * onumber) + "px"
+					});
+					m = this.index;
+				}
+			}
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#ball{width: 80px;height: 80px;
+			border-radius: 50%;background: red;
+			position: absolute;
+			top: 0;
+			left: 0;
+			}
+			#star{margin-top: 100px;}
+		</style>
+	</head>
+	<body>
+		<div id="ball"></div>
+		<input type="button" name="star" id="star" value="star" />
+		<script>
+			 var ball = document.getElementById("ball");
+			var star = document.getElementById("star");
+			var h = getStyle(document.getElementsByTagName("body")[0],"height");
+			var w = getStyle(document.getElementsByTagName("body")[0],"width");
+			var timer;	
+				//获取引用样式的封装
+				function getStyle(obj,attr){
+					if(obj.currentStyle){
+						return obj.currentStyle[attr];
+					}else{
+						return getComputedStyle(obj,null)[attr];
+					}
+				}
+				//点击开始运动
+				var sX = 20;
+				var sY = 20;
+				var l,t;
+				star.onclick = function(){
+					clearInterval(timer)
+					var oWidth = getStyle(ball,"width");
+					var oHeight = getStyle(ball,"height");
+					timer = setInterval(function(){
+						
+						_left = parseInt(getStyle(ball,"left"));
+						_top = parseInt(getStyle(ball,"top"));
+						l = _left + sX;
+						t = _top + sY;  
+						//下边界
+						if(t>parseInt(h)-parseInt(oHeight)){
+							t = parseInt(h)-parseInt(oHeight);
+							sY*=-1;//反向速度；
+						}
+						//上边界
+						if(t<0){
+							t = 0;
+							sY*=-1;
+						}
+						
+						//右边界
+						if(l>parseInt(w)-parseInt(oWidth)){
+							l = parseInt(w)-parseInt(oWidth);
+							sX*=-1;
+						}
+						
+						//左边界
+						if(l<0){
+							l = 0;
+							sX*=-1;
+						}
+						//计算完成修改样式
+						ball.style.left = l+"px";
+						ball.style.top = t+"px";
+					},30)
+				}
+		</script>
+	</body>
+</html>

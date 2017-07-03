@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			ul,li{
+				list-style-type: none;
+			}
+			li{
+				width: 400px;
+				height: 50px;
+				line-height: 50px;
+			}
+			li:hover{
+				background: rgba(0,0,0,0.2);
+			}
+		</style>
+	</head>
+	<body>
+		<input type="text" id="txt" />
+		<ul id="list">
+			
+		</ul>
+		<script>
+			var oText = document.getElementById("txt");
+			var oList = document.getElementById("list");
+			oText.onkeyup = function(){
+				oList.innerHTML = "";
+				var txt = oText.value;
+//				console.log(txt);
+				var oScript = document.createElement("script");
+				oScript.src = "https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd="+txt+"&cb=aa";
+				document.getElementsByTagName("body")[0].appendChild(oScript);
+				oScript.remove();
+			}
+			function aa(data){
+				console.log(data);
+				if(data.s.length==0){
+					oList.innerHTML = "暂无搜索结果";
+				}else{
+					for(var i=0;i<data.s.length;i++){
+						var oLi = document.createElement("li");
+						oLi.innerHTML = data.s[i];
+						oList.appendChild(oLi);
+					}
+				
+				}
+			}
+			oList.onclick = function(evt){ //事件委托
+				var e = evt||event;
+//				console.log(e.target);
+//				e.target.onclick = function(){
+//					alert(1);
+					location = "https://www.baidu.com/s?ie=utf-8&f=3&rsv_bp=1&rsv_idx=1&tn=baidu&wd="+e.target.innerHTML+"&oq=%25E6%2590%25BA%25E7%25A8%258B&rsv_pq=d3a16f4300017c64&rsv_t=6288zenODThIAa9eaDh%2B%2FJF0ZGhQs0iT2yROEVFJhKxPLwnI033W1FGgqZQ&rqlang=cn&rsv_enter=1&rsv_sug3=2&rsv_sug1=1&rsv_sug7=100&rsv_sug2=1&prefixsug=1&rsp=0&inputT=6366&rsv_sug4=6366";
+//				}
+			}
+		</script>
+	</body>
+</html>

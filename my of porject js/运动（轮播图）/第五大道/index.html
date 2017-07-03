@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>第五大道</title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.container{
+				width: 1000px;
+				margin:  20px auto;
+				padding: 20px;
+			} 
+			.item{
+			    position: relative;
+			    float: left;
+			    width: 107px;
+			    height: 55px;
+			    padding: 14px 29px;
+			    border: 1px solid #dfdfdf;
+			    margin-right: 6px;
+			    margin-bottom: 7px;
+			}
+			.item img{
+				width: 107px;
+				height: 54px;
+			}
+			.item .topline {
+			    width: 0;
+			    height: 1px;
+			    position: absolute;
+			    top: -1px;
+			    left: 0;
+			    background: #000;
+			}
+			.item .rightline{
+			    width: 1px;
+			    height: 0;
+			    position: absolute;
+			    bottom: -1px;
+			    right: -1px;
+			    background: #000;
+			}
+			.item .bottomline{
+				width: 0;
+			    height: 1px;
+			    position: absolute;
+			    bottom: -1px;
+			    right: 0;
+			    background: #000;
+			}
+			.item .leftline{
+			    width: 1px;
+			    height: 0;
+			    position: absolute;
+			    top: -1px;
+			    left: -1px;
+			    background: #000;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			
+			<div class="item">
+				<img src="images/1.png" title="爱马仕"/>
+				<div class="topline"></div>
+				<div class="rightline"></div>
+				<div class="bottomline"></div>
+				<div class="leftline"></div>
+			</div>
+		</div>
+		<script src="move.js"></script>
+		<script>
+			var oItem = document.getElementsByClassName("item")[0];
+			var _top = oItem.getElementsByClassName("topline")[0];
+			var _right = oItem.getElementsByClassName("rightline")[0];
+			var _bottom = oItem.getElementsByClassName("bottomline")[0];
+			var _left = oItem.getElementsByClassName("leftline")[0];
+			oItem.onmouseover = function(){
+				move(_top,{"width":"166px"});
+				move(_bottom,{"width":"166px"});
+				move(_left,{"height":"85px"});
+				move(_right,{"height":"85px"});
+			}
+			oItem.onmouseout = function(){
+				move(_top,{"width":"0"});
+				move(_bottom,{"width":"0"});
+				move(_left,{"height":"0"});
+				move(_right,{"height":"0"});
+			}
+		</script>
+	</body>
+</html>

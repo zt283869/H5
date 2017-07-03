@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<title></title>
+<script>
+var arr=[5,2,4,3,6,8];
+arr.unshift(7);
+arr.push(0);
+console.log(arr);
+oLen=arr.length;
+for(var j=0;j<oLen;j++){
+	for(var i=0;i<oLen;i++){
+		if(arr[i]>arr[i+1]){
+			var tepm=arr[i];
+				arr[i]=arr[i+1];
+				arr[i+1]=tepm;
+		
+		}
+	}
+}
+console.log(arr);
+</script>
+</head>
+<body>
+
+</body>
+</html>

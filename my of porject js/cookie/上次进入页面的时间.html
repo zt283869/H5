@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+		//	过期时间
+			function changeDate(n){
+				var d = new Date();
+				d.setDate(d.getDate()+n);
+				return d;
+			}
+			var d = new Date();
+			var nowTime = d.toString();
+			document.cookie = "lastTime="+encodeURIComponent(nowTime)+";expires="+changeDate(7);
+		</script>
+	</body>
+</html>

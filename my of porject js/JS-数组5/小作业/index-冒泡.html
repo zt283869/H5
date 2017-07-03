@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+<title></title>
+<script>
+	var arr=[23,43,32,3,5,45,11,33,45,65,78,43,];
+	
+	var oLen=arr.length;
+	for(var j=0;j<oLen;j++){
+		for(var i=0;i<j;i++){
+			if(arr[i]>arr[i+1]){
+				var tepm=arr[i];
+				arr[i]=arr[i+1];
+				arr[i+1]=tepm;
+			}
+		}
+	}
+	console.log(arr);
+</script>
+</head>
+<body>
+
+</body>
+</html>

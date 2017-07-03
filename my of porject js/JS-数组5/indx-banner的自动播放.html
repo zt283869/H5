@@ -1,0 +1,76 @@
+﻿<!doctype html>
+<html>
+<head>
+<title></title>
+<style>
+div{
+	border:1px solid red;
+	width:400px;
+	position:relative;
+}
+img{width:400px;height:400px;
+	position:absolute;
+
+
+
+}
+
+
+a{
+
+position:absolute;
+background:rgba(0,0,0,0.4);
+text-decoration:none;
+font-size:60px;
+color:#fff;
+
+
+
+}
+</style>
+</head>
+<body>
+<div id="d_1">
+<img src="img/1.jpg" id="mg"/>
+<a href="###" style="top:130px;" id="a_1">&gt;</a>
+<a href="###" style="top:130px; left:355px;" id="a_2">&lt;</a>
+</div>
+
+<script>
+//自动播放
+var _img=document.getElementById("mg");
+	var i=1;
+	setInterval(function(){
+		i++;
+		if(i==4){
+			i=1;
+		}
+	
+		_img.src="img/"+i+".jpg";
+	},30);
+//按钮播放
+var _aleft=document.getElementById("a_1");
+var _aright=document.getElementById("a_2");
+_aleft.onclick=function(){
+	i--;
+	if(i==0){
+		i=3;
+	}
+	_img.src="img/"+i+".jpg";
+_aright.onclick=function(){
+	i++;
+	if(i==4){
+		i=1;
+	}
+	_img.src="img/"+i+".jpg";
+}
+}
+
+
+
+
+
+	
+</script>
+</body>
+</html>

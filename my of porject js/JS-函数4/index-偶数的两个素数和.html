@@ -1,0 +1,87 @@
+﻿<!doctype html>
+<html>
+<head>
+<title></title>
+<script>
+/*
+//函数值
+aa(2000);
+
+//函数调用
+function aa(a){
+
+
+for(var i=2;i<a;i++){
+	//判断2--i为素数
+	var flag=0;
+	for(var j=2;j<i;j++){
+		if(i%j==0){
+			flag=1;
+		}
+	}
+	
+	var flag1=0;
+	for(var k=2;k<a-i;k++){
+		if((a-i)%k==0){
+			flag1=1
+		}
+	}
+	if(flag==0&&flag1==0){
+		document.write(j+"+"+k+"="+(j+k)+"<br/>");
+		
+	}	
+	
+}
+
+
+
+}
+*/
+
+
+/*
+var i=0;
+
+setInterval(function cc(){
+
+	console.log(i);
+	i++;
+},1000);
+
+
+*/
+
+
+
+//作用域
+var a=10;
+var b=40;
+function aa(){
+	var a=20;
+	alert(a);//20
+	alert(b);//undefinde
+	var b=30;
+}
+	aa();
+    alert(a);//10
+	 alert(b);//40
+
+
+
+
+</script>
+</head>
+<body>
+
+<p id="text">123456</p>
+
+<script>
+document.getElementById("text").innerHTML="New text!";
+
+
+
+
+</script>
+
+</body>
+</html>

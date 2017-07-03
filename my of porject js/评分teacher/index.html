@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/font-awesome.min.css"/>
+		<style>
+			ul,li{
+				list-style-type: none;
+			}
+			li{
+				float: left;
+			}
+			span.fa{
+				font-size: 50px;
+				color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li><span class="fa fa-star-o"></span></li>
+			<li><span class="fa fa-star-o"></span></li>
+			<li><span class="fa fa-star-o"></span></li>
+			<li><span class="fa fa-star-o"></span></li>
+			<li><span class="fa fa-star-o"></span></li>
+		</ul>
+		<script src="js/jquery-1.12.2.min.js"></script>
+		<script>
+			$(function(){
+				$("li").mouseover(function(){
+					var index = $(this).index();
+					$("span").each(function(i){
+						if(i<=index){
+							$(this).removeClass("fa-star-o").addClass("fa-star");
+						}
+					})
+				})
+				$("li").mouseout(function(){
+					$("span").each(function(i){
+							$(this).removeClass("fa-star").addClass("fa-star-o");
+					})
+				})
+			})
+		</script>
+	</body>
+</html>

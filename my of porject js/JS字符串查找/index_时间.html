@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<meta charset="utf-8"/>
+<head>
+<title></title>
+
+</head>
+<body>
+<script scr="wb.js"></script>
+<script>
+//console.log(getFullYear());
+var d1=new Date();
+console.log(d1.getDate());//从Date对象返回设置某月的一天。
+//console.log(d1.setDate());
+d1.setDate(17+365);//明年的今天。
+console.log(d1);//
+
+
+function timer(n)
+{
+var oDate=new Date();
+	oDate.setDate(n+oDate.getDate());
+	return oDate;
+	}
+	console.log(timer(20));
+</script>
+</body>
+</html>

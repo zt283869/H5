@@ -1,0 +1,49 @@
+﻿<!doctype html>
+<html>
+<head>
+<title></title>
+<style>
+input{box-shadow: 5px 5px 20px #999;}
+</style>
+</head>
+<body>
+<input type="text" id="inp-1"/>
+<select id=res>
+<option>+</option>
+<option>-</option>
+<option>*</option>
+<option>/</option>
+</select>
+<input type="text" value="" id="inp-2"/>
+<input type="button" value="=" id="but"/>
+<input type="text" id="inp-3"/>
+
+<script>
+var num1=document.getElementById("inp-1");
+var num2=document.getElementById("res");
+var num3=document.getElementById("inp-2");
+var but1=document.getElementById("but");
+var num4=document.getElementById("inp-3");
+	but1.onclick=function(){
+var a=num1.value;
+var b=num3.value;
+var c=num2.value;
+	switch(c){
+		case "+":
+		num4.value=a*1+b*1;
+		break;
+		case "-":
+		num4.value=a-b;
+		break;
+		case "*":
+		num4.value=a*b;
+		break;
+		case "/":
+		num4.value=a/b;
+		break;
+	}
+	}
+</script>
+
+</body>
+</html>

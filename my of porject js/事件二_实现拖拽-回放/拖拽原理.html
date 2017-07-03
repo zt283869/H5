@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+     <head>
+          <meta charset="UTF-8">
+          <title></title>
+		  <style>
+			*{
+				margin:0;
+				padding:0;
+			}
+			ul,li{
+				list-style-type:none;
+			}
+			#d1{
+				width:100px;
+				height:100px;
+				background:red;
+				position:absolute;
+				left:0;
+				top:0;
+			}
+		  </style>
+     </head>
+     <body>
+		<div id="d1">
+			
+		</div>
+	<!--	<img  src="images/1a.jpg" id="d1"/>-->
+	</body>
+	<script src="base.js"></script>
+     <script>
+		var oDiv = getId("d1");
+		var flag = 0;
+		var _left,_top;
+		//鼠标按下
+		oDiv.onmousedown = function(evt){
+			var e = evt||event;
+			if(e.preventDefault){
+				e.preventDefault();
+			}else{
+				e.returnValue = false;
+			}
+			flag = 1;
+			_left = e.clientX - oDiv.offsetLeft;
+			_top = e.clientY - oDiv.offsetTop;
+		}
+		//鼠标移动
+		document.onmousemove = function(evt){
+			var e = evt||event;
+			if(flag){
+				oDiv.style.left = e.clientX-_left+"px";
+				oDiv.style.top = e.clientY-_top+"px";
+			}
+			
+		}
+		//鼠标松开
+		oDiv.onmouseup = function(){
+			flag = 0;
+		}
+     </script>
+</html>

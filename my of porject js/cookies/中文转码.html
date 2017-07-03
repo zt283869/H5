@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			var n = "赵四";
+			document.cookie = "name="+encodeURIComponent(n);//encodeURIComponent 中文转码
+			console.log(decodeURIComponent(document.cookie));//	decodeURIComponent 中文解码
+		</script>
+	</body>
+</html>

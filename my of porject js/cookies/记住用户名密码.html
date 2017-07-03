@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" id="Text1" /></br></br>
+		<input type="password" id="pwd"/></br></br>
+		<input type="checkbox" id="chk" />记住用户名密码</br>
+		<input type="button" id="but" value="登录"/>
+		<script src="../cookie/cookie.js"></script>
+		<script>
+		var otext1 = document.getElementById("Text1");
+		var Pwd = document.getElementById("pwd");
+		var Chk = document.getElementById("chk");
+		 var But = document.getElementById("but");
+		 Chk.onclick = function(){
+		 	var a = this.checked;
+		 	But.onclick = function(){
+		 			if(a){
+		 		saveCookie("name",otext1.value);
+		 		saveCookie("pwd",Pwd.value);
+		 	}else{
+		 		//未选中状态，清除保存过的用户名密码			
+					deleteCookie("name");
+					deleteCookie("pwd");
+		 	}
+		 	}
+		 	if(getCookie("name")){
+		 		otext1.value = getCookie("name");
+		 		chk.checked = true;
+		 	}
+		 	if(getCookie("pwd")){
+		 		Pwd.value = getCookie("pwd");
+		 	}
+		 }
+		 //	进入页面获取cookie，判断cookie是否存在，不存在不进行操作，存在则将用户名密码填进去
+			
+//		 var user = {
+//		 	"name":"tom",
+//		 	"age":"20",
+//		 	"sex":"male",
+//		 	"address":"ankang",
+//		 	"tel":"110",
+//		 	"qq":"10000"
+//		 }
+//		 saveCookie("user1",JSON.stringify(user),7);
+		 
+		</script>
+	</body>
+</html>

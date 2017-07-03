@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin:0;
+				padding:0;
+			}
+			ul,li{
+				list-style-type:none;
+			}
+			#d1{
+				width:200px;
+				height:200px;
+				position:absolute;
+				left:0;
+				top:0;
+				background: #aaa;}
+				h4{
+				height:40px;
+				width:200px;
+				background:#666;
+				color:#fff;
+				line-height:40px;
+				text-align:center;
+				cursor:move;
+				
+				
+		</style>
+	</head>
+	<body>
+		<div id="d1">
+			<h4 id="myTitle">请拖动</h4>
+		</div>
+	</body>
+	<script>
+		var oDiv = document.getElementById("d1");
+		var Tit = document.getElementById("myTitle");
+		var flag = 0;
+		var _left,_top;
+		//鼠标按下
+		Tit.onmousedown = function(eve){
+			var e = eve||event;
+			
+			flag = 1;
+			_left = e.pageX - oDiv.offsetLeft;
+			_top = e.pageY - oDiv.offsetTop;
+		}
+		//鼠标移动
+		document.onmousemove = function(eve){
+			var e = eve||event;
+			if(flag){//鼠标按下的时候DIV跟随移动
+				oDiv.style.left = e.pageX - _left+"px";//将相对位置去掉，
+				oDiv.style.top = e.pageY - _top+"px";
+			}
+		}
+		Tit.onmouseup = function(){
+			flag = 0;//鼠标松开恢复flag;
+		}
+	</script>
+</html>

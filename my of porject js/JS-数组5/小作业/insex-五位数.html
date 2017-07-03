@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<title></title>
+
+</head>
+<body>
+<a href="###" id="a-1">点击更换</a><br/>
+个位:<a href="###" id="a-2"></a><br/>
+十位:<a href="###" id="a-3"></a><br/>
+百位:<a href="###" id="a-4"></a><br/>
+千位:<a href="###" id="a-5"></a><br/>
+万位:<a href="###" id="a-6"></a><br/>
+<script>
+
+var n=100000;
+	
+var a=document.getElementById("a-1");
+
+var g=document.getElementById("a-2");
+var s=document.getElementById("a-3");
+var b=document.getElementById("a-4");
+var q=document.getElementById("a-5");
+var w=document.getElementById("a-6");
+	setInterval
+	a.onclick=function(){
+		
+		var res1=parseInt(Math.random()*n);	
+		
+		a.innerHTML=res1;	
+
+		g.innerHTML=(parseInt(res1%10));
+		s.innerHTML=(parseInt(res1/10)%10);
+		b.innerHTML=(parseInt(res1/100)%10);
+		q.innerHTML=(parseInt(res1/1000)%10);
+		w.innerHTML=(parseInt(res1/10000)%10);
+	}
+	
+	//var gw=document.write(n%10);
+		
+	
+</script>
+</body>
+</html>

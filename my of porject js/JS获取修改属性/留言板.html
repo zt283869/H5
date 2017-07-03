@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Title</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			.ovfl {
+				overflow: hidden
+			}
+			
+			.fr {
+				float: right
+			}
+			
+			.list-wrap {
+				margin: 20px auto;
+				width: 400px;
+				border: 1px solid #aaa;
+				padding: 10px;
+			}
+			
+			li {
+				list-style: none;
+				overflow: hidden;
+				padding: 10px;
+				line-height: 20px;
+				border-bottom: 1px dashed #aaa;
+			}
+			
+			img {
+				width: 50px;
+				height: 50px;
+				float: left
+			}
+			
+			textarea {
+				width: 400px;
+				height: 200px;
+				margin-top: 50px;
+				;
+				padding: 10px;
+				line-height: 20px;
+				text-indent: 1em;
+			}
+			
+			.text {
+				float: left;
+				margin-left: 20px;
+				width: 180px;
+				word-break: break-all;
+			}
+			
+			.btns {
+				float: left;
+				margin-left: 20px;
+				width: 100px;
+			}
+			
+			.btns a {
+				display: none
+			}
+			
+			.list-wrap li:hover a {
+				display: block
+			}
+			
+			
+			#btn {
+				margin-top: 10px;
+				padding: 5px;
+				cursor: pointer
+			}
+			
+			#plush-wrap {
+				display: none;
+				width: 100%;
+				height: 100%;
+				position: fixed;
+				top: 0;
+				left: 0;
+				background-color: rgba(0, 0, 0, .5)
+			}
+			
+			.plush-cont {
+				position: absolute;
+				left: 50%;
+				width: 500px;
+				padding: 20px;
+				height: 350px;
+				;
+				top: 50%;
+				margin-left: -250px;
+				margin-top: -200px;
+				background-color: #fff;
+				box-shadow: 0 0 5px rgba(0, 0, 0, .6);
+			}
+			
+			#close {
+				position: absolute;
+				font-family: "Microsoft YaHei";
+				right: 20px;
+				top: 10px;
+				color: #CCC;
+				line-height: 30px;
+				cursor: pointer;
+				font-size: 30px;
+			}
+			
+			#close:hover {
+				color: #999;
+			}
+		ul{overflow: scroll;width: 410px;height: 400px;}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="list-wrap">
+
+			<ul id="list">
+
+				<li>
+					<img src="../img/1.jpg">
+					<p class="text">在列表首部添加一个li内容为</p>
+					<div class="btns">
+						<p>2016-04-01</p>
+						<p><a href="javascript:;">删除</a></p>
+
+					</div>
+				</li>
+				<li>
+					<img src="../img/1.jpg">
+					<p class="text">在列表首部添加一个li内容为</p>
+					<div class="btns">
+						<p>2016-04-01</p>
+						<p><a href="javascript:;">删除</a></p>
+
+					</div>
+				</li>
+
+			</ul>
+			<div class="ovfl">
+				<input type="button" id="plush" class="fr" value="发布留言" />
+			</div>
+
+		</div>
+		<div id="plush-wrap">
+			<div class="plush-cont">
+				<div style="text-align: center">
+
+					<textarea id="text"></textarea>
+
+				</div>
+
+				<div style="text-align: center">
+
+					<input type="button" value="确认发布" id="btn" />
+
+				</div>
+
+				<a id="close" title="关闭">&times;</a>
+			</div>
+
+		</div>
+
+		<script>
+			var oUl = document.getElementById("list");
+			var btn = document.getElementById('btn');
+			var oText = document.getElementById('text');
+			var oWrap = document.getElementById('plush-wrap');
+			var oPlush = document.getElementById('plush');
+			var oClose = document.getElementById('close');
+			// 点击弹出发布遮罩层		
+			oPlush.onclick = function() {
+					oWrap.style.display = "block";
+				}
+				//点击关闭
+			oClose.onclick = function() {
+				oWrap.style.display = "none";
+			}
+
+			// 发布留言
+			btn.onclick = function() {
+				var txt = oText.value;
+				if (txt) {
+					var oLi = document.createElement("li");
+					var n = parseInt(Math.random() * 5);
+					oLi.innerHTML = '<img src="../img/' + (n + 1) + '.jpg"><p  class="text">' + txt + '</p><div class="btns"><p >' + getDa() + '</p><p><a href="javascript:;">删除</a></p></div>';
+					oLi.getElementsByTagName("a")[0].onclick = function() {
+						oLi.remove();
+					}
+					oUl.appendChild(oLi);					
+					oText.value = "";
+					oWrap.style.display = "none";
+				} else {
+					alert("请填写内容！");
+				}
+			
+			}
+
+			function getDa() {
+				var oDate = new Date();
+				var str = oDate.getFullYear() + "-" + changeDate(oDate.getMonth() + 1) + "-" + changeDate(oDate.getDate());
+				return str;
+			}
+
+			function changeDate(n) {
+				return n < 10 ? "0" + n : n;
+			}
+		</script>
+	</body>
+
+</html>

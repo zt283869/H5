@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#circle{
+				width: 40px;
+				height: 40px;
+				background: red;
+				border-radius: 50%;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			#play{
+				margin-top: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="circle"></div>
+		<input type="button" name="" id="play" value="start" />
+		<script type="text/javascript">
+		var play = document.getElementById("play");
+			var oDiv = document.getElementById("circle");
+			var timer;
+			var l,t;
+			function getStyle(obj,attr){
+				if(obj.currentStyle){//获取css内联外联的样式值
+					return obj.currensStyle[attr];
+				}else{
+					return getComputedStyle(obj,null)[attr];
+				}
+			}
+			play.onclick = function(){
+				clearInterval(timer);
+				var ispeed = 17;
+				var isbott = 17;
+				var w = getStyle(document.getElementsByTagName("body")[0],"width");
+				
+				var owidth = getStyle(oDiv,"width");
+			
+				console.log(parseInt(w)-parseInt(owidth));
+				timer = setInterval(function(){
+					_left = parseInt(getStyle(oDiv,"left"));
+					
+					l = _left+ispeed;
+					
+					if(l>parseInt(w)-parseInt(owidth)){
+						l = parseInt(w)-parseInt(owidth);
+						clearInterval(timer);
+					}
+					
+					oDiv.style.left = l+"px";
+				},30)
+			}
+		</script>
+	</body>
+</html>

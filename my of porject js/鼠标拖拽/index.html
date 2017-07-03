@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<meta charset="utf-8"/>
+<head>
+<title></title>
+<style>
+#box{width:100px;height:100px;background:red}
+</style>
+</head>
+<body>
+<div id="box">
+	
+</div>
+<script>
+	var Box = document.getElementById("box");
+	//console.log(Box);
+	var flag = 0;
+	var _left,_top;
+	//鼠标按下
+	Box.onmousedown = function(eve){
+		var e = eve||event;
+		if(e.preventDefault){//阻止默认事件
+			e.preventDefault();
+		}else{
+			e.returnValue = false;
+		}  
+		flag = 1;
+		_left = e.clientX - Box.offsetLeft;//相对位置的计算。
+		_top =  e.clientY - Box.offsetTop;
+	}
+	document.onmousemove = function(eve){
+		var e = eve||event;
+		if(flag){//鼠标移动的时候div跟随.
+		Box.style.left = e.clientX-_left+"px";
+		Box.style.top = e.clientY-_top+"px";
+			
+		}
+	}
+	Box.onmouseup = function(){
+			flag = 0;
+		}
+	
+</script>
+</body>
+</html>

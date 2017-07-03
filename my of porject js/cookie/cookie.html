@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" id="myname"/>
+		<input type="text" id="mypwd"/>
+		<script>
+			document.cookie = "name=tom"; //键值对形式存储cookie
+			document.cookie = "pwd=123456";
+			document.cookie = "name=jerry";
+			var myname = document.getElementById("myname");
+		//	var mypwd = document.getElementById("mypwd");
+			var name = document.cookie;
+			console.log(name);
+		//	myname.value = 
+		//cookie  可读可写
+			var a = 10;
+			var a = 20;
+		</script>
+	</body>
+</html>

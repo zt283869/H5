@@ -1,0 +1,18 @@
+[
+{
+	"name":"tom",
+	"pwd":"1234",
+	"tel":11111111,
+	"email":"11@.com",
+	"addres":"xian",
+	"age":20
+},
+{
+	"name":"tomy",
+	"pwd":"1234"
+},
+{
+	"name":"jemy",
+	"pwd":"1234"
+}
+]

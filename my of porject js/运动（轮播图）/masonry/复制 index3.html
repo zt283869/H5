@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>瀑布流</title>
+		<style>
+			*{margin: 0;padding: 0;}
+			ul,li{list-style-type: none;}
+			div{margin: 0 auto;}
+			#container{position: relative;}
+			#container .item{padding: 8px;border: 2px solid #666;width: 270px;position: absolute;left:0;top:0}
+			#loadMore{background: rgba(0,0,0,0.3);text-align: center;cursor: pointer;}
+		</style>
+	</head>
+	<body>
+		<div id="container">
+			<div class="item">
+				<h2>瀑布流</h2>
+				<img src="images/1.jpg" width="100%"/>
+				<p>瀑布流瀑布流瀑布流瀑布流</p>
+			</div>
+			<div class="item">
+				<h2>瀑布流</h2>
+				<img src="images/2.jpg" width="100%"/>
+				<p>瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流</p>
+			</div>
+			<div class="item">
+				<h2>瀑布流</h2>
+				<img src="images/3.jpg" width="100%"/>
+				<p>瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流</p>
+			</div>
+			<div class="item">
+				<h2>瀑布流</h2>
+				<img src="images/4.jpg" width="100%"/>
+				<p>瀑布流瀑布流</p>
+			</div>
+			<div class="item">
+				<h2>瀑布流</h2>
+				<img src="images/5.jpg" width="100%"/>
+				<p>瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流</p>
+			</div>
+			
+			<div class="item">
+				<h2>瀑布流</h2>
+				<img src="images/6.jpg" width="100%"/>
+				<p>瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流</p>
+			</div>
+			
+			<div class="item">
+				<h2>瀑布流</h2>
+				<img src="images/7.jpg" width="100%"/>
+				<p>瀑布流瀑布流瀑布流瀑布流</p>
+			</div>
+			
+			<div class="item">
+				<h2>瀑布流</h2>
+				<img src="images/8.jpg" width="100%"/>
+				<p>瀑布流瀑布流瀑布流瀑布流瀑布流</p>
+			</div>
+						<div class="item">
+				<h2>瀑布流</h2>
+				<img src="images/9.jpg" width="100%"/>
+				<p>瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流</p>
+			</div>
+			<div class="item">
+				<h2>瀑布流</h2>
+				<img src="images/10.jpg" width="100%"/>
+				<p>瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流</p>
+			</div>
+		</div>
+		<div id="loadMore">加载更多.......</div>
+		<script src="js/move.js"></script>
+		<script src="js/ajax.js"></script>
+		<script>
+			var container = document.getElementById("container");
+			var item = document.getElementsByClassName("item");
+			var iWidth =item[0].offsetWidth;
+			var w;    //定义可视区域宽度
+			var space = 5;   //定义每个元素之间的距离
+			var columNum = 4;  //定义列数，在进行修改是重新计算列数
+			var columnHeight = [0,0,0,0];  //定义一个数组，用来存放,每一列的高度
+			var loadMore = document.getElementById("loadMore");
+			
+			// 求最小高度列
+			function minTop(){
+				var min = columnHeight[0];
+				var index = 0;
+				for(var i=0;i<columNum;i++){
+					if(columnHeight[i]<min){
+						min = columnHeight[i];
+						index = i;
+					}
+				}
+				return index;
+			}
+			//	求最大高度列
+			function maxTop(){
+				var max = columnHeight[0];
+				var index = 0;
+				for(var i=0;i<columNum;i++){
+					if(columnHeight[i]>max){
+						max = columnHeight[i];
+						index = i;
+					}
+				}
+				return index;
+			}
+			//	布局
+			function masonry(){
+				for(var i=0;i<columNum;i++){ //根据列数赋值初始高度数组
+					columnHeight[i]=0;
+				}
+				for(var i=0;i<item.length;i++){
+					var n =  minTop();  //获取最小高度列
+//					item[i].style.left = iWidth*n+"px";  // 将当前图片left值改为最小高度列
+//					item[i].style.top = columnHeight[n]+"px"; //将当前图片放到最小高度列之下
+					move(item[i],{"left":iWidth*n+"px","top":columnHeight[n]+"px"});
+					columnHeight[n]+=item[i].offsetHeight; // 当前元素放到最小高度列，则次列高度改变
+					container.style.width = iWidth*columNum+"px"; //根据列数设置容器的宽度
+					container.style.height = columnHeight[maxTop()]+"px"; //根据最大高度设置容器的高度
+				}
+			}
+			
+			//	循环布局
+			window.onload = function(){  //图片高度获取不用onload会存在问题
+				w = document.getElementsByTagName("body")[0].offsetWidth;
+				columNum = parseInt(w/iWidth)<1?1:parseInt(w/iWidth);  //计算列数
+				masonry();
+			}
+			
+			//	窗口改变事件
+			window.onresize = function(){
+				w = document.getElementsByTagName("body")[0].offsetWidth;
+				columNum = parseInt(w/iWidth)<1?1:parseInt(w/iWidth); //计算列数
+				masonry();
+			}
+			
+			//	加载更多
+			loadMore.onclick = function(){
+				ajax("img.json",function(res){
+//					console.log(res);
+					var data = JSON.parse(res);
+					console.log(data);
+					for(var i=0;i<data.length;i++){
+						var oDiv = document.createElement("div");
+						oDiv.className = "item";
+						oDiv.innerHTML = "<h2>"+data[i].title+
+						"</h2><img src='"+data[i].imgUrl+
+						"' width='100%'/><p>"+data[i].txt+"</p>";
+						container.appendChild(oDiv);
+						masonry();  //重新排列布局
+					}	
+				})
+			}
+		</script>
+	</body>
+</html>

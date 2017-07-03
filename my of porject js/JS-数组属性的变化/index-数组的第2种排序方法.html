@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<title></title>
+<script>
+var o={
+	name:"tom",
+	age:20,
+	sex:"male"
+};
+var bb=[10,50,2,5,3,4,520,85,];
+var b=[30,34,50,2,5,3,4,520,85,];
+console.log(typeof bb);
+console.log(bb instanceof Object);
+console.log(b instanceof Array);
+console.log(Array.isArray(b));
+//for in
+	console.log(o,name);
+	
+	
+	var name="age";
+	console.log(o[name]);
+	console.log(o["name"]);
+	console.log(o["na"+"me"]);
+	var arr=[23,24,55,3,255,25,2,5];
+	
+	for(var j=0;j<arr.length;j++){
+	var max=arr[0];
+	var n=0;
+		for(var i=0;i<arr.length-j;i++){
+			if(max<arr[i]){
+				max=arr[i];
+				n=i;
+			}
+	}
+	var tepm=arr[n];
+	arr[n]=arr[arr.length-1-j];
+	arr[arr.length-1-j]=tepm;
+	}
+	console.log(arr);
+</script>
+</head>
+<body>
+
+</body>
+</html>

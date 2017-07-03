@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<meta charset="utf-8"/>
+<head>
+<title></title>
+<script>
+
+</script>
+</head>
+<body>
+<form action="http://www.baidu.com">
+	<input type="text" id="ip_1" />
+	<input type="submit" id="bot" value="提交" />
+	<a href="http://www.baidu.com">提交</a>
+</form>
+<img src="../img/4.jpg" />
+	<script>
+		var Oa = document.getElementsByTagName("a")[0];
+		var Bot = document.getElementById("bot");
+		var oImg = document.getElementsByTagName("img")[0];
+		//console.log(Bot);
+		//console.log(Oa);
+		//阻止默认提交
+		Oa.onclick = function(e){
+		 var eve = e||window.event;
+			return false;
+		}
+		oImg.style.width = "300px";
+		oImg.style.height = "300px";
+	
+	</script>
+</body>
+</html>

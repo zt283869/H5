@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<meta charset="utf-8"/>
+<head>
+<title></title>
+<style>
+*{margin:0;padding:0}
+div{margin:0 auto;display:flex;justify-content:center;margin:20px;}
+ul{list-style:none;width:400px;
+height:300;border:1px solid #999;padding:10px;
+overflow:auto;
+}
+</style>
+</head>
+<body>
+
+	<ul id="list">
+	<li>轻轻的我走了，正如我轻轻的来</li>
+    <li>轻轻的我来了，正如我轻轻的走</li>
+ 
+	</ul>
+	<input type="button" value="首部添加" id="first" />
+	<input type="button" value="尾部添加" id="last" />
+
+<script>
+	var Lis = document.getElementById("list");
+	var First = document.getElementById("first");
+	var Last = document.getElementById("last");
+	//首添加
+	First.onclick = function(){
+		var oLi = document.createElement("li");
+		oLi = innerHTML = "I am first child";
+		oLi.title = "点击删除";
+		
+		
+		Lis = insertBefore(oLi,Lis.getElementsByTagName("li")[0]);
+		Lis.appendChild(oLi);
+	}
+</script>
+</body>
+</html>

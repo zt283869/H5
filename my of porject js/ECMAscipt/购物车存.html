@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<p id="name">商品1</p>
+		<p id="money">价格：$100</p>
+		<input type="text" name="" id="number" value="" placeholder="请输入数量"/>
+		<input type="button" name="" id="onclik" value="加入购物车" />
+		<script src="../cookie/cookie.js"></script>
+		<script>
+			function getId(str){
+				return document.getElementById(str);
+			}
+			var _name = getId("name");
+			var _money = getId("money");
+			var _number = getId("number");
+			var _onclik = getId("onclik");
+			_onclik.onclick = function(){
+				var z = _name.innerHTML;
+				var t = _money.innerHTML;
+				var y = _number.value;
+				var o= {};
+				 o.name = z;
+				 o.money = t;
+				 o.num = y;
+				saveCookie("good",JSON.stringify(o),7);	 
+			}
+			
+				 
+		</script>
+	</body>
+</html>

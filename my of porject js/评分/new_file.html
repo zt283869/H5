@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{margin:0;padding: 0;}
+			ul,li{list-style-type: none;}
+			body{padding: 50px;}
+			ul{width: 135px;height: 28px;}
+			ul li{background: url(star.gif) no-repeat 0 0;width: 27px;height: 28px;float: left;}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<input type="button" value="重新评分" id="resore"/>
+		<p id="myscore">0</p>
+		<script>
+			var oUl = document.getElementsByTagName("ul")[0];
+			var oLi = oUl.getElementsByTagName("li");
+			var reScore = document.getElementById("resore");
+			var myScore = document.getElementById("myscore");
+			var notclicked = 1;
+			//鼠标移动
+			for(var i=0;i<oLi.length;i++){
+				oLi[i].index = i;
+				oLi[i].onmouseover = function(){
+					if(notclicked){
+						var k = this.index;
+						setScore(k);
+						//console.log(k);
+					}
+				}
+				oLi[i].onclick = function(){
+					if(notclicked){
+						notclicked = 0;
+						var k = this.index;
+						setScore(k);
+						//console.log(k);
+					}
+				}
+			}
+			//鼠标移开
+			oUl.onmouseout = function(){
+				if(notclicked){
+					setEmpty();
+					myScore.innerHTML = "0";
+				}
+			}
+			//重新评分
+			reScore.onclick = function(){
+				notclicked = 1;
+				setEmpty();
+				myScore.innerHTML = "0";
+			}
+			function setEmpty(){     //星星置空操作
+				for(var i=0;i<oLi.length;i++){
+					oLi[i].style.background = "url(star.gif) no-repeat 0 0";
+				}
+			}
+			function setScore(n){
+				for(var j=0;j<oLi.length;j++){//给定n包括n之前的星星变色选中
+					
+					if(j<=n){
+						console.log(j);
+						oLi[j].style.background = "url(star.gif) no-repeat 0 -28px";
+					}else{
+						oLi[j].style.background = "url(star.gif) no-repeat 0 0px";
+					}
+					myScore.innerHTML = n+1;
+				}
+			}
+		</script>
+	</body>
+</html>

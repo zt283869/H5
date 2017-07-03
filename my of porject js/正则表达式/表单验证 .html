@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" id="userName" value="" />
+		<script>
+			var userName = document.getElementById("userName");
+			userName.onblur = function(){
+				var reg = /^[0-9a-zA-Z][0-9a-zA-Z_]{6,12}$/;
+				var otext = userName.value;
+				console.log(reg.test(otext));
+			}
+		</script>
+	
+	
+	</body>
+</html>

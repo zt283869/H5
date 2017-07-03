@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			ul,li{
+				list-style-type: none;
+			}
+			div{
+				margin: 0 auto;
+			}
+			.container{
+				width: 1200px;
+				margin-top: 50px;
+				background: rgba(0,0,0,0.2);
+			}
+			.item{
+				overflow: hidden;
+			}
+			.itemList{
+				float: left;
+				width: 600px;
+				background: rgba(0,0,0,0.2);
+				overflow: hidden;
+			}
+			.itemList li{
+				float: left;
+				width: 100px;
+				margin: 10px;
+			}
+			.itemList li img{
+				width: 100%;
+			}
+			.itemDetail{
+				float: right;
+				width: 560px;
+				background: rgba(0,0,0,0.2);
+			}
+			#input1,select{
+				width: 100px;
+				height: 30px;
+				line-height: 30px;
+				border-radius: 5px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="search">
+				<select>
+					<option value="all">所有英雄</option>
+					<option value="Support">辅助</option>
+					<option value="Tank">坦克</option>
+					<option value="Mage">法师</option>
+					<option value="Fighter">战士</option>
+					<option value="Assassin">刺客</option>
+					<option value="Marksman">射手</option>
+				</select>
+				<input type="text" value="" id="input1" placeholder="请输入搜索内容"/>
+			</div>
+			
+			<div class="item">
+				<ul class="itemList">
+					
+				</ul>
+				<div class="itemDetail">
+					
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/ajax.js" ></script>
+		<script>
+			var sel = document.getElementsByTagName("select")[0];
+			var oUl  =document.getElementsByClassName("itemList")[0];
+			var itemDetail = document.getElementsByClassName("itemDetail")[0];
+			var input1 = document.getElementById("input1");
+			//进入页面加载
+//			$(document).on("click",".itemList li",function(){
+//				
+//			})
+			ajax("hero.json",function(res){
+				var data = JSON.parse(res).data;
+				oUl.innerHTML = "";
+				itemDetail.innerHTML = ""; //清空之前内容
+				console.log(data);
+				for(var x in data){   // 进入页面加载全部
+					var oLi = document.createElement("li");
+					oLi.innerHTML = "<img src='img/"+data[x].image.full+"' title='"+data[x].title+"'/>";
+					oLi.setAttribute("data-num",x);
+					
+					oUl.appendChild(oLi);
+					oLi.onclick = function(){
+						itemDetail.innerHTML = "";
+						var num = this.getAttribute("data-num");
+						var oA = document.createElement("a");
+						oA.href = "http://lol.qq.com/web201310/info-defail.shtml?id="+num;
+						oA.innerHTML = "<p>"+data[num].title+"</p><img src='img/"+data[num].image.full+"'/><p>"+data[num].name+"</p>";
+						itemDetail.appendChild(oA);
+					}
+						
+				}
+				
+			})
+		//	select内容变化后请求ajax	填入对应信息
+			sel.onchange = function(){
+				var condition = this.value;  //	选择的英雄类型
+				ajax("hero.json",function(res){
+					var data = JSON.parse(res).data;   //返回的数据
+					oUl.innerHTML = "";   //清空列表内之前内容
+					itemDetail.innerHTML = ""; //清空之前内容
+//					console.log(data);
+					for(var x in data){
+						var heroTag = data[x].tags;   //  英雄类型的标签，与选中的类型进行比较，如果相同，则填入页面
+						if(condition=="all"){   // 如果选择的是所有英雄，填入所有英雄信息
+							var oLi = document.createElement("li"); //创建元素
+							oLi.innerHTML = "<img src='img/"+data[x].image.full+"' title='"+data[x].title+"'/>";//将英雄图片填入
+							oLi.setAttribute("data-num",x);  //自定义属性，存储当前属性名字，点击的时候方便使用
+							oUl.appendChild(oLi);
+							oLi.onclick = function(){   //点击
+								itemDetail.innerHTML = ""; //清空之前内容
+								var num = this.getAttribute("data-num");  //获取刚存储的自定义属性
+								var oA = document.createElement("a");
+								oA.href = "http://lol.qq.com/web201310/info-defail.shtml?id="+num;
+								oA.innerHTML = "<p>"+data[num].title+"</p><img src='img/"+data[num].image.full+"'/><p>"+data[num].name+"</p>";
+								itemDetail.appendChild(oA); //将英雄name,title属性填到右边
+							}
+						}else{
+							for(var i=0;i<heroTag.length;i++){
+								if(condition==heroTag[i]){  //对英雄类型标签进行逐一对比，因为有些英雄有多个类型标签
+									var oLi = document.createElement("li");
+									oLi.innerHTML = "<img src='img/"+data[x].image.full+"' title='"+data[x].title+"'/>";
+									oLi.setAttribute("data-num",x);
+									oUl.appendChild(oLi);
+									oLi.onclick = function(){
+										itemDetail.innerHTML = "";
+										var num = this.getAttribute("data-num");
+										var oA = document.createElement("a");
+										oA.href = "http://lol.qq.com/web201310/info-defail.shtml?id="+num;
+										oA.innerHTML = "<p>"+data[num].title+"</p><img src='img/"+data[num].image.full+"'/><p>"+data[num].name+"</p>";
+										itemDetail.appendChild(oA);
+									}
+								}
+							};
+						}
+						
+					}
+				})
+			}
+			
+			
+		//	搜索英雄，name或者title
+			input1.onkeyup = function(){
+				var condition = this.value;  //	选择的英雄类型
+				ajax("hero.json",function(res){
+					var data = JSON.parse(res).data;   //返回的数据
+					oUl.innerHTML = "";   //清空列表内之前内容
+					itemDetail.innerHTML = ""; //清空之前内容
+//					console.log(data);
+					for(var x in data){
+						if((data[x].name.indexOf(condition)!=-1)||(data[x].title.indexOf(condition)!=-1)){   // 如果选择的是所有英雄，填入所有英雄信息
+							var oLi = document.createElement("li"); //创建元素
+							oLi.innerHTML = "<img src='img/"+data[x].image.full+"' title='"+data[x].title+"'/>";//将英雄图片填入
+							oLi.setAttribute("data-num",x);  //自定义属性，存储当前属性名字，点击的时候方便使用
+							oUl.appendChild(oLi);
+							oLi.onclick = function(){   //点击
+								itemDetail.innerHTML = ""; //清空之前内容
+								var num = this.getAttribute("data-num");  //获取刚存储的自定义属性
+								var oA = document.createElement("a");
+								oA.href = "http://lol.qq.com/web201310/info-defail.shtml?id="+num;
+								oA.innerHTML = "<p>"+data[num].title+"</p><img src='img/"+data[num].image.full+"'/><p>"+data[num].name+"</p>";
+								itemDetail.appendChild(oA);
+							}
+						}
+						
+					}
+				})
+			}
+		</script>
+	</body>
+</html>

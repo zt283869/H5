@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script src="identity.js"></script>
+		<script>
+		//验证方法
+			var str = "abcd12124";
+			var reg = /^a/;
+			console.log(reg.test(str));
+			var reg2 = /4$/;
+			console.log(reg2.test(str));
+			var  reg3 = /^ad$/;
+			console.log(reg3.test(str));
+			var reg4 = /^a[0-9]$/;
+			console.log(reg4.test(str));
+			//
+			var reg5 = /^a[\da-zA-Z_]{6,12}S$/;//范围
+			console.log(reg5.test("a232_sASAAS"));
+			var reg6 = /^a[com|cn]$m/;
+			
+			//
+			var erg7 = /^[^0-9]$/;
+				console.log(erg7.test("2"));
+			
+			var reg8 = /^\+/;
+				console.log(reg8.test("+12151"));	
+			var reg9 = /^\.+?$/;
+				console.log();
+			//
+			var a1 = /^[0-9a-zA-Z]+@[0-9A-Za-z]+\.(com|cn)$/;
+				console.log(a1.test("11@qq.com"));	
+			//	
+			var a2 = /^\d{16}[0-9Xx]$/;
+				console.log(a2.test("62612155152222222"));
+				var idcards = "612401199508012796";
+			console.log(IdCardValidate(idCard).test(idcards));
+				
+				
+				
+		</script>
+	</body>
+</html>

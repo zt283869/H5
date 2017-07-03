@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<meta charset="utf-8"/>
+<head>
+<title></title>
+<style>
+ul{
+	display:flex;
+	width:150px;
+}
+ ul li{
+	list-style:none;
+	width:30px;
+	height:20px;
+	background:#999;
+	margin-left:5px;
+	text-align:center;
+ }
+ .list2 .active{
+				background:red;
+			}
+body img{width:400px;height:400px;}			
+</style>
+</head>
+<img src="img/1.jpg" id="imgx"/>
+<ul class="list2">
+	<li class="active"></li>
+	<li>1</li>
+	<li>2</li>
+	<li>3</li>
+	<li>4</li>
+</ul>
+<body>
+<script src="wb.js"></script>
+<script>
+	
+	var oLi=document.getElementsByClassName("list2")[0].getElementsByTagName("li");
+	var q=1;
+	var timer = setInterval(function(){
+				q++;
+				if(q==5){
+					q=1;	
+			}
+				getId("imgx").src="img/"+q+".jpg";
+			for(var w=0;w<oLi.length;w++){
+				oLi[w].className="";
+			}
+			oLi[q].	className="active";
+			},1000)
+	
+	for(var i=0;i<oLi.length;i++){
+	
+		oLi[i].aa = i;//给当前的节点对象添加一个属性把i值存进去
+		oLi[i].onmouseover=function(){
+		clearInterval(timer);
+			console.log(this.aa);
+			for(var j=0;j<oLi.length;j++){
+				oLi[j].className="";
+			}	
+			this.className="active";
+			getId("imgx").src="img/"+(this.aa+1)+".jpg";
+		 }
+	}	
+		
+	</script>
+</body>
+</html>
+

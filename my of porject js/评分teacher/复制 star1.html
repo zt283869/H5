@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>评分1</title>
+		<style>
+			*{margin:0;padding: 0;}
+			ul,li{list-style-type: none;}
+			body{padding: 50px;}
+			ul{width: 135px;height: 28px;}
+			ul li{background: url(star.gif) no-repeat 0 0;width: 27px;height: 28px;float: left;}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<input type="button" value="重新评分" id="resore"/>
+		<p id="myScore">0</p>
+		<script>
+			var oUl = document.getElementsByTagName("ul");
+			var oLi = oUl[0].getElementsByTagName("li");
+			//鼠标移上
+			for(var i=0;i<oLi.length;i++){
+				oLi[i].index = i;
+				oLi[i].onmouseover = function(){
+					console.log(this.index);
+					for(var j=0;j<oLi.length;j++){
+						if(j<=this.index){
+								
+							oLi[j].style.background = "url(star.gif) no-repeat 0 -28px";
+						}else{
+							
+							oLi[j].style.background = "url(star.gif) no-repeat 0 0";
+						}
+						
+						
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

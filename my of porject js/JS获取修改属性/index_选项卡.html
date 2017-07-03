@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+	<meta charset="utf-8" />
+
+	<head>
+		<title></title>
+		<style>
+			* {
+				margin: 0px;
+				padding: 0px;
+			}
+			
+			ul {
+				list-style: none;
+			}
+			
+			ul {
+				display: flex;
+				justify-content: center
+			}
+			
+			a {
+				text-decoration: none;
+				color: #000;
+				justify-content: center
+			}
+			
+			a {
+				display: flex;
+			}
+			
+			#list li {
+				width: 100px;
+				border: 1px solid #999;
+				box-shadow: 5px 5px 5px #999;
+			}
+			
+			#option li {
+				width: 420px;
+				height: 450px;
+				border: 1px solid #999;
+				display: none;
+				margin-top: 10px;
+			}
+			
+			#option .opl1 {
+				display: block
+			}
+			
+			.active {
+				color: #fff;
+				background: #999
+			}
+		</style>
+	</head>
+
+	<body>
+		<div>
+			<ul id="list">
+				<li class="active"><a href="#">广州</a></li>
+				<li><a href="#">三乡</a></li>
+				<li><a href="#">坦洲</a></li>
+				<li><a href="#">香洲</a></li>
+			</ul>
+			<ul id="option">
+				<li class="opl1"><a href="#">广州1</a></li>
+				<li><a href="#">三乡2</a></li>
+				<li><a href="#">坦洲3</a></li>
+				<li><a href="#">香洲4</a></li>
+			</ul>
+		</div>
+		<script>
+			var oLi = document.getElementById("list").getElementsByTagName("li");
+			var oLi2 = document.getElementById("option").getElementsByTagName("li");
+			//console.log(oLi2);
+			for (var i = 0; i < oLi.length; i++) {
+				oLi[i].indxa = i;
+
+				oLi[i].onmouseover = function() {
+					for (var j = 0; j < oLi.length; j++) {
+						oLi[j].className = "";
+					}
+					this.className = "active";
+					
+					for (var k = 0; k < oLi2.length; k++) {
+						oLi2[k].className = "";
+					}
+
+					oLi2[this.indxa].className = "opl1";
+
+				}
+			}
+		</script>
+	</body>
+
+</html>

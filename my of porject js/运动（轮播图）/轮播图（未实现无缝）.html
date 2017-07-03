@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			ul,li{
+				list-style-type:none;
+			}
+			#wrap{
+				width: 980px;
+				height: 500px;
+				overflow: hidden;
+				margin: 0 auto;
+				position: relative;
+			}
+			ul#slide{
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 9999px;
+			}
+			#slide li{
+				float: left;
+			}
+			#prev,#next{
+				width:150px;
+				height: 100px;
+				line-height: 100px;
+				color: #fff;
+				font-size: 80px;
+				background: rgba(0,0,0,0.5);
+				position: absolute;
+				top: 200px;
+				text-align: center;
+				text-decoration: none;
+				display: none;
+			}
+			#wrap:hover #prev,#wrap:hover #next{
+				display: block;
+			}
+			#prev{
+				left: 0;
+			}
+			#next{
+				right: 0;
+			}
+			#list{
+				position: absolute;
+				bottom: 10px;
+			}
+			#list li{
+				width: 30px;
+				height: 30px;
+				background: #fff;
+				border-radius: 50%;
+				float: left;
+				margin-left: 10px;
+				cursor: pointer;
+			}
+			#list li.active{
+				background: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<ul id="slide">
+				<li><img src="images/big0.jpg"/></li>
+				<li><img src="images/big1.jpg"/></li>
+				<li><img src="images/big2.jpg"/></li>
+				<li><img src="images/big3.jpg"/></li>
+				<li><img src="images/big4.jpg"/></li>
+			</ul>
+			<!--左右按钮-->
+			<a id="prev" href="#">&lt;</a>
+			<a id="next" href="#">&gt;</a>
+			<!--下面原点-->
+			<ul id="list">
+				<li class="active"></li><li></li><li></li><li></li><li></li>
+			</ul>
+		</div>
+		<script src="move.js"></script>
+		<script>
+		//	封装函数获取ID的元素节点，获取样式
+			function getId(str){
+				return document.getElementById(str);
+			}
+			function getStyle(obj,attr){
+				if(obj.currentStyle){
+					return obj.currentStyle[attr];
+				}else{
+					return getComputedStyle(obj,null)[attr];
+				}
+			}
+			
+			var oWrap = getId("wrap");
+			var oSlide = getId("slide");
+			var iWidth = parseInt(getStyle(oWrap,"width"));
+			var oList = getId("list");
+			var oLi = oList.getElementsByTagName("li");
+			var oLen = oLi.length;
+			var oNext = getId("next");
+			var oPrev = getId("prev");
+			var m = 0;  //当前第几张图的索引
+			var timer = null;
+			//自动轮播
+			function autoPlay(){
+				timer = setInterval(function(){
+					m++;
+					if(m==oLen){
+						m=0;
+					}
+	//				oSlide.style.left = (-1)*m*iWidth+"px"; css直接改，没有动画效果
+	//				通过move函数改变left值，当前第几张图的数值×每个的宽度在取负值
+					move(oSlide,{"left":(-1)*m*iWidth+"px"});
+					for(var i=0;i<oLen;i++){
+						oLi[i].className = "";
+					}
+					oLi[m].className = "active";
+				},3000)
+			}
+			//	调用自动轮播		
+			autoPlay();
+			
+			// 鼠标移上移开清除或开启定时器
+			oWrap.onmouseover = function(){
+				clearInterval(timer);
+			}
+			oWrap.onmouseout = function(){
+				autoPlay();
+			}
+			
+			//下面圆点鼠标移上
+			for(var i=0;i<oLen;i++){
+				oLi[i].index = i;  //存储index属性
+				oLi[i].onmouseover = function(){
+					for(var j=0;j<oLen;j++){
+						oLi[j].className = "";
+					}
+					oLi[this.index].className = "active";
+					m = this.index; //将index复制给m，全局也知道当前是第几张图
+					move(oSlide,{"left":(-1)*m*iWidth+"px"});
+				}
+			}
+			// next的点击
+			oNext.onclick = function(){
+				m++;
+				if(m==oLen){  //最后一张之后再点击改到第一张
+					m=0;
+				}
+				move(oSlide,{"left":(-1)*m*iWidth+"px"});
+				for(var i=0;i<oLen;i++){
+					oLi[i].className = "";
+				}
+				oLi[m].className = "active";
+			}
+			// prev的点击
+			oPrev.onclick = function(){
+				m--;
+				if(m==-1){  //第一张在往前点击改到最后一张
+					m=oLen-1;
+				}
+				move(oSlide,{"left":(-1)*m*iWidth+"px"});
+				for(var i=0;i<oLen;i++){
+					oLi[i].className = "";
+				}
+				oLi[m].className = "active";
+			}
+		</script>
+	</body>
+</html>

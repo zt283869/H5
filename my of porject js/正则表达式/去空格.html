@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+<style>
+	ul li{list-style: none;float: left;text-align: center;margin: 10px;}
+	.item{width: 20px;height: 20px;border-radius: 50%;}
+	.active{background: red;}
+</style>
+	</head>
+	<body>
+		<ul>
+			<li class="item active">1</li>
+			<li class="item">2</li>
+			<li class="item">3</li>
+			<li class="item">4</li>
+			<li class="item">5</li>
+		</ul>
+		<script>
+		
+	 		var str = "        adasd sad sd     "; 
+			
+			var reg1 = /^\s*/;//去掉前面空格
+			var reg2 = /\s*$/;//去掉后面空格
+			var reg3 = /(^\s*)|(\s*$)g/;//去掉空格
+				console.log(str.replace(reg1,"").length);
+				console.log(str.replace(reg2,"").length);
+				console.log(str.replace(reg3,"").length);
+				console.log(str.trim().length);
+			//
+			//
+			function addclass(obj,str){
+				obj.className = "item"+" "+str;
+			}
+			
+			
+			var oLi = document.getElementsByClassName("item");
+				for(var i=0;i<oLi.length;i++){
+					oLi[i].onmouseover = function(){
+						for(var j=0;j<oLi.length;j++){
+							oLi[j].className = "item";
+						}
+//						this.className = "item active";
+						addclass(this,"active")
+				}
+					
+				oLi[i].onmouseout = function(){
+					for(var j=0;j<oLi.length;j++){
+						oLi[j].className = "item";
+					}
+				}
+				}
+				
+		</script>
+	</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			p{
+				width: 100%;
+				border: 1px solid red;
+			}
+		</style>
+	</head>
+	<body>
+		<p id="time"></p>
+		<script>
+			var str = decodeURIComponent(document.cookie);
+			console.log(str);
+			var lastTime = document.getElementById("time");
+			lastTime.innerHTML = str.split("name=")[1];
+		</script>
+	</body>
+</html>

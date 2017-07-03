@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+     <head>
+          <meta charset="UTF-8">
+          <title></title>
+		  <style>
+			*{
+				margin:0;
+				padding:0;
+			}
+			ul,li{
+				list-style-type:none;
+			}
+			ul{
+				position:absolute;
+				left:0px;
+				top:0px;
+				box-shadow:1px 1px 3px #666;
+				display:none;
+			,}
+			ul li{
+				width:150px;
+				height:50px;
+				line-height:50px;
+				background:rgba(0,0,0,0.2);
+				margin-top:1px;
+				font-size:30px;
+			}
+		  </style>
+     </head>
+     <body>
+			<ul id="list">
+				<li>html</li>
+				<li>css</li>
+				<li>js</li>
+			</ul>
+			<a href="http://www.baidu.com" id="a1">百度</a>
+			<img src="images/1a.jpg" id="Img"/>
+		<form action="http://www.baidu.com">
+			<input type="text" id="txt"/>
+			<input type="submit" id="btn"/>
+		</form>
+	</body>
+	<script src="base.js"></script>
+     <script>
+	//	浏览器默认右键菜单  oncontextmenu  return false
+	//	document.onmousedown =function(evt){
+	//		var e = evt||event;
+	//		console.log(e.button);
+	//	}
+		document.oncontextmenu = function(){  //阻止右键菜单
+			return false;
+		}
+		
+		document.onmousedown = function(evt){
+			var e = evt||event;
+			if(e.button==2){
+				getId("list").style.display = "block";
+				getId("list").style.left = e.clientX+"px";
+				getId("list").style.top = e.clientY+"px";
+			}else{
+				getId("list").style.display = "none";
+			}
+		}
+     </script>
+</html>

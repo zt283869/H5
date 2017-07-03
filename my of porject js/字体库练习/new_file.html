@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../评分teacher/css/font-awesome.css" />
+		<style>
+			#list{border-radius: 10px;display:flex;justify-content: center;background:#aaa;margin:20px;}
+			p{margin-left:50%}
+			span.fa{font-size: 50px;}
+			
+		</style>
+	</head>
+	<body>
+		<div id="list">
+		<span class="fa fa-money"></span>
+		<span class="fa fa-qq"></span>
+		<span class="fa fa-qq"></span>
+		<span class="fa fa-qq"></span>
+		<span class="fa fa-qq"></span>
+		<span class="fa fa-qq"></span>
+		<span class="fa fa-qq"></span>
+		</div>
+		<p id="myscore">0</p>
+		<script>
+			var List = document.getElementById("list");
+			var Span = List.getElementsByTagName("span");	
+			var myScore = document.getElementById("myscore");
+			for(var i=0;i<Span.length;i++){
+				Span[i].index = i;				
+				Span[i].onmouseover = function(){
+					var n = this.index;
+					//console.log(n);
+					for(var j=0;j<Span.length;j++){
+						if(j<=n){
+							//console.log(j);
+							Span[j].className = "fa fa-star";
+							Span[j].style.width = 100+"px";
+							Span[j].style.color = "red";
+					}else{
+						Span[j].className = "fa fa-star-o";
+					}
+					myScore.innerHTML = n+1;
+				}
+			}
+			
+			
+			}
+				List.onmouseout = function (){
+					aa();
+					myScore.innerHTML = 0;
+					for(var i=0;i<Span.length;i++){
+					Span[i].style.color = "#000";
+				}
+				
+				}
+				
+				function aa(){
+					for(var i=0;i<Span.length;i++){
+						Span[i].className = "fa fa-qq";
+						Span[i].style.width = "";
+						Span[i].style.height = "";
+					}								
+				}
+		 			
+		</script>
+	</body>
+</html>

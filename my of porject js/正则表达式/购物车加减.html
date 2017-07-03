@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#number{width: 50px;height: 50px;
+			float: left;font-size: 30px;
+			}
+			#plus{width: 35px;height: 28px;box-shadow: 2px 2px 1px #aaa;}
+			#minus{width: 35px;height: 28px;box-shadow: 2px 2px 1px #aaa;}
+			.d1{float: left;margin-left: 5px;}
+			.d2{margin: 0 auto;width: 100px;}			
+		</style>
+	</head>
+		
+	<body>
+		<div class="d2">
+		<input type="text" id="number" value="1" />
+		<div class="d1">
+			<input type="button" id="plus" value="+"/><br />		
+			<input type="button" id="minus" value="-" />
+		</div>
+		</div>	
+		<script>
+		
+			var Number = document.getElementById("number");
+			var Plus = document.getElementById("plus");
+			var Minus = document.getElementById("minus");
+		//加号的点击
+		Plus.onclick = function(){
+				var n = parseInt(Number.value);
+				if(n>0&&n<199){
+					Number.value = n+1;
+					Minus.disabled = false;//可以减
+//					console.log(Minus.disabled);
+					Minus.style.cursor = "pointer";//爪子
+					if(Number.value==199){
+						Plus.disabled = true;//加不了
+						Plus.style.cursor = "not-allowed";//禁用了哦
+					}
+				}else{
+					Plus.disabled = true;
+					Plus.style.cursor = "not-allowed";
+				}
+			}
+			//减号的点击
+			
+			Minus.onclick = function(){
+				var n = parseInt(Number.value);
+				if(n>1&&n<199){
+					Number.value = n-1;
+					Plus.disabled = false;
+					Plus.style.cursor = "pointer";
+					if(Number==1){
+						Minus.disabled = true;
+						Minus.style.cursor = "not-allowed";
+					}
+				}else{
+						Minus.disabled = true;
+						Minus.style.cursor = "not-allowed";
+				}
+			}
+			//键盘松开处理
+			Number.onkeyup = function(){
+			
+			setTimeout(function(){
+						var n=Number.value;
+						var n1 = n.replace(/\D/g,"")?n.replace(/\D/g,""):1;//				
+						Number.value = n1<200?n1:199;
+						
+						if(Number.value==0){
+							Number.value=1;
+						}
+						if(Number.value==1){
+							Minus.disabled = true;
+							Minus.style.cursor = "not-allowed";
+						}else{
+							Minus.disabled = false;
+							Minus.style.cousor = "pointer";
+						}
+						if(Number.value==199){
+							Plus.disabled =  true;
+							plus.style.cursor = "not-allowed";
+						}else{
+							Plus.disabled =  false;
+							plus.style.cursor = "pointer";
+						}
+						
+				},500)
+			}
+		</script>
+	</body>
+</html>

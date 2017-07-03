@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title></title>
+
+</head>
+<body>
+	你输入的姓名
+	<p id="userName"></p>
+	你输入的年龄
+	<p id="userAge"></p>
+	<script src="wb.js"></script>
+<script>
+ var url = location.href;
+		console.log(url);
+		var a = url.split("?")[1];
+		var b = a.split("&");
+		console.log(b);
+		for(var i=0;i<b.length;i++){
+			var c = b[i].split("=");
+			if(c[0]=="aaaa"){
+				getId("userName").innerHTML = c[1];
+			}
+			if(c[0]=="bbb"){
+				getId("userAge").innerHTML = c[1];
+			}
+			
+		}
+</script>
+
+</body>
+</html>

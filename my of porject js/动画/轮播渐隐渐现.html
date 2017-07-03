@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{margin: 0;padding: 0;}
+			a{text-decoration: none;}
+			ul li{list-style: none;float: left;}
+			#wrap{width: 600px;height: 300px;
+			border: 1px solid orangered;overflow: hidden;position: relative;}
+			ul{width: 9999px;}
+			img{width: 600px;height: 300px;}
+			#a1{position: absolute;
+			font-size: 40px;
+			top: 40%;
+			left: 0;
+			text-align: center;
+			width: 70px;
+			height: 40px;
+			line-height: 40px;
+			color: #fff;
+			background:rgba(0,0,0,0.5);
+			}
+			#a2{position: absolute;right: 0;top: 40%;
+			height: 40px;
+			width: 70px;
+			text-align: center;
+			font-size: 40px;
+			line-height: 40px;
+			color: #fff;
+			background:rgba(0,0,0,0.5);
+			
+			
+			}
+			#list{position: absolute;width: 400px;bottom: 0;left: 0;}
+			
+			#list li{float: left;width: 30px;
+			border: 1px solid #aaa;
+			height: 30px;border-radius: 50%;
+			
+			
+			
+			}
+			#list .active{background: rgba(0,0,0,0.8);border:1px solid darkred}
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<ul id="slide">
+				<li><img src="../img/1.jpg" alt="心惶惶"/></li>
+				<li><img src="../img/2.jpg" alt="心惶惶"/></li>
+				<li><img src="../img/3.jpg" alt="心惶惶"/></li>
+				<li><img src="../img/4.jpg" alt="心惶惶"/></li>
+				<li><img src="../img/5.jpg" alt="心惶惶"/></li>
+			</ul>
+			<!--//左右键-->
+			<a href="#" id="a1">&lt;</a>
+			<a href="#" id="a2">&gt;</a>
+			<!--下面ball-->
+			<ul id="list">
+				<li class="active"></li><li></li><li></li><li></li><li></li>
+			</ul>
+		</div>
+		<script type="text/javascript" src="move.js">
+		</script>
+		<script>
+			function getId(str){
+				return document.getElementById(str);
+			}
+			var oslide = getId("slide");
+			var oLi = oslide.getElementsByTagName("li");
+			var Li = oLi.length;
+//			console.log("oLi");
+			var olist = getId("list");
+			var _oLi = olist.getElementsByTagName("li");
+			var _a1 = getId("a1");
+			var _a2 = getId("a2");
+			var _wrap = getId("wrap");
+			var m=null;
+			var timer;
+			//自轮
+			function autoplay(){
+				timer = setInterval(function(){
+				for(var i=0;i<oLi.length;i++){
+					oLi[i].style.display = "none";
+				}
+				m++;
+				if(m==oLi.length){
+					m=0;
+				}
+				oLi[m].style.display = "block";
+				
+				oLi[m].getElementsByTagName("img")[0].style.opacity = 0;
+				move(oLi[m].getElementsByTagName("img")[0],{"opacity":"1"});
+				
+				for(i=0;i<oLi.length;i++){
+					_oLi[i].className = "";
+				}
+				_oLi[m].className = "active";
+			},1000)
+			}
+		
+			autoplay();
+			//放上暂停
+			_wrap.onmouseover = function(){
+				clearInterval(timer);
+			}
+			_wrap.onmouseout = function(){
+				autoplay();
+			}
+		
+		_a1.onclick = function(){
+//				oLi[m].style.opacity = "0";
+				for(var i=0;i<oLi.length;i++){
+					oLi[i].style.display = "none";
+				}
+				m--;
+				if(m==-1){
+					m = oLi.length - 1;
+				}
+				oLi[m].style.display = "block";
+				oLi[m].getElementsByTagName("img")[0].style.opacity = 0;
+				move(oLi[m].getElementsByTagName("img")[0],{"opacity":"1"});
+				for(var i=0;i<oLi.length;i++){
+					_oLi[i].className = "";
+				}
+				_oLi[m].className = "active";
+			}
+		
+		
+		
+		_a2.onclick = function(){
+				for(var i=0;i<oLi.length;i++){
+					oLi[i].style.display = "none";
+				}
+				m++;
+				if(m==oLi.length){
+					m=0;
+				}
+				oLi[m].style.display = "block";
+				
+				oLi[m].getElementsByTagName("img")[0].style.opacity = 0;
+				move(oLi[m].getElementsByTagName("img")[0],{"opacity":"1"});
+			for(var i=0;i<oLi.length;i++){
+					_oLi[i].className = "";
+				}
+				_oLi[m].className = "active";
+			}
+		///
+		
+		
+			for(var i=0;i<oLi.length;i++){
+				_oLi[i].index = i;
+				_oLi[i].onmouseover = function(){
+					for(var j=0;j<oLi.length;j++){
+						_oLi[j].className = "";
+						oLi[j].style.display = "none";
+					}
+					this.className = "active";
+					m = this.index;
+					oLi[m].style.display = "block";
+					oLi[m].getElementsByTagName("img")[0].style.opacity = 0;
+					move(oLi[m].getElementsByTagName("img")[0],{"opacity":"1"});
+				}
+			}
+		</script>
+	</body>
+</html>

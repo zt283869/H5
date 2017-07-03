@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<meta charset="utf-8"/>
+<head>
+<title></title>
+<style>
+			p{
+				margin: 50px 0;
+			}
+		</style>
+</head>
+<body>
+<p>滚动</p><p>滚动</p><p>滚动</p><p>滚动</p><p>滚动</p><p>滚动</p><p>滚动</p><p>滚动</p><p>滚动</p><p>滚动</p><p>滚动</p>
+		<p>滚动</p><p>滚动</p><p>滚动</p><p>滚动</p><p>滚动</p><p>滚动</p><p>滚动</p><p>滚动</p><p>滚动</p><p>滚动</p><p>滚动</p>
+<a href="###" id="backTop">返回顶部</a>
+<script src="wb.js"></script>		
+<script>
+				//
+				var scrollTop;
+				
+				var backTop = getId("backTop");
+			//
+				backTop.onclick=function(){
+					var scrollTop = document.body.scrollTop||document.documentElement.scrollTop;
+					timer=setInterval(function(){
+							scrollTop-=20;
+							document.body.scrollTop=scrollTop;
+							if(scrollTop<=0){
+								clearInterval(timer);
+							}
+					},30)
+				}
+
+
+</script>	
+</body>
+</html>

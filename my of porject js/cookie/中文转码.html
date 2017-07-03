@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			var n = "张三";
+			document.cookie = "name="+encodeURIComponent(n);
+			console.log(decodeURIComponent(document.cookie));
+		//	encodeURIComponent 中文转码
+		//	decodeURIComponent 中文解码
+		</script>
+	</body>
+</html>

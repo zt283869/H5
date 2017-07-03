@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<meta charset="utf-8"/>
+<head>
+<title></title>
+</head>
+<body>
+<div class="d1" style="height: 200px;background:red">asdasdasdasd</div>
+<script src="../wb.js"></script>
+<script>
+var oDiv = document.getElementsByClassName("d1");
+	console.log(oDiv[0].style.width);//只能获取行内样式
+	function getId(obj,arrt){
+		if(obj.currentStyle){
+			return obj.currentStyle[arrt];
+		}else{
+			window.getComputedStyle(obj,null)[arrt];
+		}
+		console.log(getStyle(oDiv[0],"width"));
+	}
+</script>
+</body>
+</html>

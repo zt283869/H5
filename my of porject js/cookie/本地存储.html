@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script src="cookie.js"></script>
+		<script>
+		//	localStorage sessionStorage
+			console.log(localStorage);  //没有过期时间
+			console.log(sessionStorage); //临时，关闭浏览器就没了
+			document.cookie = "aa=111";
+			localStorage.setItem("a","111111");
+			console.log(localStorage.getItem("a"));
+			localStorage.removeItem("a");
+		//	
+			var user = {
+				"name":"tom",
+				"age":"20",
+				"sex":"male",
+				"address":"xian",
+				"tel":"110",
+				"qq":"100000"
+			}
+		//	JSON.parse()将字符串转成对象
+		//	JSON.stringify()将对象转成字符串
+			saveCookie("user1",JSON.stringify(user),7);
+		</script>
+	</body>
+</html>

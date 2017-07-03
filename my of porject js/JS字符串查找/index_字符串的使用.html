@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title></title>
+
+</head>
+<body>
+<script>
+
+
+
+//浏览器信息
+var agent = navigator.userAgent;
+console.log(agent);
+//
+var str="Holle javascript Java";
+/*//第几位
+console.log(str.indexOf("java"));
+//后到前第几位
+console.log(str.lastIndexOf("java"));
+//
+console.log(str.search("java"));
+//组合
+console.log(str.match("java"))
+*/
+
+//
+var a=/java/gi;
+console.log(str.search(/java/gi));
+//大小写都输出
+console.log(str.match(/java/gi));
+//
+var str2="H  e l   l  o";
+
+//空格替换成2//g代表全局变量。
+var str3=str2.replace(/ /g,"2");
+console.log(str3);
+
+//合并所有空格//s代表空格。
+var str4=str2.replace(/\s/g,"");
+console.log(str4);
+</script>
+</body>
+</html>

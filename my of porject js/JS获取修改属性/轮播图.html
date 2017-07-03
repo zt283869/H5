@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<meta charset="utf-8"/>
+<head>
+<title>轮播</title>
+	<style>
+	*{margin:0;padding:0;}
+	ul{list-style:none;position:absolute;top:0;left:0}
+	li{width:30px;height:30px;
+	background:#999;float:left;
+	border-radius:50%;
+	text-align:center;
+	line-height:30px;
+	color:#fff;
+	margin-top:360px;
+	margin-left:30px;
+	transition: all 0.8s ease-in-out;
+	}
+	#banner{position:relative;margin:0 auto;}
+	img{width:400px;height:400px;}
+	a{text-decoration:none;color:#fff;
+		position:absolute;display:block;
+		top:0;left:0;
+	background:rgba(0,0,0,0.5)}
+	#a_1{
+		width:40px;height:40px;
+		font-size:40px;
+		font-weight:bold;
+		margin-top:180px;
+		text-align:center;
+	}
+	#a_2{
+		width:40px;height:40px;
+		font-size:40px;
+		font-weight:bold;
+		margin-left:360px;
+		margin-top:180px;
+		text-align:center;
+	}
+		div{width:400px;height:400px;border:1px solid red}
+		.list_1{background:red}
+	</style>
+</head>
+<body>
+	<div id="banner">
+		<img src="../img/0.jpg"id="Img">
+		<ul id="list">
+			<li class="list_1">1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+		</ul>
+		<a id="a_1" href="###">&lt;</a>
+		<a id="a_2" href="###">&gt;</a>
+	</div>
+	<script>
+		var OImg = document.getElementById("Img");
+		var Banner = document.getElementById("banner");
+		var Loi = document.getElementById("list").getElementsByTagName("li");
+		var Llt = document.getElementById("a_1");
+		var Hgt = document.getElementById("a_2");
+		var m = 0;
+		function autoPlay(){
+		timer = setInterval(function(){
+				m++;
+				if(m==6){
+					m=0;
+				}
+			for(var i=0;i<Loi.length;i++){
+				Loi[i].className = "";
+			}	 
+			Loi[m].className = "list_1";
+			OImg.src = "../img/"+m+".jpg"	
+		},500)
+		}
+		
+		Banner.onmouseover = function(){
+			clearInterval(timer);
+		}
+		Banner.onmouseout = function(){
+			autoPlay();//调用
+		}
+		//	下面按钮的点击（鼠标移上）
+		for(var j=0;j<Loi.length;j++){
+			Loi[j].index = j;
+			Loi[j].onmouseover = function(){
+				
+				for(var i=0;i<Loi.length;i++){
+					Loi[i].className = "";	
+				}
+					this.className = "list_1";
+					OImg.src = "../img/"+this.index+".jpg";	
+						m = this.index;//m重新获取下标
+			}
+	
+		}
+		//Llt点击按钮
+		Llt.onclick = function(){
+			m--;
+			if(m==-1){
+				m=5;
+			}
+			for(var i=0;i<Loi.length;i++){
+				Loi[i].className = "";
+			}
+			Loi[m].className = "list_1";
+			OImg.src = "../img/"+m+".jpg";
+		}
+		//Hgt点击按钮
+		Hgt.onclick = function(){
+			m++;
+			if(m==6){
+				m=0;
+			}
+			for(var i=0;i<Loi.length;i++){
+				Loi[i].className = "";
+			}
+			Loi[m].className = "list_1";
+			OImg.src = "../img/"+m+".jpg";
+		}
+	</script>
+</body>
+</html>

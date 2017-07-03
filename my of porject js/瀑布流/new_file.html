@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{margin: 0;padding: 0;}
+			ul li{list-style: none;}
+			#container{position: relative;}
+			#container .item{padding: 8px;border: 2px solid #666;width: 270px;position: absolute;left:0;top:0}
+			#loadMore{/*background: rgba(78,52,51,.5);*/text-align: center;
+			cursor: pointer;
+			position: fixed;
+			bottom:0;
+			margin-bottom: 20px;
+			margin-left: 90%;
+			}
+		
+		</style>
+	</head>
+	<body>
+		<div id="container">
+			<div class="item">
+				<h2>瀑布流</h2>
+				<img src="images/1.jpg" width="100%" />
+				<p>瀑布流瀑布流瀑布流瀑布流</p>
+			</div>
+			<div class="item">
+				<h2>瀑布流</h2>
+				<img src="images/2.jpg" width="100%"/>
+				<p>瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流</p>
+			</div>
+			<div class="item">
+				<h2>瀑布流</h2>
+				<img src="images/3.jpg" width="100%"/>
+				<p>瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流</p>
+			</div>
+			<div class="item">
+				<h2>瀑布流</h2>
+				<img src="images/4.jpg" width="100%"/>
+				<p>瀑布流瀑布流</p>
+			</div>
+			<div class="item">
+				<h2>瀑布流</h2>
+				<img src="images/5.jpg" width="100%"/>
+				<p>瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流</p>
+			</div>
+			<div class="item">
+				<h2>瀑布流</h2>
+				<img src="images/6.jpg" width="100%"/>
+				<p>瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流</p>
+			</div>
+			<div class="item">
+				<h2>瀑布流</h2>
+				<img src="images/7.jpg" width="100%"/>
+				<p>瀑布流瀑布流瀑布流瀑布流</p>
+			</div>
+			
+			<div class="item">
+				<h2>瀑布流</h2>
+				<img src="images/8.jpg" width="100%"/>
+				<p>瀑布流瀑布流瀑布流瀑布流瀑布流</p>
+			</div>
+						<div class="item">
+				<h2>瀑布流</h2>
+				<img src="images/9.jpg" width="100%"/>
+				<p>瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流</p>
+			</div>
+			<div class="item">
+				<h2>瀑布流</h2>
+				<img src="images/10.jpg" width="100%"/>
+				<p>瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流瀑布流</p>
+			</div>
+		</div>
+		<div id="loadMore">加载更多.......</div>
+		<script src="js/ajax.js"></script>
+		<script>
+		var container = document.getElementById("container");
+			var item = document.getElementsByClassName("item");
+			var iWidth =item[0].offsetWidth;
+			var w;    //定义可视区域宽度
+			var space = 5;   //定义每个元素之间的距离
+			var columNum = 4;  //定义列数，在进行修改是重新计算列数
+			var columnHeight = [];  //定义一个数组，用来存放,每一列的高度
+			var loadMore = document.getElementById("loadMore");
+			//求最小高度
+			function minTop(){
+				var min = columnHeight[0];
+				var index = 0;
+				for(var i=0;i<4;i++){
+					if(columnHeight[i]<min){
+						min = columnHeight[i];
+						index = i;
+					}
+				}
+				return index;
+			}
+			
+			//最大高度
+			function maxTop(){
+				var max = columnHeight[0];
+				var index = 0;
+				for(var i=0;i<columNum;i++){
+					if(max<columnHeight[i]){
+						max = columnHeight[i];
+						index = i;
+					}
+				}
+				return index;
+			}
+			//	循环布局
+			
+//			window.onload = function(){
+//				for(var i=0;i<item.length;i++){
+//					var n =  minTop();
+//					item[i].style.left = iWidth*n+"px";
+//					item[i].style.top = columnHeight[n]+"px";
+//					columnHeight[n]+=item[i].offsetHeight;
+//				}
+//			}
+			
+//			修改left top值
+			function masonry(){
+				var w = document.body.clientWidth;
+				columNum = w/(iWidth+space)<1?1:parseInt(w/(iWidth+space));
+				for(var i=0;i<columNum;i++){
+					columnHeight[i] = space;
+				}
+				for(var i=0;i<item.length;i++){
+					var index = minTop();
+					item[i].style.left = index*iWidth+(index+1)*space+"px";
+					item[i].style.top = columnHeight[index]+"px";
+					columnHeight[index]+=item[i].offsetHeight+space;
+					var m = maxTop();
+					container.style.width = columNum*iWidth+(columNum+1)*space+"px";
+					container.style.height = columnHeight[m]+space+"px";
+				}
+			}
+			window.onload = function(){
+				masonry();
+			}
+			window.onresize = function(){
+				masonry(); 
+			}
+			loadMore.onclick = function(){
+				ajax("img.json",function(data){
+					var res = JSON.parse(data);
+					for(var i=0;i<res.length;i++){
+						container.innerHTML += "<div class='item'><h2>"+res[i].title+"</h2><img src='"+res[i].imgUrl+"' width='100%'/><p>"+res[i].txt+"</p></div>";
+					} 
+					masonry();
+				})
+			}
+		</script>
+	</body>
+</html>

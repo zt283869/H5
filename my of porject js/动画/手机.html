@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			ul li {
+				list-style: none;
+			}
+			
+			#box {
+				width: 220px;
+				height: 310px;
+				border: 1px solid #aaa;
+				margin: 20%;
+				position: relative;
+				display: flex;
+				justify-content: center;
+				overflow: hidden;
+				box-shadow: 0 0 0 2px rgba(0, 0, 0, .2);
+			}
+			
+			#box2 {
+				position: absolute;
+				bottom: 0;
+				border: px solid red;
+				width: 190px;
+				height: 50px;
+				overflow: hidden;
+			}
+			
+			#box1 {
+				position: absolute;
+				width: 9999px;
+				top: 0;
+				left: 0;
+				
+			}
+			#box2 .active{border: 1px solid mediumvioletred;}
+			#box1 li {
+				width: 190px;
+				height: 220px;
+				margin-top: 10px;
+				float: left;
+				border: px solid #aaa;
+				margin-left: 15px;
+				display: none;
+			}
+			
+			#box1 img {
+				width: 190px;
+				height: 220px;
+				display: block;
+				position: absolute;
+				margin-top: 10px;
+				margin: 0;
+				padding: 0;
+				box-shadow:1px 2px 1px #aaa; 
+			}
+			
+			#column {
+				width: 300px;
+				height: 50px;
+				border: px solid blue;
+				position: absolute;
+				top: 0;left:0px;
+			}
+			
+			#column li {
+				float: left;
+				width: 40px;
+				height: 40px;
+				border: px solid #aaa;
+				margin: 5px;
+				margin-left: 13px;
+			}
+			
+			#column li img {
+				padding: 0;
+				margin: 0;
+				width: 40px;
+				height: 40px;
+				box-shadow:1px 2px 1px #aaa; 
+			}
+			
+			#a1 {
+				width: 15px;
+				height: 52px;
+				color: rgba(0, 0, 0, 0.2);
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				text-shadow:1px 2px 1px #aaa; 
+				font-size: 22px;
+				line-height: 50px;
+				cursor: pointer;
+							}
+			
+			#a2 {
+				width: 15px;
+				height: 52px;
+				color: rgba(0, 0, 0, 0.2);
+				position: absolute;
+				right: 0;
+				font-size: 22px;
+				text-shadow:1px 2px 1px #aaa; 
+				bottom: 0;
+				line-height: 50px;
+				cursor: pointer;
+			}
+			#box1 .opi{display: block;}
+			#box_right{
+				width: 219px;
+				height: 230px;
+				position: absolute;
+				border:1px solid #ABCDEF;
+				top: 169px;
+				left: 392px;
+			}
+			#box_right img{
+				width: 219px;
+				height: 230px;
+				position: absolute;
+				
+			}
+			
+		</style>
+	</head>
+
+	<body>
+		<div id="box">
+			<ul id="box1">
+				<li><img src="../img/a1.jpg" id="oMg" /></li>
+				<li class="opi"><img src="../img/a2.jpg" id="oMg" /></li>
+				<li><img src="../img/a3.jpg" id="oMg" /></li>
+				<li><img src="../img/a4.jpg" id="oMg" /></li>
+				<li><img src="../img/a1.jpg" id="oMg" /></li>
+			</ul>
+			
+			<div id="box2">
+				<ul id="column">
+					<li class="active"><img src="../img/a1.jpg" /></li>
+					<li><img src="../img/a2.jpg" /></li>
+					<li><img src="../img/a3.jpg" /></li>
+					<li><img src="../img/a4.jpg" /></li>
+					<li><img src="../img/a3.jpg" /></li>
+				</ul>
+			</div>
+			<a id="a1">&lt;</a>
+				
+			<a id="a2">&gt;</a>
+		</div>
+		<div id="box_right">
+			<img src="../img/a1.jpg""/>
+			<img class="opi" src="../img/a2.jpg" id="oMg" " />
+			<img src="../img/a3.jpg" id="oMg" />
+			<img src="../img/a4.jpg" id="oMg" " />
+			<img src="../img/a1.jpg" id="oMg" " />
+		</div>
+		<script src="move.js">
+		</script>
+		<script>
+		
+		//
+	
+		//
+		
+			function getId(str){
+				return document.getElementById(str);
+			}
+				//
+			var oIm = document.getElementById("column").getElementsByTagName("img");
+			var oum = getId("column");	
+			var oLi = document.getElementById("box1").getElementsByTagName("li");
+			var oLi2 = document.getElementById("column").getElementsByTagName("li");
+			var A1 = getId("a1");
+			var A2 = getId("a2");
+			var _number = parseInt(getStyle(column,"width"));
+//			console.log(_number);
+			
+			
+			for(var i=0;i<oLi2.length;i++){
+				oLi2[i].index = i;
+				oLi2[i].onmouseover = function(){
+					for(var k=0;k<oLi2.length;k++){
+						oLi2[k].className = ""
+					}
+					this.className = "";
+					
+				for(var j=0;j<oLi.length;j++){
+					oLi[j].className = "";
+				}
+				oLi[this.index].className = "opi";	
+				
+				}
+			}
+			A2.onclick = function(){
+//				oum.style.left = -110+"px";
+				move(oum,{"left":-110+"px"});
+				A2.style.cursor = "not-allowed";
+				A1.style.cursor = "pointer";
+			}
+			A1.onclick = function(){
+				
+//				oum.style.left = 0+"px";
+				move(oum,{"left":0+"px"});
+				A1.style.cursor = "not-allowed";
+				A2.style.cursor = "pointer";
+			}
+		</script>
+	</body>
+
+</html>

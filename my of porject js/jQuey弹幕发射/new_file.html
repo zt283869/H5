@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+				*{
+				padding: 0;
+				margin: 0;
+			}
+			#box{
+				height:700px;
+				width:1000px;
+				margin: 0 auto;
+				border:1px solid #000000;
+				position: relative;
+			}
+				#main{
+				width:100%;
+				height:605px;
+				position: relative;
+				overflow: hidden;
+			}
+				p{
+				position: absolute;
+				left:1000px;
+				width:200px;
+				top:0;
+			}
+				#bottom{
+				width:100%;
+				height:80px;
+				background: #ABCDEF;
+				text-align: center;
+				padding-top: 15px;
+				position: absolute;
+				left: 0;
+				bottom: 0;
+			}
+				#txt{
+				width:300px;
+				height:50px;	
+			}
+			#btn{
+				width:100px;
+				height:50px;				
+			}
+		</style>
+	</head>
+	<body>
+			<div id="box">
+					<div id="main">
+				
+					</div>
+				<div id="bottom">
+					<input type="text" id="txt" placeholder="请输入内容" />
+					<input type="button" id="btn" value="发射" />
+				</div>
+		</div>
+	</body>
+</html>
+	<script src="http://libs.baidu.com/jquery/1.9.1/jquery.js"></script>
+<script>
+	$(function(){
+	var pageH=parseInt($("#main").height());
+	var colorArr=["#cfaf12","#12af01","#981234","#adefsa","#db6be4","#f5264c","#d34a74"];		
+	$("#btn").bind("click",auto);
+	document.onkeydown=function(e){
+		            if(e.keyCode == 13){
+		                auto();
+		            }
+		        };
+	function auto(){
+					var $value = $("#txt").val();
+					$("#main").append("<p>" + $value + "</p>");
+					$("#txt").val("");
+					var _top=parseInt(pageH*(Math.random()));
+					var num=parseInt(colorArr.length*(Math.random()));
+					$("p:last-child").css({"top":_top,"color":colorArr[num],"font-size":"20px"});
+					$("p:last-child").animate({"left":"-200px"},10000);
+					$("p:last-child").stop().animate({"left":"-300px"},10000,"linear",function(){
+                        $(this).remove();
+                   });				
+					//console.log($value);
+				};
+
+
+})
+</script>

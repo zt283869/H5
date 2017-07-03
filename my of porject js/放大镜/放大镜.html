@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<meta charset="utf-8"/>
+<head>
+<title></title>
+<style>
+	*{margin: 0;padding: 0;}
+	.container{
+				width: 1200px;
+				margin: 500px auto;
+			}
+	.goods{
+				width: 320px;
+				height: 504px;
+				border: 1px solid gray;
+				position: relative;
+				float: left;
+			}
+	.goods img{
+				width: 100%;
+			}
+	.pop{
+				width: 160px;
+				height: 252px;
+				position: absolute;
+				left: 0;
+				top:0;
+				background: rgba(0,0,0,0.4);
+				cursor: move;
+				display:none;
+			}	
+	.bigPic{
+				width: 320px;
+				height: 504px;
+				position: relative;
+				border: 1px solid gray;
+				overflow: hidden;
+				float: left;
+				margin-left: 50px;
+				display: none;
+			}	
+	.bigPic img{
+				position: absolute;
+				left: 0;
+				top: 0;
+			}			
+</style>
+</head>
+<body>
+<div class="container">
+	<div class="goods">
+		<img src="images/zhiling1.jpg" />
+		<div class="pop"></div>
+	</div>
+	<div class="bigPic">
+		<img src="images/zhiling1.jpg" />
+	</div>
+</div>
+<script>
+	var oGoods = document.getElementsByClassName("goods")[0];
+	var oPop = document.getElementsByClassName("pop")[0];
+	var oBig = document.getElementsByClassName("bigPic")[0];
+	var oBigPic = oBig.getElementsByTagName("img")[0];
+	var w = 320,h = 504;
+	var oW = 160,oH = 252;
+	var bigW = 640,bigH = 1008;
+	//
+	oGoods.onmouseover = function(){
+		oPop.style.display = "block";
+		oBig.style.display = "block";
+	}
+	oGoods.onmouseout = function(){
+		oPop.style.display = "none";
+		oBig.style.display = "none";
+	}
+	//client
+	oGoods.onmousemove = function(e){
+			var evt = e||window.event;
+			var l;
+			var t;
+			if(evt.pageX - oGoods.offsetLeft<oW/2){
+				l=0;
+			}else if(evt.pageX - oGoods.offsetLeft>(w-oW/2)){
+			l = w - oW;}
+		else{
+			l = evt.pageX - oGoods.offsetLeft-oW/2;
+		}
+		if(evt.pageY - oGoods.offsetTop<oH/2){
+			t=0;
+		}else if(evt.pageY - oGoods.offsetTop>(h-oH/2)){
+			t = h - oH;
+		}else{
+			t = evt.pageY - oGoods.offsetTop-oH/2;
+		}
+		oPop.style.left = l+"px";
+		oPop.style.top = t+"px";
+		
+		oBigPic.style.left = (-1)*l*bigW/w+"px";
+		oBigPic.style.top = (-1)*t*bigH/h+"px";
+		}
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<meta charset="utf-8"/>
+<head>
+<title></title>
+
+</head>
+
+<body>
+<ul class="list">
+<li>233</li>
+<li>233</li>
+<li>233</li>
+</ul>
+<ul class="list">
+<li>233</li>
+<li>233</li>
+<li>233</li>
+</ul>
+<input type="password" id="text"/>
+<input type="button" id="but"/>
+<script src="wb.js"></script>
+<script>
+//var _ul=document.getElementsByTagName("ul");
+	//	console.log(_ul[0]);
+		//_ul[0].innerHTML="<li>清空</li>"
+var aa=document.getElementsByClassName("list");
+			console.log(aa[1].className);
+			aa[0].className="a v s";
+			
+			getId("but").onclick=function(){
+				console.log(getId("text").type);
+				getId("text").type="text";
+			}
+</script>
+</body>
+</html>

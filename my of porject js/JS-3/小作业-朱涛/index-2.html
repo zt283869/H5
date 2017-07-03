@@ -1,0 +1,23 @@
+﻿<!doctype html>
+<html>
+<head>
+<title></title>
+<script>
+var num;
+var flag=0;
+for(var i=1000;i<=2000;i++){
+	num=i;
+	if(num%400==0||(num%100!=0&&num%4==0)){
+		document.write(num+" ");
+		flag++;
+		if(flag%4==0){
+			document.write("<br/>");
+		}
+	}
+}
+</script>
+</head>
+<body>
+
+</body>
+</html>

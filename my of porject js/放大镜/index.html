@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>放大镜</title>
+		<style></style>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.container{
+				width: 1200px;
+				margin: 20px auto;
+			}
+			.goods{
+				width: 320px;
+				height: 504px;
+				border: 1px solid gray;
+				position: relative;
+				float: left;
+			}
+			.goods img{
+				width: 100%;
+			}
+			.pop{
+				width: 160px;
+				height: 252px;
+				position: absolute;
+				left: 0;
+				top:0;
+				background: rgba(0,0,0,0.4);
+				cursor: move;
+				display: none;
+			}
+			.bigPic{
+				width: 320px;
+				height: 504px;
+				position: relative;
+				border: 1px solid gray;
+				overflow: hidden;
+				float: left;
+				margin-left: 50px;
+				display: none;
+			}
+			.bigPic img{
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="goods">
+				<img src="images/zhiling1.jpg" />
+				<div class="pop"></div>
+			</div>
+			<div class="bigPic">
+				<img src="images/zhiling1.jpg" />
+			</div>
+		</div>
+		<script src="js/jquery-1.12.2.min.js"></script>
+		<script>
+			$(".goods").mouseover(function(){
+				$(".pop").show();
+				$(".bigPic").show();
+			})
+			$(".goods").mouseout(function(){
+				$(".pop").hide();
+				$(".bigPic").hide();
+			})
+			$(".goods").mousemove(function(e){
+				var oWidth = $(".goods").width();
+				var oHeight = $(".goods").height();
+				var w = $(".pop").width();
+				var h = $(".pop").height();
+				var _left = e.pageX - $(this).offset().left;
+				var _top = e.pageY - $(this).offset().top;
+				var l = 0;
+				var t = 0;
+				if(_left<(w/2)){
+					l = 0;
+				}else if(_left>(oWidth-w/2)){
+					l = oWidth-w;
+				}else{
+					l = _left - (w/2);
+				}
+				
+				if(_top<(h/2)){
+					t = 0;
+				}else if(_top>(oHeight-h/2)){
+					t = oHeight-h;
+				}else{
+					t = _top - (h/2);
+				}
+				console.log(t);
+				$(".pop").css({
+					"left":l+"px",
+					"top":t+"px"
+				});
+				
+				$(".bigPic img").css({
+					"left":(-1)*l/oWidth*$(".bigPic img").width()+"px",
+					"top":(-1)*t/oHeight*$(".bigPic img").height()+"px"
+				})
+			})
+		</script>
+	</body>
+</html>

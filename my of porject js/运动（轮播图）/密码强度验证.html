@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			ul,li{
+				list-style-type: none;
+			}
+			.container{
+				width: 1000px;
+				margin: 0 auto;
+				margin-top: 50px;
+			}
+			.item ul{
+				width: 160px;
+				height: 10px;
+				border: 1px solid gray;
+				display: inline-block;
+				border-radius: 10px;
+				padding: 2px 3px;
+				overflow: hidden;
+			}
+			.item ul li{
+				float: left;
+				background: #ddd;
+				width: 50px;
+				height: 10px;
+			}
+			.item label{
+				display: inline-block;
+				width: 80px;
+				text-align: center;
+			}
+			.item{
+				margin: 5px;
+			}
+			.item li div{
+				width: 0;
+				height: 10px;
+			}
+			.low{
+				border-radius: 10px 0 0 10px;
+			}
+			.low div{
+				background: #FF0033;
+				border-radius: 10px 0 0 10px;
+			}
+			.medium{
+				margin-left: 5px;
+			}
+			.medium div{
+				background: #FFCC99;
+			}
+			.high{
+				border-radius: 0 10px 10px 0;
+				margin-left: 5px;
+			}
+			.high div{
+				background: #99CC66;
+				border-radius: 0 10px 10px 0;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="item">
+				<label>密码</label>
+				<input type="text" id="pwd"/>
+			</div>
+			<div class="item">
+				<label></label>
+				<ul>
+					<li class="low"><div></div></li>
+					<li class="medium"><div></div></li>
+					<li class="high"><div></div></li>
+				</ul>
+			</div>
+			<p></p>
+		</div>
+		<script src="move.js"></script>
+		<script>
+		//	数字   字母   特殊字符   密码6-12位
+			
+		//	
+			var pwd = document.getElementById("pwd");
+			var low = document.getElementsByClassName("low")[0].getElementsByTagName("div")[0];
+			var mid = document.getElementsByClassName("medium")[0].getElementsByTagName("div")[0];
+			var high = document.getElementsByClassName("high")[0].getElementsByTagName("div")[0];
+			var flag = 0;
+			
+			pwd.onkeyup = function(){
+				var oText = pwd.value;
+				if(oText.length<6||oText.length>12){
+					low.style.width = "0";
+					mid.style.width = "0";
+					high.style.width = "0";
+				}else{
+					flag = 0;
+			//		数字
+					var reg1 = /\d/;
+					if(reg1.test(oText)){
+						flag++;
+					}
+			//		字母
+					var reg2 = /[a-zA-Z]/;
+					if(reg2.test(oText)){
+						flag++;
+					}
+			//		特殊字符
+					var reg3 = /((?=[\x21-\x7e]+)[^A-Za-z0-9])/;
+					if(reg3.test(oText)){
+						flag++;
+					}
+					
+					switch(flag){
+						case 0:
+							move(low,{"width":"0"});
+							move(mid,{"width":"0"});
+							move(high,{"width":"0"});
+							break;
+						case 1:
+							move(low,{"width":"50px"});
+							move(mid,{"width":"0"});
+							move(high,{"width":"0"});
+							break;
+						case 2:
+							move(low,{"width":"50px"});
+							move(mid,{"width":"50px"});
+							move(high,{"width":"0"});
+							break;
+						case 3:
+							move(low,{"width":"50px"});
+							move(mid,{"width":"50px"});
+							move(high,{"width":"50px"});
+							break;
+						default:
+							break;
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

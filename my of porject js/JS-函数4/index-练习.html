@@ -1,0 +1,94 @@
+﻿<!doctype html>
+<html>
+<head>
+<title></title>
+
+
+
+<style>
+img{width:300px;height:300px;}
+.p_1{margin-left:100px;}
+</style>
+
+
+</head>
+<body>
+
+<img src="img/1.jpg" id="mg_1" />
+<p class="p_1">
+	<input type="button" value="2" id="bu1"/>
+	<input type="button" value="3" id="bu2"/>
+	<input type="button" value="4" id="bu3"/>
+</p>
+
+<p class="p_2">
+<input type="text" value="" id="num1"/>
+<select id="sel">
+<option>+</option>
+<option>-</option>
+<option>*</option>
+<option>/</option>
+</select>
+<input type="text" value="" id="num2"/>
+<input  type="button" id="btn4" value="="/>
+<input type="text" id="result"/>
+</p>
+
+
+
+<script>
+var mg=document.getElementById("mg_1");
+
+var mg1=document.getElementById("bu1");
+		mg1.onclick=function(){
+			mg.src="img/2.jpg";
+ }
+var mg2=document.getElementById("bu2");
+		mg2.onclick=function(){
+			mg.src="img/1.jpg";
+ }
+var mg3=document.getElementById("bu3");
+		mg3.onclick=function(){
+			mg.src="img/2.jpg";
+ }	
+
+ 
+ 
+ //计算
+var oSel=document.getElementById("sel");
+var oBtn4=document.getElementById("btn4");
+var n1=document.getElementById("num1");
+var n2=document.getElementById("num2");
+var res=document.getElementById("result");
+oBtn4.onclick=function(){
+var a=n1.value;
+var b=n2.value;
+var c=oSel.value;
+switch(c){
+	case "+":
+		res.value=(a+b);
+		break;
+	case "-":
+		res.value=(a-b);
+		break;
+	case "*":
+		res.value=(a*b);
+		break;
+	case "/":
+		res.value=(a/b);
+		break;
+
+         
+}
+
+
+
+}
+
+</script>
+
+
+
+
+</body>
+</html>

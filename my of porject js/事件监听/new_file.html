@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div{width: 100px;height: 100px;background: red;}
+			
+		</style>
+	</head>
+	<body>
+		<div id="d1"></div>
+		<input type="button" id="btn1" value="添加事件"/>
+		<input type="button" id="btn2" value="移除事件"/>
+		<script>
+			var D1 = document.getElementById("d1");
+			var But1 = document.getElementById("btn1");
+			var But2 = document.getElementById("btn2");
+				But1.onclick = function(){					
+						if(D1.addEventListener){
+							D1.addEventListener("click",aa());
+					}else{
+						D1.attachEvent("onclick",aa());
+					}
+					
+				}
+				But2.onclick = function(){
+					if(D1.removeEventListener){
+						D1.removeEventListener("click",aa())
+					}else{
+						D1.removeEventListener("onclick",aa())
+					}
+				}
+				function aa(){
+					alert(1);
+				}
+		</script>
+	</body>
+</html>

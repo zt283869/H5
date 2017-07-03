@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			   *{
+            margin:0;
+            padding:0;
+            list-style: none;
+        }
+        div{
+            position: relative;
+            width: 800px;
+            height: 200px;
+            border: 5px solid lightgreen;
+            margin:10px auto;
+            overflow: hidden;
+        }
+        div ul{
+            position: absolute;
+            left:0;
+            top:0;
+        }
+        div ul li{
+            width: 200px;
+            height: 200px;
+            float: left;
+        }
+        div ul li img{
+            width:100%;
+            height: 100%;
+        }
+		</style>
+	</head>
+	<body>
+		<div id="div1">
+		  	 <ul>
+		        <li><img src="../img/1.jpg"/></li>
+		        <li><img src="../img/2.jpg"/></li>
+		        <li><img src="../img/3.jpg"/></li>
+		        <li><img src="../img/4.jpg"/></li>
+		        <li><img src="../img/5.jpg"/></li>
+		        <li><img src="../img/6.jpg"/></li>
+		    </ul>
+		</div>
+		<script>
+			var oUl = document.getElementsByTagName("ul")[0];
+			var lis = oUl.getElementsByTagName("li");
+		
+			oUl.innerHTML = oUl.innerHTML;
+		
+				oUl.style.width = lis.length*lis[0].offsetWidth+"px";
+			var timer = null;
+			
+				var left = null;
+				var timer = setInterval(function(){
+				left-=6;
+				if(left<-oUl.offsetWidth/2){
+					left = 0;
+				}
+				oUl.style.left = left+"px";
+			},10)
+	
+			oUl.onmouseover = function(){
+				clearInterval(timer);
+			}
+			
+			
+			oUl.onmouseout = function(){
+				
+			}
+			
+		</script>
+	</body>
+</html>

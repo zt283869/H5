@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+     <head>
+          <meta charset="UTF-8">
+          <title></title>
+		  <style>
+			*{
+				margin:0;
+				padding:0;
+			}
+			ul,li{
+				list-style-type:none;
+			}
+			ul{
+				position:absolute;
+				left:0px;
+				top:0px;
+				box-shadow:1px 1px 3px #666;
+				display:none;
+			}
+			ul li{
+				width:150px;
+				height:50px;
+				line-height:50px;
+				background:rgba(0,0,0,0.2);
+				margin-top:1px;
+				font-size:30px;
+			}
+			img{width: 100px;height: 100px;}
+		  </style>
+     </head>
+     <body>
+			<ul id="list">
+				<li>html</li>
+				<li>css</li>
+				<li>js</li>
+			</ul>
+			<a href="http://www.baidu.com" id="a1">百度</a>
+			<img src="11.jpg" id="Img" />
+			<input type="text" id="txt"/>
+			<input type="submit" id="btn"/>
+		</form>
+	</body>
+	<script src="base.js"></script>
+     <script>
+	 //	return false阻止默认事件
+	//	getId("a1").onclick = function(){
+	//		return false;
+	//		alert(1);
+	//	}
+		getId("btn").onclick = function(){
+			return false;
+		}
+	//	e.preventDefault()单纯的阻止默认事件
+		getId("a1").onclick = function(evt){
+			var e = evt||event;
+			if(e.preventDefault){   //非IE
+				e.preventDefault();
+			}else{  // IE
+				e.returnValue = false;
+			}
+		}
+		getId("Img").onmousedown = function(evt){
+			
+			var e = evt||event;
+			if(e.preventDefault){
+				e.preventDefault();
+			}else{
+				e.returnValue = false;
+			}
+		}
+     </script>
+</html>

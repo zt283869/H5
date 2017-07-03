@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			html,body{
+				height: 100%;
+			}
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#circle{
+				width: 40px;
+				height: 40px;
+				background: red;
+				border-radius: 50%;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			#play{
+				margin-top: 50px;
+			}
+			#bar{
+				width: 100px;
+				height: 10px;
+				background: yellowgreen;
+				position: absolute;
+				left: 0;
+				bottom: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="circle">
+			
+		</div>
+		<input type="button" id="play" value="start" />
+		<script>
+				var play = document.getElementById("play");
+				var oDiv = document.getElementById("circle");
+				var h = getStyle(document.getElementsByTagName("body")[0],"height");
+				var w = getStyle(document.getElementsByTagName("body")[0],"width");
+				var timer;
+				function getStyle(obj,attr){
+					if(obj.currentStyle){
+						return obj.currentStyle[attr];
+					}else{
+						return getComputedStyle(obj,null)[attr];
+					}
+				}
+				//点击运动
+				var sX = 20;
+				var sY = 15;
+				var l,t;
+				
+				play.onclick = function(){
+					clearInterval(timer);
+					var oWidth = getStyle(oDiv,"width");
+					var oHeight = getStyle(oDiv,"height");
+					timer = setInterval(function(){
+						sY+=1;
+						_left = parseInt(getStyle(oDiv,"left"));
+						_top = parseInt( getStyle(oDiv,"top"));
+						
+						l = _left+sX;
+						t = _top+sY;
+						//下边界
+						if(t>parseInt(h)-parseInt(oHeight)){
+							t = parseInt(h)-parseInt(oHeight);
+//						clearInterval(timer);
+						sY*= -0.6;//反向
+						sX*= 0.8;//左右
+						}
+						//上边界
+						if(t<0){
+							t=0;
+							sY*= -0.7;
+							sX*= 0.9;
+						}
+						//右边界
+						if(l>parseInt(w)-parseInt(oWidth)){
+							l = parseInt(w)-parseInt(oWidth);
+							sX*= -0.7;
+							sY*= 0.9;
+						}
+						//左边界
+						if(l<0){
+							l=0;
+							sX*= -0.7;
+							sY*= 0.9;
+						}
+						if(Math.abs(sX)<1){
+							sX = 0;
+						}
+						if(Math.abs(sY)<1){
+							sY = 0;
+						}
+						if(sX==0&&parseInt(t)==parseInt(h)-parseInt(oHeight)){
+							clearInterval(timer);
+						}
+						oDiv.style.left = l+"px";
+						oDiv.style.top = t+"px";
+					},30)
+				}
+		</script>
+	</body>
+</html>

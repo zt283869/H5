@@ -1,0 +1,97 @@
+﻿<!doctype html>
+<html>
+<head>
+<title></title>
+<script>
+
+var n=8;
+
+//正三角
+/*
+for(var i=1;i<=n;i++){
+for(var j=1;j<=i;j++){
+document.write("*");
+}
+document.write("<br/>");
+}
+*/
+
+//到三角
+/*
+for(var i=1;i<=n;i++){
+for(var j=1;j<=n;j++){
+if(j<=n-i){
+document.write("&nbsp; &nbsp;");
+}else{
+document.write("☆");	
+}
+}
+document.write("<br/>");
+}
+*/
+//
+
+/*
+for(var i=1;i<=n;i++){
+for(var j=1;j<=n+i-1;j++){
+if(j<=n-i){
+document.write("&nbsp;&nbsp; ");
+}else{
+document.write("☆");
+}
+}
+document.write("<br/>");
+}
+for(var i=n-1;i>=1;i--){
+for(var j=1;j<n+i;j++){
+if(j<n-i+1){
+document.write("&nbsp;&nbsp; ");
+}else{
+document.write("☆");
+}
+}
+document.write("<br/>");
+}
+*/
+//梯形
+/*
+for(var i=3;i<=n;i++){
+	for(var j=1;j<=n+i-2;j++){
+		if(j<=n-i){
+		document.write("&nbsp;&nbsp; ");
+		}else{
+			document.write("☆");
+		}
+	}	
+	document.write("<br/>");
+}
+*/
+
+
+for(var i=1;i<=n;i++){
+	for(var j=1;j<=i;j++){
+		document.write("*");
+		
+		
+	}
+	
+	
+	document.write("<br/>");
+	
+	
+
+}
+	for(var w=1;w<=n;w++){
+	for(var q=1;q<=w;q++){
+		document.write("*");
+	}
+	document.write("<br/>");
+	}
+	
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#d1box{
+				width:200px;height:200px;
+				background:#aaa;
+				position:absolute;
+				left:0;
+				top:0;
+				margin-left:500px ;
+			}
+			#mytit{
+				width: 200;height: 40;text-align: center;
+				background:#666;color:#fff;cursor: move;
+			}
+			#d2{width:100px;height: 100px;background: #000;border-radius: 50%;}
+		</style>
+	</head>
+	<body>
+		<div id="d1box">
+			<h4 id="mytit">请拖拽</h4>
+		</div>
+		<img src="../img/cat.gif " id="mg1"/>
+		<div id="d2">
+			
+		</div>
+		<script>
+			var D1box = document.getElementById("d1box");
+			var Mytit = document.getElementById("mytit");
+			var Mg1 = document.getElementById("mg1");
+			var D2 = document.getElementById("d2");
+		
+			we(Mytit,D1box);
+			we(Mg1,Mg1);
+			we(D2,D2);
+				//封装函数
+				function we(obj1,obj2){
+					var flag = 0;
+					var _left,_top;
+					//鼠标按下
+					obj1.onmousedown = function(evt){
+						var e = evt||event;
+						if(e.preventDefault){
+							e.preventDefault();
+						}else{
+							e.returnValue = false;
+						}
+						flag = 1;//记录按钮按下状态
+						_left = e.clientX - obj2.offsetLeft;
+						_top = e.clientY - obj2.offsetTop;
+				
+						//按钮移动
+						document.onmousemove = function(evt){
+							var e = evt||event;
+							if(flag){
+								obj2.style.left = e.clientX - _left+"px";
+								obj2.style.top = e.clientY - _top+"px";
+							}
+						}
+					}
+				obj1.onmouseup = function(){
+					flag = 0;//恢复flag
+				}
+				}
+				
+		</script>
+	</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" id="userName" placeholder="用户名"/><br/><br/>
+		<input type="password" id="userPwd" placeholder="密码"/><br/><br/>
+		<input type="checkbox" id="chk"/>记住用户名密码<br/>
+		<input type="button" value="登录" id="btn"/>
+		<script src="cookie.js"></script>
+		<script>
+			var userName = document.getElementById("userName");
+			var userPwd = document.getElementById("userPwd");
+			var chk = document.getElementById("chk");
+			chk.onclick = function(){ //复选框的点击
+				if(this.checked){ 
+		//		选中状态时，记住用户名密码
+					saveCookie("name",userName.value,7);
+					saveCookie("pwd",userPwd.value,7);
+				}else{
+		//		未选中状态，清除保存过的用户名密码			
+					deleteCookie("name");
+					deleteCookie("pwd");
+				}
+			}
+			
+		//	进入页面获取cookie，判断cookie是否存在，不存在不进行操作，存在则将用户名密码填进去
+			if(getCookie("name")){
+				userName.value = getCookie("name");
+				chk.checked = true;
+			}
+			if(getCookie("pwd")){
+				userPwd.value = getCookie("pwd");
+			}
+		</script>
+	</body>
+</html>

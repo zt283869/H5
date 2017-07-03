@@ -1,0 +1,62 @@
+﻿<!doctype html>
+<html>
+<head>
+<title></title>
+
+</head>
+<body>
+<a id="cod">sdsd</a>
+<select id="sel">
+<option></option>
+
+
+</select>
+<script>
+//数组四位验证码
+		  
+	var _code=document.getElementById("cod");
+	_code.onclick=function(){
+	var arrCode = [0,1,2,3,4,5,6,7,8,9,"A","B","C","D","E","F","G","H","I",
+		"J","K","王珂","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+		  var oLen=arrCode.length;
+		  var res="";
+		  for(var i=0;i<=3;i++){
+			res+=arrCode[parseInt(Math.random()*oLen)];
+		  
+		  }
+		_code.innerHTML=res;
+	
+	}
+	//	产生一个服务器下拉菜单
+		
+	var arrder=["艾欧尼亚","祖安","诺克萨斯","班德尔城","皮尔特沃夫","战争学院",
+			"巨神峰","雷瑟守备","裁决之地","黑色玫瑰","暗影岛","钢铁烈阳","均衡教派","水晶之痕","影流","守望之海",
+			"征服之海","卡拉曼达","皮城警备","比尔吉沃特","德玛西亚","弗雷尔卓德","无畏先锋","恕瑞玛","扭曲丛林",
+			"巨龙之巢","教育网专区"];
+	var oLen=arrder.length;
+	var _sel=document.getElementById("sel");
+		for(var i=0;i<oLen;i++){
+		_sel.innerHTML+="<option>"+arrder[i]+"</option>";
+		
+		}
+		
+		
+		
+		//数组的排序
+		
+		var a=[4,7,5,9,8,6];
+		for(var j=0;j<a.length;j++){
+		for(var i=0;i<a.length-1;i++){
+			if(a[i]>a[i+1]){
+				var temp=a[i];
+				a[i]=a[i+1];
+				a[i+1]=temp;
+			}
+		
+		}}
+		console.log(a);
+		
+</script>	
+</body>
+</html>
+

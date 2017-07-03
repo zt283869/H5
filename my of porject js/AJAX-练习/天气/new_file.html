@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul id="list">
+			
+		</ul>
+		<input type="text" id="ip1" />
+		<input type="button" id="but" value="查询" />
+		<script>
+			var Lis = document.getElementById("list");
+			var Text = document.getElementById("ip1");
+			var But = document.getElementById("but");
+				But.onclick = function(){
+					var oText = Text.value;
+					//console.log(oText);
+					var xhr = new XMLHttpRequest();
+					var url = "http://wthrcdn.etouch.cn/weather_mini?city="+oText;
+						xhr.open("GET",url);
+						xhr.send();
+						xhr.onreadystatechange = function(){
+							if(xhr.readyState==4&&xhr.status==200){
+								//console.log(xhr.responseText);//字符
+								var y = JSON.parse(xhr.responseText);//生成对象
+								//console.log(y);
+							Lis.innerHTML = "<p>"+y.data.ganmao+"</p><p>"+y.data.wendu+"</p>"
+							}
+						}
+						
+				}
+		</script>
+	</body>
+</html>

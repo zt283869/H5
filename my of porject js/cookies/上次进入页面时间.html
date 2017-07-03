@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			function changeDate(n){
+				var d = new Date();
+				d.setDate(d.getDate()+n);
+				return d;
+			}
+			var a = new Date();
+			var nowTime = a.toLocaleString();
+			console.log(nowTime);
+			document.cookie= "name="+encodeURIComponent(nowTime)+";expires="+changeDate(9);
+		</script>
+	</body>
+</html>

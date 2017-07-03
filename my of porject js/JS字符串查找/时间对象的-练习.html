@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<meta charset="utf-8"/>
+<head>
+<title></title>
+
+</head>
+<body>
+<p id="text"></p>
+<script src="wb.js"></script>
+<script>
+var tet=getId("text");
+var txt = getId("time");
+		function nowTime(){
+			var d1 = new Date();
+			var _year = d1.getFullYear();
+			var _month = d1.getMonth();  //  月份从0开始记，需加1,
+			var _date = d1.getDate();
+			var _week = d1.getDay();  //  0 1 2 3 4 5 6
+			var _h = d1.getHours();
+			var _m = d1.getMinutes();
+			var _s = d1.getSeconds();
+			var week = ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+			
+		
+			
+			}
+			nowTime();
+		setInterval(function(){
+			nowTime();
+		},1000)
+</script>
+</body>
+</html>

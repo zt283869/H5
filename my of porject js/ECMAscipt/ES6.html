@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<p id="po">122</p>
+		<script type="text/javascript">
+		var ele = document.getElementById("po")
+//			
+//			function aa(){
+//					console.log(this);
+//					}
+//				aa();//window
+		
+//		ele.onclick = function(){
+//				console.log(this);
+//					}//对象
+				
+			//	
+				var o = {
+				    fn:function(){
+					console.log(this);
+					}
+					}
+				var c = o.fn;
+				c();//window
+//				
+//				
+//					
+//					
+//				//
+//					var name = 'zach'//
+//					while (true) {
+//						    let name = 'obama'//let
+//						    console.log(name)  //obama
+//						    break
+//						}
+//						console.log(name)  //zach
+//					
+//					
+//					//
+//					const PI = Math.PI
+////					     PI = 23;
+//					console.log(PI);
+//					
+//					var [a,b,c] = [1,2,3];
+//					console.log(a);
+//					var a=10;
+//					var b=a;
+//						a=20;
+//					console.log(b);
+////					
+////					//
+					var a = [];
+						for (var i = 0; i < 10; i++) {
+						  a[i] = function () {
+						    console.log(i);
+							  };
+							}
+								a[0]();//10
+					
+					
+		</script>
+	</body>
+</html>

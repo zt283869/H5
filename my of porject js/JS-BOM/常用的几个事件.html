@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html id="dd">
+	<head>
+		<meta charset="UTF-8">
+		<title id="bb">BOM</title>
+	<!--	<meta http-equiv="refresh" content="2;url=http://www.baidu.com" />  -->
+		<style>
+			p{
+				margin: 50px 0;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="text" id="txt"/>
+		<select id="sel">
+			<option>红</option>
+			<option>黄</option>
+			<option>蓝</option>
+		</select>
+		<script src="wb.js"></script>	
+		<script>
+		
+			getId("txt").onfocus = function(){
+				console.log("获得焦点");
+			}
+			
+			getId("txt").onblur=function(){
+			var str = getId("txt").value;
+			if(str.length>=6&&str.length<=12){
+				console.log("长度符合");
+			}else{
+				console.log("格式错误");
+			}
+		}
+			
+			
+			
+		
+		//	onmouseover  onmouseout 鼠标移上或者鼠标移开hover
+			getId("txt").onmouseover = function(){
+				console.log("鼠标移上");
+			}
+			getId("txt").onmouseout = function(){
+				console.log("鼠标移开");
+			}
+			
+		//	onchange
+			getId("sel").onchange = function(){
+				console.log(getId("sel").value);
+			}
+		</script>
+	</body>
+</html>

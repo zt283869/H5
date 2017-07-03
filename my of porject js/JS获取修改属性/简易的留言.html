@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<meta charset="utf-8"/>
+<head>
+<title></title>
+<style>
+	*{margin:0;padding:0;}
+	#outer{position: relative;width: 500px;height: 240px;background:#AAAAAA;
+	padding: 30px;margin: 50px;}
+	ul{list-style:none;position: absolute;background: #fff;}
+	li{border:1px solid #999;}
+	ul{width:400px;height:150px;border:1px solid #999;position: absolute;}
+	#text{width:400px;height:50px;position: absolute;bottom: 54px;}
+	#botn{position: absolute;bottom: 0;width: 400px;height: 40px;}
+	#p1{position: absolute;bottom: 40px;left: 30px;color: #fff;font-size: 10px;}
+</style>
+</head>
+<body>
+	<div id="outer">
+		<ul id="list">
+	
+		</ul>
+		<textarea id="text"></textarea></br>
+		<p id="p1">按下ctrl+shift即可发送</p>
+		<input type="button" value="发表留言" id="botn" />
+</div>
+	<script>
+		var Lis = document.getElementById("list");
+		var Tex = document.getElementById("text");
+		var Bot = document.getElementById("botn");
+		var oLi = Lis.getElementsByTagName("li");
+		//bot按钮点击
+	
+		Bot.onclick = function(){
+			var _otext = Tex.value;
+			if(_otext){
+				
+				var oLi = document.createElement("li");
+				oLi.innerHTML = "**说："+Tex.value;
+			Lis.appendChild(oLi);
+			Tex.value = "";
+			}else{
+				alert("留言不能為空");
+			}
+			}
+		
+			
+//			
+////			
+			document.onkeydown = function(e){
+				var evt = e||window.event;				
+				if(evt.ctrlKey&&evt.shiftKey){
+					var _otext = Tex.value;
+					if(_otext){
+				
+					var oLi = document.createElement("li");
+					oLi.innerHTML = "**说："+Tex.value;
+				Lis.appendChild(oLi);
+				Tex.value = "";
+				
+				
+				}else{
+				alert("留言不能為空");
+			}
+			
+		}
+		}
+
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>评分2</title>
+		<style>
+			.empty{width: 135px;height: 28px;background: url(star.gif) 0 0;position: relative;}
+			.starScore{width: 0;height: 28px;background: url(star.gif) 0 -28px;}
+		</style>
+	</head>
+	<body>
+		<div class="empty">
+			<div class="starScore"></div>
+		</div>
+		<input type="button" value="重新评分" id="btn1"/>
+		<p id="myScore">0</p>
+		<script>
+			var empty = document.getElementsByClassName("empty")[0];
+			var starScore = document.getElementsByClassName("starScore")[0];
+			var iWidth = 13.5;
+			var isClicked = 0;
+			var reSocre = document.getElementById("btn1");
+			var myScore = document.getElementById("myScore");
+			// 移上
+			empty.onmousemove = function(e){
+				if(!isClicked){
+					var evt = e||event;
+					starScore.style.width = getPosition(evt.offsetX)+"px";
+				}
+			}
+			// 移开
+			empty.onmouseout = function(){
+				if(!isClicked){
+					starScore.style.width = "0px";
+					myScore.innerHTML = "0";
+				}	
+			}
+			//点击评分
+			empty.onclick = function(e){
+				if(!isClicked){
+					var evt = e||event;
+					starScore.style.width = getPosition(evt.offsetX)+"px";
+					isClicked = 1;
+				}
+			}
+			//重新评分
+			reSocre.onclick = function(){
+				isClicked = 0;
+				starScore.style.width = "0px";
+				myScore.innerHTML = "0";
+			}
+			function getPosition(x){
+				myScore.innerHTML = Math.ceil(x/iWidth);
+				return iWidth*Math.ceil(x/iWidth);	
+			}
+		</script>
+	</body>
+</html>

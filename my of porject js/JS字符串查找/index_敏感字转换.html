@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+<title>敏感字转换</title>
+
+</head>
+<body>
+<textarea id="tex">
+</textarea>
+<input type="button" id="but" value="搜索"/>
+<script>
+
+//敏感字转换
+var _txt=document.getElementById("tex");
+var _but=document.getElementById("but");
+_but.onclick=function(){
+	
+	var sty=_txt.value.replace(/tmd/,"***");
+	var sty2=_txt.value.replace(,"***");	
+	_txt.value=sty;
+	//_txt.value=sty2;
+
+		}
+</script>
+</body>
+</html>

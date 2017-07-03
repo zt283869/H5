@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" id="ipt"/>
+		<input type="button" id="but" value="注册" />
+		<span id="Span"></span>
+		<script>
+			var Ipt = document.getElementById("ipt");
+			var But = document.getElementById("but");
+			var span = document.getElementById("Span");
+			var xhr;
+			if(XMLHttpRequest){
+				xhr = new XMLHttpRequest();
+			}else{
+				xhr = new ActiveXObject("Microsoft.XMLHttp");
+			}
+			var url = "one.json";
+			xhr.open("GET",url);
+			xhr.send();
+			
+			xhr.onreadystatechange = function(){
+				if(xhr.readyState==4&&xhr.status==200){
+					var data = JSON.parse(xhr.responseText);
+					//console.log(data);
+			
+				Ipt.onblur = function(){
+						var flag = 1;
+						var aa = Ipt.value;
+						for(var i=0;i<data.length;i++){
+							if(aa==data[i].name){
+								flag = 0;
+							}
+						}
+						if(!flag){
+							alert("已存在");
+						}else{
+							alert("注册成功");
+						}
+				
+				
+				}
+				}
+				}
+					
+			
+		</script>
+	</body>
+</html>

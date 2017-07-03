@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+     <head>
+          <meta charset="UTF-8">
+          <title></title>
+		  <style>
+			*{
+				margin:0;
+				padding:0;
+			}
+			ul,li{
+				list-style-type:none;
+			}
+			#d1{
+				width:200px;
+				height:200px;
+				position:absolute;
+				left:0;
+				top:0;
+				border:1px solid #666
+			}
+			#d2{
+				position:absolute;
+				left:250px;
+				top:250px;
+			}
+			h4{
+				height:40px;
+				width:200px;
+				background:#666;
+				color:#fff;
+				line-height:40px;
+				text-align:center;
+				cursor:move;
+			}
+			#myDiv{
+				width:300px;
+				height:100px;
+				background:#666;
+				position:absolute;
+				left:0;
+				top:200px;
+			}
+			img{width:100px;height: 100px;}
+		  </style>
+     </head>
+     <body>
+		<div id="d1">
+			<h4 id="myTitle">标题</h4>
+		</div>
+		<img  src="11.jpg" id="d2"/>
+		<div id="myDiv"></div>
+	</body>
+	<script src="base.js"></script>
+     <script>
+		//	拖拽
+		
+		function dragDiv(obj1,obj2){
+			var flag = 0;
+			var _left,_top;
+			//鼠标按下
+			obj1.onmousedown = function(evt){
+				var e = evt||event;
+				if(e.preventDefault){  //阻止默认事件
+					e.preventDefault();
+				}else{
+					e.returnValue = false;
+				}
+				flag = 1;   //记录鼠标按下状态
+				_left = e.clientX - obj2.offsetLeft; //相对位置的计算
+				_top = e.clientY - obj2.offsetTop;
+				//鼠标移动
+				document.onmousemove = function(evt){
+					var e = evt||event;
+					if(flag){   // 在鼠标按下的前提下移动鼠标的时候div跟随
+						obj2.style.left = e.clientX-_left+"px"; //将相对位置去掉，保持鼠标在div内的相对位置不变
+						obj2.style.top = e.clientY-_top+"px";
+					}
+					
+				}
+			}
+			
+			//鼠标松开
+			obj1.onmouseup = function(){
+				flag = 0;   //鼠标松开恢复flag
+			}
+		}
+		
+		var oDiv = getId("d1");
+		var _title = getId("myTitle");
+		var oImg = getId("d2");
+		var myDiv = getId("myDiv");
+		
+		dragDiv(_title,oDiv);
+		dragDiv(oImg,oImg);
+		dragDiv(myDiv,myDiv);
+     </script>
+</html>

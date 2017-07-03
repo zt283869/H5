@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			var userAgent = navigator.userAgent;
+			console.log(userAgent);
+			if(userAgent.search(/chrome/gi)!=-1){
+				alert("谷歌浏览器");
+			}else if(userAgent.search(/firefox/gi)!=-1){
+				alert("火狐浏览器");
+			}else if(userAgent.search(/msie/gi)!=-1){
+				var n = userAgent.split(/mise/gi)[1].split(",")[0].replace(/\s/,"");
+				alert("ie"+n);
+			}
+		</script>
+	</head>
+	<body>
+		<script>
+			var str = "Hello html Javascript java";
+//			indexOf()//不支持正则
+			console.log(str.search(/java/gi));//g全局。i忽略大小写
+			console.log(str.match(/java/gi));//返回对象。
+			var reg = /java/gi;
+			var reg2 = new RegExp("java","gi");
+			console.log(reg2);
+			console.log(reg.exec(reg));
+			console.log(str.test())
+			
+		</script>
+	</body>
+</html>
