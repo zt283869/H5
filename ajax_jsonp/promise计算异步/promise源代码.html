@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+
+	</head>
+	<body>
+		<script>
+			function getJson(){
+				return new Promise(function(resolve,reject){
+					setTimeout(function(){
+						console.log("我是异步1");
+						resolve("我是异步2");
+					},1000)
+				})
+			}
+			//resolve的方法是调用回调函数
+			function a(str){
+				console.log(str);
+			}
+			getJson().then(a);
+		</script>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

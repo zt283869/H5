@@ -1,0 +1,20 @@
+		* {
+				margin: 0;
+				padding: 0;
+			}		
+			ul li {
+				list-style: none;
+			}			
+			#box {
+				width: 780px;
+				height: 450px;
+				/*background: #FFC0CB;*/
+				position: relative;
+				overflow: hidden;
+				margin: 0 auto;
+			}
+			img{
+				width: 780px;
+				height: 450px;
+				
+			}		

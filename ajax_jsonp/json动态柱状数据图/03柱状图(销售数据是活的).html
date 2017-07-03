@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+	<head>
+		<title></title>
+		<meta charset = "utf-8"/>
+	</head>
+<style type="text/css">
+
+/*整个显示柱状图的区域的高度的是300px;每个柱子的宽是50px;每个柱子的间隔是：50px；第一个柱子的left是100px；*/
+*{
+	margin:0px;
+	padding:0px;
+}
+
+
+</style>
+<script type="text/javascript">
+var data =[
+			{
+				year:"2010",
+				money:100
+			},
+			{
+				year:"2011",
+				money:150
+			},
+			{
+				year:"2012",
+				money:380
+			},
+			{
+				year:"2013",
+				money:580
+			},
+			{
+				year:"2014",
+				money:1500
+			},
+			{
+				year:"2015",
+				money:1000
+			},
+			{
+				year:"2016",
+				money:1600
+			},
+			{
+				year:"2017",
+				money:3600
+			},
+			{
+				year:"2018",
+				money:1600
+			}
+		];
+		
+//要显示每个柱子，必须明确：每个柱子的间隔，每个柱子的宽度，最大宽度；柱子的数量；
+//思路：每个柱子的间隔和柱子的宽度一样。
+
+var colorArr = ["red","green","blue","magenta","yellow","pink",
+              "orange","purple","deeppink","tomato","gold","tan","thistle","purple"];
+
+function showTotal(){
+	//1、最大高度
+	var maxHeight = boxHeight;
+	//2、最大金额(最大高度对应的金额):
+	//所有数据中的最大金额*1.2；
+	var maxMoney = data[0].money;
+	for(var i=1;i<data.length;i++){
+		if(data[i].money>maxMoney){
+			maxMoney = data[i].money;
+		}
+	}
+	maxMoney = maxMoney*biLv;
+	
+	//3、最大宽度 
+	var maxWidth = boxWidth;
+	
+	//4、每个柱子的宽度和间隔(也是首个柱子离最左边的距离)
+	var zhuSpacing = maxWidth/(data.length*2+1);
+	var boxObj = document.getElementById("box");
+	
+	//柱子的高度 = 实际金额/最大金额 * 最大高度；
+	for(var i=0;i<data.length;i++){
+		//创建一个容器div（放置金额，柱子，年份）
+		var containDiv = document.createElement("div");
+		containDiv.style.position = "absolute";
+		containDiv.style.left = zhuSpacing*(2*i+1)+"px";
+		containDiv.style.bottom = "-20px";
+		containDiv.style.width = zhuSpacing+"px";
+		boxObj.appendChild(containDiv);
+		
+		//1）、金额
+		//创建span，写上金额
+		var moneySpan = document.createElement("span");
+		moneySpan.style.cssText = "text-align:center;width:"+zhuSpacing+"px;display:block";
+		moneySpan.innerHTML = data[i].money+"万";
+		containDiv.appendChild(moneySpan);
+	
+		//2）、设置柱子的高度
+		//创建柱子的div，并设置高度
+		var colorDiv = document.createElement("div");
+		colorDiv.style.cssText = "width:"+zhuSpacing+"px;height:"+(data[i].money/maxMoney*maxHeight)+"px;background-color:"+colorArr[i]+";";		
+		containDiv.appendChild(colorDiv);
+		
+		//3）、显示年份
+		//创建显示年份的p标记
+		var yearp = document.createElement("p");
+		yearp.style.cssText = "height:20px;text-align:center;";
+		yearp.innerHTML = data[i].year+"年";
+		containDiv.appendChild(yearp);
+	}
+}
+
+//容器的宽
+var boxWidth;
+//容器的高
+var boxHeight;
+//最高柱子与容器高的比率，
+var biLv;
+
+//初始化函数
+function init(){
+	//一、设置javascript的变量（数据）,初始化数据
+	//1、设置box的宽和高（显示柱状图的容器的尺寸）
+	boxWidth = 500;
+	boxHeight = 300;
+	biLv = 1.5;
+	
+	//二、外观（初始化外观）
+	//2、创建按钮；
+	var btnObj = document.createElement("input");
+	btnObj.type="button";
+	btnObj.value="显示销售数据";
+	btnObj.onclick = showTotal;
+	document.body.appendChild(btnObj);
+	
+	//3、创建容器（放置柱状图的容器）
+	var boxObj = document.createElement("div");
+	boxObj.id="box";
+	boxObj.style.cssText = "border-bottom:solid 2px black;position:relative;";
+	boxObj.style.width = boxWidth+"px";
+	boxObj.style.height = boxHeight+"px";
+	
+	document.body.appendChild(boxObj);
+}
+
+//cssText:就是style属性的值，即所有style下的子属性所设置内容。
+//用cssText属性，要注意：给cssText赋值后，以前所有该元素的style（样式）的赋值都会被覆盖掉。
+
+</script>
+<body onload="init()">
+	
+</body>
+</html>

@@ -1,0 +1,781 @@
+{
+  "ListContents" : [
+    {
+      "GroupCount" : "2",
+      "GroupInfo" : [
+        {
+          "BrandID" : "1",
+          "MainBrandName" : "奥迪",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/1.png"
+        },
+        {
+          "BrandID" : "57",
+          "MainBrandName" : "阿斯顿·马丁",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/57.png"
+        }
+      ],
+      "PinYin" : "A"
+    },
+    {
+      "GroupCount" : "16",
+      "GroupInfo" : [
+        {
+          "BrandID" : "58",
+          "MainBrandName" : "保时捷",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/58.png"
+        },
+        {
+          "BrandID" : "59",
+          "MainBrandName" : "宾利",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/59.png"
+        },
+        {
+          "BrandID" : "2",
+          "MainBrandName" : "北汽制造",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/2.png"
+        },
+        {
+          "BrandID" : "3",
+          "MainBrandName" : "奔驰",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/3.png"
+        },
+        {
+          "BrandID" : "4",
+          "MainBrandName" : "宝马",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/4.png"
+        },
+        {
+          "BrandID" : "5",
+          "MainBrandName" : "别克",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/5.png"
+        },
+        {
+          "BrandID" : "6",
+          "MainBrandName" : "比亚迪",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/6.png"
+        },
+        {
+          "BrandID" : "21",
+          "MainBrandName" : "本田",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/21.png"
+        },
+        {
+          "BrandID" : "37",
+          "MainBrandName" : "标致",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/37.png"
+        },
+        {
+          "BrandID" : "107",
+          "MainBrandName" : "奔腾",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/107.png"
+        },
+        {
+          "BrandID" : "122",
+          "MainBrandName" : "宝骏",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/122.png"
+        },
+        {
+          "BrandID" : "138",
+          "MainBrandName" : "巴博斯",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/138.png"
+        },
+        {
+          "BrandID" : "135",
+          "MainBrandName" : "北京汽车",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/135.png"
+        },
+        {
+          "BrandID" : "150",
+          "MainBrandName" : "北汽幻速",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/150.png"
+        },
+        {
+          "BrandID" : "153",
+          "MainBrandName" : "北汽威旺",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/153.png"
+        },
+        {
+          "BrandID" : "156",
+          "MainBrandName" : "北汽新能源",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/156.png"
+        }
+      ],
+      "PinYin" : "B"
+    },
+    {
+      "GroupCount" : "4",
+      "GroupInfo" : [
+        {
+          "BrandID" : "116",
+          "MainBrandName" : "长安汽车",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/116.png"
+        },
+        {
+          "BrandID" : "7",
+          "MainBrandName" : "长安商用",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/7.png"
+        },
+        {
+          "BrandID" : "8",
+          "MainBrandName" : "长城",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/8.png"
+        },
+        {
+          "BrandID" : "10",
+          "MainBrandName" : "昌河",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/10.png"
+        }
+      ],
+      "PinYin" : "C"
+    },
+    {
+      "GroupCount" : "10",
+      "GroupInfo" : [
+        {
+          "BrandID" : "14",
+          "MainBrandName" : "东风风行",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/14.png"
+        },
+        {
+          "BrandID" : "44",
+          "MainBrandName" : "东南",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/44.png"
+        },
+        {
+          "BrandID" : "61",
+          "MainBrandName" : "道奇",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/61.png"
+        },
+        {
+          "BrandID" : "47",
+          "MainBrandName" : "大众",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/47.png"
+        },
+        {
+          "BrandID" : "93",
+          "MainBrandName" : "大迪",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/93.png"
+        },
+        {
+          "BrandID" : "117",
+          "MainBrandName" : "东风小康",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/117.png"
+        },
+        {
+          "BrandID" : "114",
+          "MainBrandName" : "东风风神",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/114.png"
+        },
+        {
+          "BrandID" : "146",
+          "MainBrandName" : "东风风度",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/146.png"
+        },
+        {
+          "BrandID" : "140",
+          "MainBrandName" : "DS",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/140.png"
+        },
+        {
+          "BrandID" : "141",
+          "MainBrandName" : "东风御风",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/141.png"
+        }
+      ],
+      "PinYin" : "D"
+    },
+    {
+      "GroupCount" : "6",
+      "GroupInfo" : [
+        {
+          "BrandID" : "62",
+          "MainBrandName" : "法拉利",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/62.png"
+        },
+        {
+          "BrandID" : "46",
+          "MainBrandName" : "丰田",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/46.png"
+        },
+        {
+          "BrandID" : "15",
+          "MainBrandName" : "菲亚特",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/15.png"
+        },
+        {
+          "BrandID" : "16",
+          "MainBrandName" : "福特",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/16.png"
+        },
+        {
+          "BrandID" : "17",
+          "MainBrandName" : "福田",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/17.png"
+        },
+        {
+          "BrandID" : "18",
+          "MainBrandName" : "福迪",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/18.png"
+        }
+      ],
+      "PinYin" : "F"
+    },
+    {
+      "GroupCount" : "4",
+      "GroupInfo" : [
+        {
+          "BrandID" : "55",
+          "MainBrandName" : "广汽吉奥",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/55.png"
+        },
+        {
+          "BrandID" : "115",
+          "MainBrandName" : "GMC",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/115.png"
+        },
+        {
+          "BrandID" : "120",
+          "MainBrandName" : "广汽乘用车",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/120.png"
+        },
+        {
+          "BrandID" : "133",
+          "MainBrandName" : "观致",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/133.png"
+        }
+      ],
+      "PinYin" : "G"
+    },
+    {
+      "GroupCount" : "10",
+      "GroupInfo" : [
+        {
+          "BrandID" : "119",
+          "MainBrandName" : "海格",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/119.png"
+        },
+        {
+          "BrandID" : "104",
+          "MainBrandName" : "华泰汽车",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/104.png"
+        },
+        {
+          "BrandID" : "143",
+          "MainBrandName" : "哈弗",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/143.png"
+        },
+        {
+          "BrandID" : "96",
+          "MainBrandName" : "海马",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/96.png"
+        },
+        {
+          "BrandID" : "64",
+          "MainBrandName" : "悍马",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/64.png"
+        },
+        {
+          "BrandID" : "22",
+          "MainBrandName" : "红旗",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/22.png"
+        },
+        {
+          "BrandID" : "43",
+          "MainBrandName" : "华普",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/43.png"
+        },
+        {
+          "BrandID" : "40",
+          "MainBrandName" : "黄海汽车",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/40.png"
+        },
+        {
+          "BrandID" : "41",
+          "MainBrandName" : "汇众",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/41.png"
+        },
+        {
+          "BrandID" : "20",
+          "MainBrandName" : "哈飞",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/20.png"
+        }
+      ],
+      "PinYin" : "H"
+    },
+    {
+      "GroupCount" : "8",
+      "GroupInfo" : [
+        {
+          "BrandID" : "25",
+          "MainBrandName" : "江淮汽车",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/25.png"
+        },
+        {
+          "BrandID" : "27",
+          "MainBrandName" : "Jeep",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/27.png"
+        },
+        {
+          "BrandID" : "29",
+          "MainBrandName" : "金杯",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/29.png"
+        },
+        {
+          "BrandID" : "30",
+          "MainBrandName" : "江铃",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/30.png"
+        },
+        {
+          "BrandID" : "19",
+          "MainBrandName" : "吉利汽车",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/19.png"
+        },
+        {
+          "BrandID" : "65",
+          "MainBrandName" : "捷豹",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/65.png"
+        },
+        {
+          "BrandID" : "144",
+          "MainBrandName" : "金龙",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/144.png"
+        },
+        {
+          "BrandID" : "127",
+          "MainBrandName" : "九龙汽车",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/127.png"
+        }
+      ],
+      "PinYin" : "J"
+    },
+    {
+      "GroupCount" : "5",
+      "GroupInfo" : [
+        {
+          "BrandID" : "108",
+          "MainBrandName" : "开瑞",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/108.png"
+        },
+        {
+          "BrandID" : "152",
+          "MainBrandName" : "卡威",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/152.png"
+        },
+        {
+          "BrandID" : "154",
+          "MainBrandName" : "凯翼",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/154.png"
+        },
+        {
+          "BrandID" : "66",
+          "MainBrandName" : "凯迪拉克",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/66.png"
+        },
+        {
+          "BrandID" : "67",
+          "MainBrandName" : "克莱斯勒",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/67.png"
+        }
+      ],
+      "PinYin" : "K"
+    },
+    {
+      "GroupCount" : "12",
+      "GroupInfo" : [
+        {
+          "BrandID" : "68",
+          "MainBrandName" : "兰博基尼",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/68.png"
+        },
+        {
+          "BrandID" : "70",
+          "MainBrandName" : "劳斯莱斯",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/70.png"
+        },
+        {
+          "BrandID" : "71",
+          "MainBrandName" : "雷克萨斯",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/71.png"
+        },
+        {
+          "BrandID" : "72",
+          "MainBrandName" : "雷诺",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/72.png"
+        },
+        {
+          "BrandID" : "74",
+          "MainBrandName" : "林肯",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/74.png"
+        },
+        {
+          "BrandID" : "75",
+          "MainBrandName" : "路虎",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/75.png"
+        },
+        {
+          "BrandID" : "90",
+          "MainBrandName" : "力帆",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/90.png"
+        },
+        {
+          "BrandID" : "31",
+          "MainBrandName" : "陆风",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/31.png"
+        },
+        {
+          "BrandID" : "45",
+          "MainBrandName" : "铃木",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/45.png"
+        },
+        {
+          "BrandID" : "121",
+          "MainBrandName" : "理念",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/121.png"
+        },
+        {
+          "BrandID" : "128",
+          "MainBrandName" : "路特斯",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/128.png"
+        },
+        {
+          "BrandID" : "126",
+          "MainBrandName" : "猎豹汽车",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/126.png"
+        }
+      ],
+      "PinYin" : "L"
+    },
+    {
+      "GroupCount" : "5",
+      "GroupInfo" : [
+        {
+          "BrandID" : "33",
+          "MainBrandName" : "马自达",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/33.png"
+        },
+        {
+          "BrandID" : "97",
+          "MainBrandName" : "MG",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/97.png"
+        },
+        {
+          "BrandID" : "77",
+          "MainBrandName" : "玛莎拉蒂",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/77.png"
+        },
+        {
+          "BrandID" : "78",
+          "MainBrandName" : "迈巴赫",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/78.png"
+        },
+        {
+          "BrandID" : "79",
+          "MainBrandName" : "MINI",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/79.png"
+        }
+      ],
+      "PinYin" : "M"
+    },
+    {
+      "GroupCount" : "1",
+      "GroupInfo" : [
+        {
+          "BrandID" : "118",
+          "MainBrandName" : "纳智捷",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/118.png"
+        }
+      ],
+      "PinYin" : "N"
+    },
+    {
+      "GroupCount" : "3",
+      "GroupInfo" : [
+        {
+          "BrandID" : "131",
+          "MainBrandName" : "欧朗",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/131.png"
+        },
+        {
+          "BrandID" : "80",
+          "MainBrandName" : "欧宝",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/80.png"
+        },
+        {
+          "BrandID" : "92",
+          "MainBrandName" : "讴歌",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/92.png"
+        }
+      ],
+      "PinYin" : "O"
+    },
+    {
+      "GroupCount" : "4",
+      "GroupInfo" : [
+        {
+          "BrandID" : "32",
+          "MainBrandName" : "起亚",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/32.png"
+        },
+        {
+          "BrandID" : "11",
+          "MainBrandName" : "奇瑞",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/11.png"
+        },
+        {
+          "BrandID" : "130",
+          "MainBrandName" : "启辰",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/130.png"
+        },
+        {
+          "BrandID" : "102",
+          "MainBrandName" : "青年莲花",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/102.png"
+        }
+      ],
+      "PinYin" : "Q"
+    },
+    {
+      "GroupCount" : "3",
+      "GroupInfo" : [
+        {
+          "BrandID" : "109",
+          "MainBrandName" : "瑞麒",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/109.png"
+        },
+        {
+          "BrandID" : "36",
+          "MainBrandName" : "日产",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/36.png"
+        },
+        {
+          "BrandID" : "94",
+          "MainBrandName" : "荣威",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/94.png"
+        }
+      ],
+      "PinYin" : "R"
+    },
+    {
+      "GroupCount" : "12",
+      "GroupInfo" : [
+        {
+          "BrandID" : "95",
+          "MainBrandName" : "smart",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/95.png"
+        },
+        {
+          "BrandID" : "98",
+          "MainBrandName" : "世爵",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/98.png"
+        },
+        {
+          "BrandID" : "82",
+          "MainBrandName" : "萨博",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/82.png"
+        },
+        {
+          "BrandID" : "83",
+          "MainBrandName" : "双龙",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/83.png"
+        },
+        {
+          "BrandID" : "84",
+          "MainBrandName" : "斯巴鲁",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/84.png"
+        },
+        {
+          "BrandID" : "85",
+          "MainBrandName" : "斯柯达",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/85.png"
+        },
+        {
+          "BrandID" : "34",
+          "MainBrandName" : "三菱",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/34.png"
+        },
+        {
+          "BrandID" : "42",
+          "MainBrandName" : "双环",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/42.png"
+        },
+        {
+          "BrandID" : "123",
+          "MainBrandName" : "陕汽通家",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/123.png"
+        },
+        {
+          "BrandID" : "145",
+          "MainBrandName" : "上汽大通",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/145.png"
+        },
+        {
+          "BrandID" : "136",
+          "MainBrandName" : "思铭",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/136.png"
+        },
+        {
+          "BrandID" : "148",
+          "MainBrandName" : "绅宝",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/148.png"
+        }
+      ],
+      "PinYin" : "S"
+    },
+    {
+      "GroupCount" : "2",
+      "GroupInfo" : [
+        {
+          "BrandID" : "149",
+          "MainBrandName" : "特斯拉",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/149.png"
+        },
+        {
+          "BrandID" : "147",
+          "MainBrandName" : "腾势",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/147.png"
+        }
+      ],
+      "PinYin" : "T"
+    },
+    {
+      "GroupCount" : "6",
+      "GroupInfo" : [
+        {
+          "BrandID" : "110",
+          "MainBrandName" : "威麟",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/110.png"
+        },
+        {
+          "BrandID" : "103",
+          "MainBrandName" : "威兹曼",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/103.png"
+        },
+        {
+          "BrandID" : "151",
+          "MainBrandName" : "潍柴",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/151.png"
+        },
+        {
+          "BrandID" : "86",
+          "MainBrandName" : "沃尔沃",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/86.png"
+        },
+        {
+          "BrandID" : "54",
+          "MainBrandName" : "五十铃",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/54.png"
+        },
+        {
+          "BrandID" : "49",
+          "MainBrandName" : "五菱",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/49.png"
+        }
+      ],
+      "PinYin" : "W"
+    },
+    {
+      "GroupCount" : "7",
+      "GroupInfo" : [
+        {
+          "BrandID" : "50",
+          "MainBrandName" : "夏利",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/50.png"
+        },
+        {
+          "BrandID" : "35",
+          "MainBrandName" : "新雅途",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/35.png"
+        },
+        {
+          "BrandID" : "12",
+          "MainBrandName" : "雪佛兰",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/12.png"
+        },
+        {
+          "BrandID" : "13",
+          "MainBrandName" : "雪铁龙",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/13.png"
+        },
+        {
+          "BrandID" : "23",
+          "MainBrandName" : "现代",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/23.png"
+        },
+        {
+          "BrandID" : "129",
+          "MainBrandName" : "新凯",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/129.png"
+        },
+        {
+          "BrandID" : "132",
+          "MainBrandName" : "西雅特",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/132.png"
+        }
+      ],
+      "PinYin" : "X"
+    },
+    {
+      "GroupCount" : "6",
+      "GroupInfo" : [
+        {
+          "BrandID" : "106",
+          "MainBrandName" : "野马汽车",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/106.png"
+        },
+        {
+          "BrandID" : "24",
+          "MainBrandName" : "依维柯",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/24.png"
+        },
+        {
+          "BrandID" : "53",
+          "MainBrandName" : "一汽",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/53.png"
+        },
+        {
+          "BrandID" : "99",
+          "MainBrandName" : "永源汽车",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/99.png"
+        },
+        {
+          "BrandID" : "101",
+          "MainBrandName" : "扬子",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/101.png"
+        },
+        {
+          "BrandID" : "87",
+          "MainBrandName" : "英菲尼迪",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/87.png"
+        }
+      ],
+      "PinYin" : "Y"
+    },
+    {
+      "GroupCount" : "4",
+      "GroupInfo" : [
+        {
+          "BrandID" : "91",
+          "MainBrandName" : "众泰",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/91.png"
+        },
+        {
+          "BrandID" : "51",
+          "MainBrandName" : "中华",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/51.png"
+        },
+        {
+          "BrandID" : "52",
+          "MainBrandName" : "中兴",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/52.png"
+        },
+        {
+          "BrandID" : "105",
+          "MainBrandName" : "中誉",
+          "imgURL" : "http://www.webcars.com.cn/CarsPhoto/Brands/0/105.png"
+        }
+      ],
+      "PinYin" : "Z"
+    }
+  ],
+  "ListCount" : "130"
+}

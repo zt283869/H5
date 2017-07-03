@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul id="list"></ul><br />
+		<input type="text" name="" id="city" value="" />
+		<input type="button" name="but" id="but" value="查询" />
+		<script>
+		"user strict";
+		function $(str){
+			return document.getElementById(str);
+		}
+			
+			$("but").onclick = function(){
+				let xhr = new XMLHttpRequest();
+				let url = "http://wthrcdn.etouch.cn/weather_mini?city="+$("city").value;
+					xhr.open("get",url,true);
+					xhr.onreadystatechange = function(){
+						if(xhr.readyState==4&&xhr.status==200){
+							let str = JSON.parse(xhr.responseText);
+							console.log(str);
+							$("list").innerHTML = "<p>"
+							+str.data.city+"</p><p>"
+							+str.data.ganmao
+							+"</p><p>"						
+							+str.data.wendu+"</p><p>"
+							+str.data.yesterday.date+"</p><p>"
+							+str.data.yesterday.high+"</p><p>"
+							+str.data.forecast[0].fengxiang+"</p>";
+						}
+					}
+					xhr.send();
+			}
+			
+		</script>
+	</body>
+</html>

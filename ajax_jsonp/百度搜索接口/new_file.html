@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{margin: 0px;padding: 0px;}
+	#sch{width:200px;margin: 50px auto;}
+	#tex{width: 200px;height: 20px;}
+	ul{border: 1px solid #eee;width: 202px;display: none;}
+	ul li{list-style: none;border: 1px solid #ddd;width:200px;height: 20px;text-align: left;line-height: 20px;}
+	ul li:hover{background: orange;}
+	</style>
+</head>
+<body>
+	<div id = 'sch'>
+		<input type="text" placeholder='请输入关键字' id = 'tex'>
+		<ul>
+			
+		</ul>
+	</div>
+</body>
+<script>
+	var oTex = document.getElementById('tex');
+	var oUl = document.getElementsByTagName('ul')[0];
+	function baiduSU(data){		
+		var d = data.s
+		if(d.length){
+			oUl.style.display = 'block';
+			var str = '';
+			for(var i =0;i<d.length;i++)
+		{
+			str += '<li>'+d[i]+'</li>'
+		}
+		oUl.innerHTML = str;
+		}else{
+			oUl.style.display = 'none';
+		}
+	}
+
+
+
+	oTex.onkeyup = function()
+	{
+		if(oTex.value != '')
+		{
+			var oScript = document.createElement('script');
+			oScript.src = 'http://unionsug.baidu.com/su?wd='+oTex.value+'&cb=baiduSU';
+			document.body.appendChild(oScript);
+		}else{
+			oUl.style.display = 'none';
+		}
+	}
+</script>
+</html>

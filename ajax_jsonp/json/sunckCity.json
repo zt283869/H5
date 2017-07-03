@@ -1,0 +1,1854 @@
+{
+  "浙江" : [
+    {
+      "cityNum" : "101210101",
+      "cityName" : "杭州"
+    },
+    {
+      "cityNum" : "101211101",
+      "cityName" : "舟山"
+    },
+    {
+      "cityNum" : "101210201",
+      "cityName" : "湖州"
+    },
+    {
+      "cityNum" : "101210301",
+      "cityName" : "嘉兴"
+    },
+    {
+      "cityNum" : "101210901",
+      "cityName" : "金华"
+    },
+    {
+      "cityNum" : "101210501",
+      "cityName" : "绍兴"
+    },
+    {
+      "cityNum" : "101210601",
+      "cityName" : "台州"
+    },
+    {
+      "cityNum" : "101210701",
+      "cityName" : "温州"
+    },
+    {
+      "cityNum" : "101210801",
+      "cityName" : "丽水"
+    },
+    {
+      "cityNum" : "101211001",
+      "cityName" : "衢州"
+    },
+    {
+      "cityNum" : "101210401",
+      "cityName" : "宁波"
+    }
+  ],
+  "海南省" : [
+    {
+      "cityNum" : "101310101",
+      "cityName" : "海口"
+    },
+    {
+      "cityNum" : "101310201",
+      "cityName" : "三亚"
+    },
+    {
+      "cityNum" : "101310202",
+      "cityName" : "东方"
+    },
+    {
+      "cityNum" : "101310203",
+      "cityName" : "临高"
+    },
+    {
+      "cityNum" : "101310204",
+      "cityName" : "澄迈"
+    },
+    {
+      "cityNum" : "101310205",
+      "cityName" : "儋州"
+    },
+    {
+      "cityNum" : "101310206",
+      "cityName" : "昌江"
+    },
+    {
+      "cityNum" : "101310207",
+      "cityName" : "白沙"
+    },
+    {
+      "cityNum" : "101310208",
+      "cityName" : "琼中"
+    },
+    {
+      "cityNum" : "101310209",
+      "cityName" : "定安"
+    },
+    {
+      "cityNum" : "101310210",
+      "cityName" : "屯昌"
+    },
+    {
+      "cityNum" : "101310211",
+      "cityName" : "琼海"
+    },
+    {
+      "cityNum" : "101310212",
+      "cityName" : "文昌"
+    },
+    {
+      "cityNum" : "101310214",
+      "cityName" : "保亭"
+    },
+    {
+      "cityNum" : "101310215",
+      "cityName" : "万宁"
+    },
+    {
+      "cityNum" : "101310216",
+      "cityName" : "陵水"
+    },
+    {
+      "cityNum" : "101310217",
+      "cityName" : "西沙"
+    },
+    {
+      "cityNum" : "101310220",
+      "cityName" : "南沙岛"
+    },
+    {
+      "cityNum" : "101310221",
+      "cityName" : "乐东"
+    },
+    {
+      "cityNum" : "101310222",
+      "cityName" : "五指山"
+    },
+    {
+      "cityNum" : "101310102",
+      "cityName" : "琼山"
+    }
+  ],
+  "北京" : [
+    {
+      "cityNum" : "101010100",
+      "cityName" : "北京"
+    },
+    {
+      "cityNum" : "101010300",
+      "cityName" : "朝阳"
+    },
+    {
+      "cityNum" : "101010400",
+      "cityName" : "顺义"
+    },
+    {
+      "cityNum" : "101010500",
+      "cityName" : "怀柔"
+    },
+    {
+      "cityNum" : "101010600",
+      "cityName" : "通州"
+    },
+    {
+      "cityNum" : "101010700",
+      "cityName" : "昌平"
+    },
+    {
+      "cityNum" : "101010800",
+      "cityName" : "延庆"
+    },
+    {
+      "cityNum" : "101010900",
+      "cityName" : "丰台"
+    },
+    {
+      "cityNum" : "101011000",
+      "cityName" : "石景山"
+    },
+    {
+      "cityNum" : "101011100",
+      "cityName" : "大兴"
+    },
+    {
+      "cityNum" : "101011200",
+      "cityName" : "房山"
+    },
+    {
+      "cityNum" : "101011300",
+      "cityName" : "密云"
+    },
+    {
+      "cityNum" : "101011400",
+      "cityName" : "门头沟"
+    },
+    {
+      "cityNum" : "101011500",
+      "cityName" : "平谷"
+    },
+    {
+      "cityNum" : "101011600",
+      "cityName" : "八达岭"
+    },
+    {
+      "cityNum" : "101011700",
+      "cityName" : "佛爷顶"
+    },
+    {
+      "cityNum" : "101011800",
+      "cityName" : "汤河口"
+    },
+    {
+      "cityNum" : "101011900",
+      "cityName" : "密云上甸子"
+    },
+    {
+      "cityNum" : "101012000",
+      "cityName" : "斋堂"
+    },
+    {
+      "cityNum" : "101012100",
+      "cityName" : "霞云岭"
+    },
+    {
+      "cityNum" : "101012200",
+      "cityName" : "北京城区"
+    },
+    {
+      "cityNum" : "101010200",
+      "cityName" : "海淀"
+    }
+  ],
+  "辽宁" : [
+    {
+      "cityNum" : "101070101",
+      "cityName" : "沈阳"
+    },
+    {
+      "cityNum" : "101070301",
+      "cityName" : "鞍山"
+    },
+    {
+      "cityNum" : "101070401",
+      "cityName" : "抚顺"
+    },
+    {
+      "cityNum" : "101070501",
+      "cityName" : "本溪"
+    },
+    {
+      "cityNum" : "101070601",
+      "cityName" : "丹东"
+    },
+    {
+      "cityNum" : "101071401",
+      "cityName" : "葫芦岛"
+    },
+    {
+      "cityNum" : "101070801",
+      "cityName" : "营口"
+    },
+    {
+      "cityNum" : "101070901",
+      "cityName" : "阜新"
+    },
+    {
+      "cityNum" : "101071001",
+      "cityName" : "辽阳"
+    },
+    {
+      "cityNum" : "101071101",
+      "cityName" : "铁岭"
+    },
+    {
+      "cityNum" : "101071201",
+      "cityName" : "朝阳"
+    },
+    {
+      "cityNum" : "101071301",
+      "cityName" : "盘锦"
+    },
+    {
+      "cityNum" : "101070201",
+      "cityName" : "大连"
+    },
+    {
+      "cityNum" : "101070701",
+      "cityName" : "锦州"
+    }
+  ],
+  "甘肃" : [
+    {
+      "cityNum" : "101160101",
+      "cityName" : "兰州"
+    },
+    {
+      "cityNum" : "101160301",
+      "cityName" : "平凉"
+    },
+    {
+      "cityNum" : "101160401",
+      "cityName" : "庆阳"
+    },
+    {
+      "cityNum" : "101160501",
+      "cityName" : "武威"
+    },
+    {
+      "cityNum" : "101160601",
+      "cityName" : "金昌"
+    },
+    {
+      "cityNum" : "101161401",
+      "cityName" : "嘉峪关"
+    },
+    {
+      "cityNum" : "101160801",
+      "cityName" : "酒泉"
+    },
+    {
+      "cityNum" : "101160901",
+      "cityName" : "天水"
+    },
+    {
+      "cityNum" : "101161001",
+      "cityName" : "武都"
+    },
+    {
+      "cityNum" : "101161101",
+      "cityName" : "临夏"
+    },
+    {
+      "cityNum" : "101161201",
+      "cityName" : "合作"
+    },
+    {
+      "cityNum" : "101161301",
+      "cityName" : "白银"
+    },
+    {
+      "cityNum" : "101160201",
+      "cityName" : "定西"
+    },
+    {
+      "cityNum" : "101160701",
+      "cityName" : "张掖"
+    }
+  ],
+  "吉林" : [
+    {
+      "cityNum" : "101060101",
+      "cityName" : "长春"
+    },
+    {
+      "cityNum" : "101060301",
+      "cityName" : "延吉"
+    },
+    {
+      "cityNum" : "101060401",
+      "cityName" : "四平"
+    },
+    {
+      "cityNum" : "101060901",
+      "cityName" : "白山"
+    },
+    {
+      "cityNum" : "101060601",
+      "cityName" : "白城"
+    },
+    {
+      "cityNum" : "101060701",
+      "cityName" : "辽源"
+    },
+    {
+      "cityNum" : "101060801",
+      "cityName" : "松原"
+    },
+    {
+      "cityNum" : "101060201",
+      "cityName" : "吉林"
+    },
+    {
+      "cityNum" : "101060501",
+      "cityName" : "通化"
+    }
+  ],
+  "福建" : [
+    {
+      "cityNum" : "101230101",
+      "cityName" : "福州"
+    },
+    {
+      "cityNum" : "101230501",
+      "cityName" : "泉州"
+    },
+    {
+      "cityNum" : "101230601",
+      "cityName" : "漳州"
+    },
+    {
+      "cityNum" : "101230701",
+      "cityName" : "龙岩"
+    },
+    {
+      "cityNum" : "101230509",
+      "cityName" : "晋江"
+    },
+    {
+      "cityNum" : "101230901",
+      "cityName" : "南平"
+    },
+    {
+      "cityNum" : "101230201",
+      "cityName" : "厦门"
+    },
+    {
+      "cityNum" : "101230301",
+      "cityName" : "宁德"
+    },
+    {
+      "cityNum" : "101230401",
+      "cityName" : "莆田"
+    },
+    {
+      "cityNum" : "101230801",
+      "cityName" : "三明"
+    }
+  ],
+  "台湾" : [
+    {
+      "cityNum" : "101340101",
+      "cityName" : "台北县"
+    },
+    {
+      "cityNum" : "101340201",
+      "cityName" : "高雄"
+    },
+    {
+      "cityNum" : "101340401",
+      "cityName" : "台中"
+    }
+  ],
+  "青海省" : [
+    {
+      "cityNum" : "101150101",
+      "cityName" : "西宁"
+    },
+    {
+      "cityNum" : "101150301",
+      "cityName" : "黄南"
+    },
+    {
+      "cityNum" : "101150801",
+      "cityName" : "海北"
+    },
+    {
+      "cityNum" : "101150501",
+      "cityName" : "果洛"
+    },
+    {
+      "cityNum" : "101150601",
+      "cityName" : "玉树"
+    },
+    {
+      "cityNum" : "101150701",
+      "cityName" : "海西"
+    },
+    {
+      "cityNum" : "101150201",
+      "cityName" : "海东"
+    },
+    {
+      "cityNum" : "101150401",
+      "cityName" : "海南"
+    }
+  ],
+  "新疆" : [
+    {
+      "cityNum" : "101130101",
+      "cityName" : "乌鲁木齐"
+    },
+    {
+      "cityNum" : "101130301",
+      "cityName" : "石河子"
+    },
+    {
+      "cityNum" : "101130401",
+      "cityName" : "昌吉"
+    },
+    {
+      "cityNum" : "101130501",
+      "cityName" : "吐鲁番"
+    },
+    {
+      "cityNum" : "101130601",
+      "cityName" : "库尔勒"
+    },
+    {
+      "cityNum" : "101130701",
+      "cityName" : "阿拉尔"
+    },
+    {
+      "cityNum" : "101130801",
+      "cityName" : "阿克苏"
+    },
+    {
+      "cityNum" : "101130901",
+      "cityName" : "喀什"
+    },
+    {
+      "cityNum" : "101131001",
+      "cityName" : "伊宁"
+    },
+    {
+      "cityNum" : "101131101",
+      "cityName" : "塔城"
+    },
+    {
+      "cityNum" : "101131201",
+      "cityName" : "哈密"
+    },
+    {
+      "cityNum" : "101131301",
+      "cityName" : "和田"
+    },
+    {
+      "cityNum" : "101131401",
+      "cityName" : "阿勒泰"
+    },
+    {
+      "cityNum" : "101131501",
+      "cityName" : "阿图什"
+    },
+    {
+      "cityNum" : "101131601",
+      "cityName" : "博乐"
+    },
+    {
+      "cityNum" : "101130201",
+      "cityName" : "克拉玛依"
+    }
+  ],
+  "宁夏" : [
+    {
+      "cityNum" : "101170101",
+      "cityName" : "银川"
+    },
+    {
+      "cityNum" : "101170501",
+      "cityName" : "中卫"
+    },
+    {
+      "cityNum" : "101170401",
+      "cityName" : "固原"
+    },
+    {
+      "cityNum" : "101170201",
+      "cityName" : "石嘴山"
+    },
+    {
+      "cityNum" : "101170301",
+      "cityName" : "吴忠"
+    }
+  ],
+  "江西" : [
+    {
+      "cityNum" : "101240101",
+      "cityName" : "南昌"
+    },
+    {
+      "cityNum" : "101240301",
+      "cityName" : "上饶"
+    },
+    {
+      "cityNum" : "101240401",
+      "cityName" : "抚州"
+    },
+    {
+      "cityNum" : "101240501",
+      "cityName" : "宜春"
+    },
+    {
+      "cityNum" : "101241101",
+      "cityName" : "鹰潭"
+    },
+    {
+      "cityNum" : "101240701",
+      "cityName" : "赣州"
+    },
+    {
+      "cityNum" : "101240801",
+      "cityName" : "景德镇"
+    },
+    {
+      "cityNum" : "101240901",
+      "cityName" : "萍乡"
+    },
+    {
+      "cityNum" : "101241001",
+      "cityName" : "新余"
+    },
+    {
+      "cityNum" : "101240201",
+      "cityName" : "九江"
+    },
+    {
+      "cityNum" : "101240601",
+      "cityName" : "吉安"
+    }
+  ],
+  "广西" : [
+    {
+      "cityNum" : "101300101",
+      "cityName" : "南宁"
+    },
+    {
+      "cityNum" : "101300301",
+      "cityName" : "柳州"
+    },
+    {
+      "cityNum" : "101300401",
+      "cityName" : "来宾"
+    },
+    {
+      "cityNum" : "101300501",
+      "cityName" : "桂林"
+    },
+    {
+      "cityNum" : "101300601",
+      "cityName" : "梧州"
+    },
+    {
+      "cityNum" : "101301401",
+      "cityName" : "防城港"
+    },
+    {
+      "cityNum" : "101300801",
+      "cityName" : "贵港"
+    },
+    {
+      "cityNum" : "101300901",
+      "cityName" : "玉林"
+    },
+    {
+      "cityNum" : "101301001",
+      "cityName" : "百色"
+    },
+    {
+      "cityNum" : "101301101",
+      "cityName" : "钦州"
+    },
+    {
+      "cityNum" : "101301201",
+      "cityName" : "河池"
+    },
+    {
+      "cityNum" : "101301301",
+      "cityName" : "北海"
+    },
+    {
+      "cityNum" : "101300201",
+      "cityName" : "崇左"
+    },
+    {
+      "cityNum" : "101300701",
+      "cityName" : "贺州"
+    }
+  ],
+  "天津市" : [
+    {
+      "cityNum" : "101030100",
+      "cityName" : "天津"
+    },
+    {
+      "cityNum" : "101030300",
+      "cityName" : "宝坻"
+    },
+    {
+      "cityNum" : "101030400",
+      "cityName" : "东丽"
+    },
+    {
+      "cityNum" : "101030500",
+      "cityName" : "西青"
+    },
+    {
+      "cityNum" : "101030600",
+      "cityName" : "北辰"
+    },
+    {
+      "cityNum" : "101031400",
+      "cityName" : "蓟县"
+    },
+    {
+      "cityNum" : "101030800",
+      "cityName" : "汉沽"
+    },
+    {
+      "cityNum" : "101030900",
+      "cityName" : "静海"
+    },
+    {
+      "cityNum" : "101031000",
+      "cityName" : "津南"
+    },
+    {
+      "cityNum" : "101031100",
+      "cityName" : "塘沽"
+    },
+    {
+      "cityNum" : "101031200",
+      "cityName" : "大港"
+    },
+    {
+      "cityNum" : "101030200",
+      "cityName" : "武清"
+    },
+    {
+      "cityNum" : "101030700",
+      "cityName" : "宁河"
+    }
+  ],
+  "陕西省" : [
+    {
+      "cityNum" : "101110101",
+      "cityName" : "西安"
+    },
+    {
+      "cityNum" : "101110300",
+      "cityName" : "延安"
+    },
+    {
+      "cityNum" : "101110401",
+      "cityName" : "榆林"
+    },
+    {
+      "cityNum" : "101111001",
+      "cityName" : "铜川"
+    },
+    {
+      "cityNum" : "101110601",
+      "cityName" : "商洛"
+    },
+    {
+      "cityNum" : "101110701",
+      "cityName" : "安康"
+    },
+    {
+      "cityNum" : "101110801",
+      "cityName" : "汉中"
+    },
+    {
+      "cityNum" : "101110901",
+      "cityName" : "宝鸡"
+    },
+    {
+      "cityNum" : "101110200",
+      "cityName" : "咸阳"
+    },
+    {
+      "cityNum" : "101110501",
+      "cityName" : "渭南"
+    }
+  ],
+  "广东" : [
+    {
+      "cityNum" : "101280101",
+      "cityName" : "广州"
+    },
+    {
+      "cityNum" : "101280301",
+      "cityName" : "惠州"
+    },
+    {
+      "cityNum" : "101280401",
+      "cityName" : "梅州"
+    },
+    {
+      "cityNum" : "101280501",
+      "cityName" : "汕头"
+    },
+    {
+      "cityNum" : "101280601",
+      "cityName" : "深圳"
+    },
+    {
+      "cityNum" : "101280701",
+      "cityName" : "珠海"
+    },
+    {
+      "cityNum" : "101280800",
+      "cityName" : "佛山"
+    },
+    {
+      "cityNum" : "101280901",
+      "cityName" : "肇庆"
+    },
+    {
+      "cityNum" : "101281001",
+      "cityName" : "湛江"
+    },
+    {
+      "cityNum" : "101281101",
+      "cityName" : "江门"
+    },
+    {
+      "cityNum" : "101281201",
+      "cityName" : "河源"
+    },
+    {
+      "cityNum" : "101281301",
+      "cityName" : "清远"
+    },
+    {
+      "cityNum" : "101281401",
+      "cityName" : "云浮"
+    },
+    {
+      "cityNum" : "101281501",
+      "cityName" : "潮州"
+    },
+    {
+      "cityNum" : "101281601",
+      "cityName" : "东莞"
+    },
+    {
+      "cityNum" : "101281701",
+      "cityName" : "中山"
+    },
+    {
+      "cityNum" : "101281801",
+      "cityName" : "阳江"
+    },
+    {
+      "cityNum" : "101281901",
+      "cityName" : "揭阳"
+    },
+    {
+      "cityNum" : "101282001",
+      "cityName" : "茂名"
+    },
+    {
+      "cityNum" : "101282101",
+      "cityName" : "汕尾"
+    },
+    {
+      "cityNum" : "101280201",
+      "cityName" : "韶关"
+    }
+  ],
+  "贵州" : [
+    {
+      "cityNum" : "101260101",
+      "cityName" : "贵阳"
+    },
+    {
+      "cityNum" : "101260301",
+      "cityName" : "安顺"
+    },
+    {
+      "cityNum" : "101260401",
+      "cityName" : "都匀"
+    },
+    {
+      "cityNum" : "101260906",
+      "cityName" : "兴义"
+    },
+    {
+      "cityNum" : "101260601",
+      "cityName" : "铜仁"
+    },
+    {
+      "cityNum" : "101260701",
+      "cityName" : "毕节"
+    },
+    {
+      "cityNum" : "101260801",
+      "cityName" : "六盘水"
+    },
+    {
+      "cityNum" : "101260201",
+      "cityName" : "遵义"
+    },
+    {
+      "cityNum" : "101260501",
+      "cityName" : "凯里"
+    }
+  ],
+  "黑龙江" : [
+    {
+      "cityNum" : "101050101",
+      "cityName" : "哈尔滨"
+    },
+    {
+      "cityNum" : "101050301",
+      "cityName" : "牡丹江"
+    },
+    {
+      "cityNum" : "101050401",
+      "cityName" : "佳木斯"
+    },
+    {
+      "cityNum" : "101050501",
+      "cityName" : "绥化"
+    },
+    {
+      "cityNum" : "101050601",
+      "cityName" : "黑河"
+    },
+    {
+      "cityNum" : "101051301",
+      "cityName" : "双鸭山"
+    },
+    {
+      "cityNum" : "101050801",
+      "cityName" : "伊春"
+    },
+    {
+      "cityNum" : "101050901",
+      "cityName" : "大庆"
+    },
+    {
+      "cityNum" : "101051002",
+      "cityName" : "七台河"
+    },
+    {
+      "cityNum" : "101051101",
+      "cityName" : "鸡西"
+    },
+    {
+      "cityNum" : "101051201",
+      "cityName" : "鹤岗"
+    },
+    {
+      "cityNum" : "101050201",
+      "cityName" : "齐齐哈尔"
+    },
+    {
+      "cityNum" : "101050701",
+      "cityName" : "大兴安岭"
+    }
+  ],
+  "湖南" : [
+    {
+      "cityNum" : "101250101",
+      "cityName" : "长沙"
+    },
+    {
+      "cityNum" : "101250301",
+      "cityName" : "株洲"
+    },
+    {
+      "cityNum" : "101250401",
+      "cityName" : "衡阳"
+    },
+    {
+      "cityNum" : "101250501",
+      "cityName" : "郴州"
+    },
+    {
+      "cityNum" : "101250601",
+      "cityName" : "常德"
+    },
+    {
+      "cityNum" : "101250700",
+      "cityName" : "益阳"
+    },
+    {
+      "cityNum" : "101250801",
+      "cityName" : "娄底"
+    },
+    {
+      "cityNum" : "101250901",
+      "cityName" : "邵阳"
+    },
+    {
+      "cityNum" : "101251001",
+      "cityName" : "岳阳"
+    },
+    {
+      "cityNum" : "101251101",
+      "cityName" : "张家界"
+    },
+    {
+      "cityNum" : "101251201",
+      "cityName" : "怀化"
+    },
+    {
+      "cityNum" : "101251301",
+      "cityName" : "黔阳"
+    },
+    {
+      "cityNum" : "101251401",
+      "cityName" : "永州"
+    },
+    {
+      "cityNum" : "101251501",
+      "cityName" : "吉首"
+    },
+    {
+      "cityNum" : "101250201",
+      "cityName" : "湘潭"
+    }
+  ],
+  "四川" : [
+    {
+      "cityNum" : "101270101",
+      "cityName" : "成都"
+    },
+    {
+      "cityNum" : "101270301",
+      "cityName" : "自贡"
+    },
+    {
+      "cityNum" : "101270401",
+      "cityName" : "绵阳"
+    },
+    {
+      "cityNum" : "101270501",
+      "cityName" : "南充"
+    },
+    {
+      "cityNum" : "101270601",
+      "cityName" : "达州"
+    },
+    {
+      "cityNum" : "101270701",
+      "cityName" : "遂宁"
+    },
+    {
+      "cityNum" : "101270801",
+      "cityName" : "广安"
+    },
+    {
+      "cityNum" : "101270901",
+      "cityName" : "巴中"
+    },
+    {
+      "cityNum" : "101271001",
+      "cityName" : "泸州"
+    },
+    {
+      "cityNum" : "101271101",
+      "cityName" : "宜宾"
+    },
+    {
+      "cityNum" : "101271201",
+      "cityName" : "内江"
+    },
+    {
+      "cityNum" : "101271301",
+      "cityName" : "资阳"
+    },
+    {
+      "cityNum" : "101271401",
+      "cityName" : "乐山"
+    },
+    {
+      "cityNum" : "101271501",
+      "cityName" : "眉山"
+    },
+    {
+      "cityNum" : "101271601",
+      "cityName" : "凉山"
+    },
+    {
+      "cityNum" : "101271701",
+      "cityName" : "雅安"
+    },
+    {
+      "cityNum" : "101271801",
+      "cityName" : "甘孜"
+    },
+    {
+      "cityNum" : "101271901",
+      "cityName" : "阿坝"
+    },
+    {
+      "cityNum" : "101272001",
+      "cityName" : "德阳"
+    },
+    {
+      "cityNum" : "101272101",
+      "cityName" : "广元"
+    },
+    {
+      "cityNum" : "101270201",
+      "cityName" : "攀枝花"
+    }
+  ],
+  "上海" : [
+    {
+      "cityNum" : "101020100",
+      "cityName" : "上海"
+    },
+    {
+      "cityNum" : "101020300",
+      "cityName" : "宝山"
+    },
+    {
+      "cityNum" : "101020500",
+      "cityName" : "嘉定"
+    },
+    {
+      "cityNum" : "101020600",
+      "cityName" : "南汇"
+    },
+    {
+      "cityNum" : "101021300",
+      "cityName" : "浦东"
+    },
+    {
+      "cityNum" : "101020800",
+      "cityName" : "青浦"
+    },
+    {
+      "cityNum" : "101020900",
+      "cityName" : "松江"
+    },
+    {
+      "cityNum" : "101021000",
+      "cityName" : "奉贤"
+    },
+    {
+      "cityNum" : "101021100",
+      "cityName" : "崇明"
+    },
+    {
+      "cityNum" : "101021200",
+      "cityName" : "徐家汇"
+    },
+    {
+      "cityNum" : "101020200",
+      "cityName" : "闵行"
+    },
+    {
+      "cityNum" : "101020700",
+      "cityName" : "金山"
+    }
+  ],
+  "江苏" : [
+    {
+      "cityNum" : "101190101",
+      "cityName" : "南京"
+    },
+    {
+      "cityNum" : "101190301",
+      "cityName" : "镇江"
+    },
+    {
+      "cityNum" : "101190401",
+      "cityName" : "苏州"
+    },
+    {
+      "cityNum" : "101190501",
+      "cityName" : "南通"
+    },
+    {
+      "cityNum" : "101190601",
+      "cityName" : "扬州"
+    },
+    {
+      "cityNum" : "101191301",
+      "cityName" : "宿迁"
+    },
+    {
+      "cityNum" : "101190801",
+      "cityName" : "徐州"
+    },
+    {
+      "cityNum" : "101190901",
+      "cityName" : "淮安"
+    },
+    {
+      "cityNum" : "101191001",
+      "cityName" : "连云港"
+    },
+    {
+      "cityNum" : "101191101",
+      "cityName" : "常州"
+    },
+    {
+      "cityNum" : "101191201",
+      "cityName" : "泰州"
+    },
+    {
+      "cityNum" : "101190201",
+      "cityName" : "无锡"
+    },
+    {
+      "cityNum" : "101190701",
+      "cityName" : "盐城"
+    }
+  ],
+  "河南" : [
+    {
+      "cityNum" : "101180101",
+      "cityName" : "郑州"
+    },
+    {
+      "cityNum" : "101180301",
+      "cityName" : "新乡"
+    },
+    {
+      "cityNum" : "101180401",
+      "cityName" : "许昌"
+    },
+    {
+      "cityNum" : "101180501",
+      "cityName" : "平顶山"
+    },
+    {
+      "cityNum" : "101180601",
+      "cityName" : "信阳"
+    },
+    {
+      "cityNum" : "101180701",
+      "cityName" : "南阳"
+    },
+    {
+      "cityNum" : "101180801",
+      "cityName" : "开封"
+    },
+    {
+      "cityNum" : "101180901",
+      "cityName" : "洛阳"
+    },
+    {
+      "cityNum" : "101181001",
+      "cityName" : "商丘"
+    },
+    {
+      "cityNum" : "101181101",
+      "cityName" : "焦作"
+    },
+    {
+      "cityNum" : "101181201",
+      "cityName" : "鹤壁"
+    },
+    {
+      "cityNum" : "101181301",
+      "cityName" : "濮阳"
+    },
+    {
+      "cityNum" : "101181401",
+      "cityName" : "周口"
+    },
+    {
+      "cityNum" : "101181501",
+      "cityName" : "漯河"
+    },
+    {
+      "cityNum" : "101181601",
+      "cityName" : "驻马店"
+    },
+    {
+      "cityNum" : "101181701",
+      "cityName" : "三门峡"
+    },
+    {
+      "cityNum" : "101181801",
+      "cityName" : "济源"
+    },
+    {
+      "cityNum" : "101180201",
+      "cityName" : "安阳"
+    }
+  ],
+  "山西" : [
+    {
+      "cityNum" : "101100101",
+      "cityName" : "太原"
+    },
+    {
+      "cityNum" : "101100701",
+      "cityName" : "临汾"
+    },
+    {
+      "cityNum" : "101100801",
+      "cityName" : "运城"
+    },
+    {
+      "cityNum" : "101100901",
+      "cityName" : "朔州"
+    },
+    {
+      "cityNum" : "101101001",
+      "cityName" : "忻州"
+    },
+    {
+      "cityNum" : "101100501",
+      "cityName" : "长治"
+    },
+    {
+      "cityNum" : "101100201",
+      "cityName" : "大同"
+    },
+    {
+      "cityNum" : "101100301",
+      "cityName" : "阳泉"
+    },
+    {
+      "cityNum" : "101100401",
+      "cityName" : "晋中"
+    },
+    {
+      "cityNum" : "101100601",
+      "cityName" : "晋城"
+    },
+    {
+      "cityNum" : "101101100",
+      "cityName" : "吕梁"
+    }
+  ],
+  "山东" : [
+    {
+      "cityNum" : "101120101",
+      "cityName" : "济南"
+    },
+    {
+      "cityNum" : "101120601",
+      "cityName" : "潍坊"
+    },
+    {
+      "cityNum" : "101120901",
+      "cityName" : "临沂"
+    },
+    {
+      "cityNum" : "101121001",
+      "cityName" : "菏泽"
+    },
+    {
+      "cityNum" : "101121101",
+      "cityName" : "滨州"
+    },
+    {
+      "cityNum" : "101121201",
+      "cityName" : "东营"
+    },
+    {
+      "cityNum" : "101121301",
+      "cityName" : "威海"
+    },
+    {
+      "cityNum" : "101121401",
+      "cityName" : "枣庄"
+    },
+    {
+      "cityNum" : "101121501",
+      "cityName" : "日照"
+    },
+    {
+      "cityNum" : "101121601",
+      "cityName" : "莱芜"
+    },
+    {
+      "cityNum" : "101121701",
+      "cityName" : "聊城"
+    },
+    {
+      "cityNum" : "101120201",
+      "cityName" : "青岛"
+    },
+    {
+      "cityNum" : "101120301",
+      "cityName" : "淄博"
+    },
+    {
+      "cityNum" : "101120401",
+      "cityName" : "德州"
+    },
+    {
+      "cityNum" : "101120501",
+      "cityName" : "烟台"
+    },
+    {
+      "cityNum" : "101120701",
+      "cityName" : "济宁"
+    },
+    {
+      "cityNum" : "101120801",
+      "cityName" : "泰安"
+    }
+  ],
+  "重庆" : [
+    {
+      "cityNum" : "101040100",
+      "cityName" : "重庆"
+    },
+    {
+      "cityNum" : "101040300",
+      "cityName" : "合川"
+    },
+    {
+      "cityNum" : "101040400",
+      "cityName" : "南川"
+    },
+    {
+      "cityNum" : "101040500",
+      "cityName" : "江津"
+    },
+    {
+      "cityNum" : "101040600",
+      "cityName" : "万盛"
+    },
+    {
+      "cityNum" : "101040700",
+      "cityName" : "渝北"
+    },
+    {
+      "cityNum" : "101040800",
+      "cityName" : "北碚"
+    },
+    {
+      "cityNum" : "101040900",
+      "cityName" : "巴南"
+    },
+    {
+      "cityNum" : "101041000",
+      "cityName" : "长寿"
+    },
+    {
+      "cityNum" : "101041100",
+      "cityName" : "黔江"
+    },
+    {
+      "cityNum" : "101041200",
+      "cityName" : "万州天城"
+    },
+    {
+      "cityNum" : "101041300",
+      "cityName" : "万州龙宝"
+    },
+    {
+      "cityNum" : "101041400",
+      "cityName" : "涪陵"
+    },
+    {
+      "cityNum" : "101041500",
+      "cityName" : "开县"
+    },
+    {
+      "cityNum" : "101041600",
+      "cityName" : "城口"
+    },
+    {
+      "cityNum" : "101041700",
+      "cityName" : "云阳"
+    },
+    {
+      "cityNum" : "101041800",
+      "cityName" : "巫溪"
+    },
+    {
+      "cityNum" : "101041900",
+      "cityName" : "奉节"
+    },
+    {
+      "cityNum" : "101042000",
+      "cityName" : "巫山"
+    },
+    {
+      "cityNum" : "101042100",
+      "cityName" : "潼南"
+    },
+    {
+      "cityNum" : "101042200",
+      "cityName" : "垫江"
+    },
+    {
+      "cityNum" : "101042300",
+      "cityName" : "梁平"
+    },
+    {
+      "cityNum" : "101042400",
+      "cityName" : "忠县"
+    },
+    {
+      "cityNum" : "101042500",
+      "cityName" : "石柱"
+    },
+    {
+      "cityNum" : "101042600",
+      "cityName" : "大足"
+    },
+    {
+      "cityNum" : "101042700",
+      "cityName" : "荣昌"
+    },
+    {
+      "cityNum" : "101042800",
+      "cityName" : "铜梁"
+    },
+    {
+      "cityNum" : "101042900",
+      "cityName" : "璧山"
+    },
+    {
+      "cityNum" : "101043000",
+      "cityName" : "丰都"
+    },
+    {
+      "cityNum" : "101043100",
+      "cityName" : "武隆"
+    },
+    {
+      "cityNum" : "101043200",
+      "cityName" : "彭水"
+    },
+    {
+      "cityNum" : "101043300",
+      "cityName" : "綦江"
+    },
+    {
+      "cityNum" : "101043400",
+      "cityName" : "酉阳"
+    },
+    {
+      "cityNum" : "101043600",
+      "cityName" : "秀山"
+    },
+    {
+      "cityNum" : "101043700",
+      "cityName" : "沙坪坝"
+    },
+    {
+      "cityNum" : "101040200",
+      "cityName" : "永川"
+    }
+  ],
+  "内蒙古" : [
+    {
+      "cityNum" : "101080101",
+      "cityName" : "呼和浩特"
+    },
+    {
+      "cityNum" : "101080301",
+      "cityName" : "乌海"
+    },
+    {
+      "cityNum" : "101080401",
+      "cityName" : "集宁"
+    },
+    {
+      "cityNum" : "101080501",
+      "cityName" : "通辽"
+    },
+    {
+      "cityNum" : "101081201",
+      "cityName" : "阿拉善左旗"
+    },
+    {
+      "cityNum" : "101080701",
+      "cityName" : "鄂尔多斯"
+    },
+    {
+      "cityNum" : "101080801",
+      "cityName" : "临河"
+    },
+    {
+      "cityNum" : "101080901",
+      "cityName" : "锡林浩特"
+    },
+    {
+      "cityNum" : "101081000",
+      "cityName" : "呼伦贝尔"
+    },
+    {
+      "cityNum" : "101081101",
+      "cityName" : "乌兰浩特"
+    },
+    {
+      "cityNum" : "101080201",
+      "cityName" : "包头"
+    },
+    {
+      "cityNum" : "101080601",
+      "cityName" : "赤峰"
+    }
+  ],
+  "云南" : [
+    {
+      "cityNum" : "101290101",
+      "cityName" : "昆明"
+    },
+    {
+      "cityNum" : "101290301",
+      "cityName" : "红河"
+    },
+    {
+      "cityNum" : "101290601",
+      "cityName" : "文山"
+    },
+    {
+      "cityNum" : "101290701",
+      "cityName" : "玉溪"
+    },
+    {
+      "cityNum" : "101290801",
+      "cityName" : "楚雄"
+    },
+    {
+      "cityNum" : "101290901",
+      "cityName" : "普洱"
+    },
+    {
+      "cityNum" : "101291001",
+      "cityName" : "昭通"
+    },
+    {
+      "cityNum" : "101291101",
+      "cityName" : "临沧"
+    },
+    {
+      "cityNum" : "101291201",
+      "cityName" : "怒江"
+    },
+    {
+      "cityNum" : "101291301",
+      "cityName" : "香格里拉"
+    },
+    {
+      "cityNum" : "101291401",
+      "cityName" : "丽江"
+    },
+    {
+      "cityNum" : "101291501",
+      "cityName" : "德宏"
+    },
+    {
+      "cityNum" : "101291601",
+      "cityName" : "景洪"
+    },
+    {
+      "cityNum" : "101290201",
+      "cityName" : "大理"
+    },
+    {
+      "cityNum" : "101290401",
+      "cityName" : "曲靖"
+    },
+    {
+      "cityNum" : "101290501",
+      "cityName" : "保山"
+    }
+  ],
+  "西藏" : [
+    {
+      "cityNum" : "101140101",
+      "cityName" : "拉萨"
+    },
+    {
+      "cityNum" : "101140301",
+      "cityName" : "山南"
+    },
+    {
+      "cityNum" : "101140701",
+      "cityName" : "阿里"
+    },
+    {
+      "cityNum" : "101140501",
+      "cityName" : "昌都"
+    },
+    {
+      "cityNum" : "101140601",
+      "cityName" : "那曲"
+    },
+    {
+      "cityNum" : "101140201",
+      "cityName" : "日喀则"
+    },
+    {
+      "cityNum" : "101140401",
+      "cityName" : "林芝"
+    }
+  ],
+  "湖北" : [
+    {
+      "cityNum" : "101200101",
+      "cityName" : "武汉"
+    },
+    {
+      "cityNum" : "101200501",
+      "cityName" : "黄冈"
+    },
+    {
+      "cityNum" : "101200801",
+      "cityName" : "荆州"
+    },
+    {
+      "cityNum" : "101200901",
+      "cityName" : "宜昌"
+    },
+    {
+      "cityNum" : "101201001",
+      "cityName" : "恩施"
+    },
+    {
+      "cityNum" : "101201101",
+      "cityName" : "十堰"
+    },
+    {
+      "cityNum" : "101201201",
+      "cityName" : "神农架"
+    },
+    {
+      "cityNum" : "101201301",
+      "cityName" : "随州"
+    },
+    {
+      "cityNum" : "101201401",
+      "cityName" : "荆门"
+    },
+    {
+      "cityNum" : "101201501",
+      "cityName" : "天门"
+    },
+    {
+      "cityNum" : "101201601",
+      "cityName" : "仙桃"
+    },
+    {
+      "cityNum" : "101201701",
+      "cityName" : "潜江"
+    },
+    {
+      "cityNum" : "101200201",
+      "cityName" : "襄樊"
+    },
+    {
+      "cityNum" : "101200301",
+      "cityName" : "鄂州"
+    },
+    {
+      "cityNum" : "101200401",
+      "cityName" : "孝感"
+    },
+    {
+      "cityNum" : "101200601",
+      "cityName" : "黄石"
+    },
+    {
+      "cityNum" : "101200701",
+      "cityName" : "咸宁"
+    }
+  ],
+  "河北" : [
+    {
+      "cityNum" : "101090101",
+      "cityName" : "石家庄"
+    },
+    {
+      "cityNum" : "101090301",
+      "cityName" : "张家口"
+    },
+    {
+      "cityNum" : "101090402",
+      "cityName" : "承德"
+    },
+    {
+      "cityNum" : "101090501",
+      "cityName" : "唐山"
+    },
+    {
+      "cityNum" : "101091101",
+      "cityName" : "秦皇岛"
+    },
+    {
+      "cityNum" : "101090701",
+      "cityName" : "沧州"
+    },
+    {
+      "cityNum" : "101090801",
+      "cityName" : "衡水"
+    },
+    {
+      "cityNum" : "101090901",
+      "cityName" : "邢台"
+    },
+    {
+      "cityNum" : "101091001",
+      "cityName" : "邯郸"
+    },
+    {
+      "cityNum" : "101090201",
+      "cityName" : "保定"
+    },
+    {
+      "cityNum" : "101090601",
+      "cityName" : "廊坊"
+    }
+  ],
+  "安徽" : [
+    {
+      "cityNum" : "101220101",
+      "cityName" : "合肥"
+    },
+    {
+      "cityNum" : "101220301",
+      "cityName" : "芜湖"
+    },
+    {
+      "cityNum" : "101220401",
+      "cityName" : "淮南"
+    },
+    {
+      "cityNum" : "101220501",
+      "cityName" : "马鞍山"
+    },
+    {
+      "cityNum" : "101220601",
+      "cityName" : "安庆"
+    },
+    {
+      "cityNum" : "101220701",
+      "cityName" : "宿州"
+    },
+    {
+      "cityNum" : "101220801",
+      "cityName" : "阜阳"
+    },
+    {
+      "cityNum" : "101220901",
+      "cityName" : "亳州"
+    },
+    {
+      "cityNum" : "101221001",
+      "cityName" : "黄山"
+    },
+    {
+      "cityNum" : "101221101",
+      "cityName" : "滁州"
+    },
+    {
+      "cityNum" : "101221201",
+      "cityName" : "淮北"
+    },
+    {
+      "cityNum" : "101221301",
+      "cityName" : "铜陵"
+    },
+    {
+      "cityNum" : "101221401",
+      "cityName" : "宣城"
+    },
+    {
+      "cityNum" : "101221501",
+      "cityName" : "六安"
+    },
+    {
+      "cityNum" : "101221601",
+      "cityName" : "巢湖"
+    },
+    {
+      "cityNum" : "101221701",
+      "cityName" : "池州"
+    },
+    {
+      "cityNum" : "101220201",
+      "cityName" : "蚌埠"
+    }
+  ]
+}
