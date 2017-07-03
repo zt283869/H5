@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="box">
+			<p>1</p>
+			<p>1</p>
+			<p>1</p>
+			<p>1</p>
+		</div>
+		<div>
+			<p>2</p>
+			<p>2</p>
+			<p>2</p>
+			<p>2</p>
+		</div>
+	</body>
+</html>
+<script src="jquery-1.8.3.js"></script>
+<script>
+	(function($){
+//		$("#box>p").css("color","red");//显示子节点为red
+
+	if($("#box").get(0)&&$("#box")[0]){
+		alert($("#box").get(0));
+		alert($("#box")[0]);
+		$("#box").css("color","red");
+	}
+	})(jQuery)
+</script>

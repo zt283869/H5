@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style type="text/css">
+		#box01{
+			width: 500px;
+			height: 300px;
+			border: 1px solid red;
+			background-color:pink;
+		}
+		#box02{
+			width: 200px;
+			height: 150px;
+			background-color: green;
+		}
+		
+	</style>
+	<body>
+		<div id="box01">
+			<div id="box02">
+				
+				
+			</div>
+		</div>
+		
+	</body>
+</html>
+<script type="text/javascript" src="js/jquery-1.8.3.js" ></script>
+<script type="text/javascript">
+	$(function(){
+		$("#box01").mouseenter(function(){
+			console.log("enter进入box01");
+		});
+		
+		$("#box01").mouseleave(function(){
+			console.log("leave离开box01");
+		});
+		
+		
+//		$("#box01").mouseover(function(){
+//			console.log("进入box01");
+//		});
+//		
+//		$("#box01").mouseout(function(){
+//			console.log("离开box01");
+//		});
+//		
+		
+//		
+//		$("#box02").mouseover(function(){
+//			console.log("进入box02");
+//		});
+//		
+//		$("#box02").mouseout(function(){
+//			console.log("离开box02");
+//		});
+		
+	});
+</script>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul id="ul01">
+			<li id="li1">ul01第1行</li>
+			<li id="li2">ul01第2行</li>
+			<li id="li3">ul01第3行</li>
+			<li id="li4">ul01第4行</li>
+			<li id="li5">ul01第5行</li>
+		</ul>
+		
+		<ul id="ul02">
+			<li id="li1">ul02第1行</li>
+			<li id="li2">ul02第2行</li>
+			<li id="li3">ul02第3行</li>
+			<li id="li4">ul02第4行</li>
+			<li id="li5">ul02第5行</li>
+		</ul>
+	</body>
+</html>
+<script type="text/javascript" src="js/jquery-1.8.3.js" ></script>
+<script type="text/javascript">
+	$(function(){
+		//console.log(jQuery("#li3",$("#ul01")).html());
+		// $("ul").selector;
+		
+		test($("ul"));
+		
+		
+		test($("ul li"));
+		
+		
+		test($("ul>li"));
+	})
+	
+	function test(jQueryObj){
+	//	jQueryObj.selector;		
+	}
+	
+	
+</script>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input id="allCheck" type="checkbox" />全选<br/>
+		<input id="btnSel" type="button" value="反选" /><br/>
+		<div id="fruit">
+			您喜欢吃的水果：<br/>
+			<input  type="checkbox" />苹果<br/>
+			<input  type="checkbox" />梨<br/>
+			<input  type="checkbox" />车厘子<br/>
+			<input  type="checkbox" />猕猴桃<br/>
+			<input  type="checkbox" />榴莲<br/>
+		</div>
+		<input type="button" id="btn" value="注册" /><br/>
+	</body>
+</html>
+<script src="jquery-1.8.3.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#allCheck").click(function(){
+			$(this).checkedAll("#fruit");
+		});
+		
+		$("#btnSel").click(function(){
+			$("#fruit").unCheckedAll();
+		});
+	});
+	
+</script>

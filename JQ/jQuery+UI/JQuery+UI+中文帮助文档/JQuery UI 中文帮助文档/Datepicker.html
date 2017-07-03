@@ -1,0 +1,2109 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="keywords" content="UI/API/1.7/Draggable" />
+		<title>UI/API/1.7/Draggable - jQuery JavaScript Library</title>
+		<link rel="stylesheet" href="style/reset.css" type="text/css" />
+		<link rel="stylesheet" href="style/screen.css" type="text/css" />
+		<style type="text/css" media="screen,projection">/*<![CDATA[*/ @import "http://www.winswd.com/aboutme/jquery/ui/style/main.css?9"; /*]]>*/</style>
+
+		<link rel="stylesheet" type="text/css" href="style/jquery.tabs.css" />
+		<!--[if lte IE 7]>
+		<link rel="stylesheet" href="style/jquery.tabs-ie.css" type="text/css" media="projection, screen"/>
+		<![endif]-->
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script src="js/jquery.tabs.js"></script>
+
+		<script>$(function(){
+			$("div[id=examples]").each(function(){
+				$(this).siblings("div:first").find("div.desc").after(
+					$(this).find("div.example:has(#demo):first").remove().clone());
+
+				if ( !$("div.example", this).length )
+					$(this).remove();
+			});
+
+			$("div.entry")
+				.children("p").remove().end()
+				.find("ul:first li").each(function(){
+					if ( !$(this).parent().siblings( $("a",this).attr("href") ).length )
+						$(this).remove();
+				}).end()
+				.not(".ui")
+				.tabs();
+
+			$("div.args > br").remove();
+
+			$("div.example")
+				.children("p").remove().end()
+				.tabs();
+
+			var keywords = "String,Number,Object,Options,Array,Function,Callback,Selector,Event,Element,Integer,Float,Boolean".split(",");
+
+			$("td.default span, td.type").each(function(){
+				var html = this.innerHTML;
+				jQuery.each(keywords, function(i,key){
+					html = html.replace(new RegExp(key, "ig"), "<a href='/Types#" + key + "'>" + key + "</a>");
+				});
+				this.innerHTML = html;
+			});
+
+			$("div[id=source]").each(function(){
+				var source = $("pre", this).html()
+					.replace(/<\/?a.*?>/ig, "")
+					.replace(/<\/?strong.*?>/ig, "")
+					.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&");
+
+				//var items = [];
+				//source = source.replace(/\s*<(link|script).*?>\s\*/g, function(m){
+					//items.push(m);
+					//return "";
+				//}).replace("</head>", items.join("") + "</head>")
+				//*/
+
+				var iframe = document.createElement("iframe");
+				iframe.src = "http://www.winswd.com/index-blank.html";
+				iframe.width = "100%";
+				iframe.height = $(this).prev().attr("rel") || "125";
+				iframe.style.border = "none";
+				$(this).prev().append(iframe);
+
+
+				$(window).load(function(){
+					var doc = iframe.contentDocument || iframe.contentWindow.document;
+					source = source
+						// IE needs to wait for the script to load (?)
+						.replace("$(document).ready(function(){", "window.onload = (function(){try{")
+						.replace(/}\);\s*<\/sc/, "}catch(e){}});</sc")
+						//.replace("http://code.jquery.com/jquery-latest.js", "http://code.jquery.com/jquery-1.3rc2.js")
+						.replace("</head>", "<style>html,body{border:0; margin:0; padding:0;}</style></head>");
+					doc.open();
+					doc.write( source );
+					doc.close();
+				});
+
+			});
+		});</script>
+		<script type="text/javascript" src="js/custom.js"></script>
+		<!--[if lt IE 5.5000]><style type="text/css">@import "http://www.winswd.com/aboutme/jquery/ui/style/IE50Fixes.css";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "http://www.winswd.com/aboutme/jquery/ui/style/IE55Fixes.css";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "http://www.winswd.com/aboutme/jquery/ui/style/IE60Fixes.css";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "http://www.winswd.com/aboutme/jquery/ui/style/IE70Fixes.css?1";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="http://www.winswd.com/aboutme/jquery/ui/style/IEFixes.js"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<!-- Head Scripts -->
+			</head>
+	<body id="jq-interior"  class="mediawiki ns-0 ltr">
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  08/18/09 18:19:48.<br>
+<b>Address:</b> <a class="info" href="http://www.winswd.com/aboutme/jquery/ui/Datepicker.html">http://www.winswd.com/aboutme/jquery/ui/Datepicker.html</a><br>
+<b>Title:</b> UI/API/1.7/Draggable - jQuery JavaScript Library &nbsp;&bull;&nbsp; <b>Size:</b> 70836 &nbsp;&bull;&nbsp; <b>Last Modified:</b> 03/14/09 23:14:18<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+
+	<div id="jq-siteContain">
+			<div id="jq-content" class="jq-clearfix">
+
+				<div id="jq-interiorNavigation">
+					<div class='jq-portlet' id='jq-p-Getting-Started'>
+						<h5></h5>
+						<div class='jq-pBody'>
+							<ul>
+								<li id="jq-ui-doc-n-Draggable"><a href="Draggable.html">Draggable</a></li>
+								<li id="jq-ui-doc-n-Droppable"><a href="Droppable.html">Droppable</a></li>				
+								<li id="jq-ui-doc-n-Resizable"><a href="Resizable.html">Resizable</a></li>
+								<li id="jq-ui-doc-n-Selectable"><a href="Selectable.html">Selectable</a></li>
+								<li id="jq-ui-doc-n-Sortable"><a href="Sortable.html">Sortable</a></li>
+							</ul>				
+						</div>
+					</div>
+						<div class='jq-portlet' id='jq-p-API-Reference'>
+						<h5>部件</h5>
+						<div class='jq-pBody'>
+							<ul>
+								<li id="jq-ui-doc-n-Accordion"><a href="Accordion.html">Accordion</a></li>
+								<li id="jq-ui-doc-n-Datepicker"><a href="Datepicker.html">Datepicker</a></li>				
+								<li id="jq-ui-doc-n-Dialog"><a href="Dialog.html">Dialog</a></li>
+								<li id="jq-ui-doc-n-Progressbar"><a href="Progressbar.html">Progressbar</a></li>
+								<li id="jq-ui-doc-n-Slider"><a href="Slider.html">Slider</a></li>
+								<li id="jq-ui-doc-n-Tabs"><a href="Tabs.html">Tabs</a></li>
+							</ul>
+						</div>
+					</div>
+						<div class='jq-portlet' id='jq-p-Plugins'>
+				
+						<h5>动画</h5>
+						<div class='jq-pBody'>
+							<ul>
+								<li id="jq-ui-doc-n-AddClass"><a href="AddClass.html">AddClass</a></li>
+								<li id="jq-ui-doc-n-RemoveClass"><a href="RemoveClass.html">RemoveClass</a></li>
+                                <li id="jq-ui-doc-n-Animate"><a href="Animate.html">Animate</a></li>
+                                <li id="jq-ui-doc-n-Effect"><a href="Effect.html">Effect</a></li>
+                                <li id="jq-ui-doc-n-Hide"><a href="Hide.html">Hide</a></li>
+                                <li id="jq-ui-doc-n-Show"><a href="Show.html">Show</a></li>
+                                <li id="jq-ui-doc-n-SwitchClass"><a href="SwitchClass.html">SwitchClass</a></li>
+                                <li id="jq-ui-doc-n-Toggle"><a href="Toggle.html">Toggle</a></li>
+                                <li id="jq-ui-doc-n-ToggleClass"><a href="ToggleClass.html">ToggleClass</a></li>
+							</ul>
+						</div>				
+					</div>					
+				</div><!-- /#interiorNavigation -->
+
+				<div id="jq-primaryContent">
+		<div id="column-content">
+	<div id="docs-content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">UI/API/1.7/Datepicker</h1>
+		<div id="bodyContent">
+<!-- start content -->
+
+
+
+<ul class="UIAPIPlugin-toc">
+<li><a href="#overview">概述</a></li>
+<li><a href="#options">参数</a></li>
+<li><a href="#events">事件</a></li>
+<li><a href="#methods">方法</a></li>
+<li><a href="#theming">主题</a></li>
+</ul>
+<div class="UIAPIPlugin">
+  <h1>jQuery UI Datepicker</h1>
+  <div id="overview">
+    <h2 class="top-header">概述</h2>
+    <div id="overview-main">
+        <p>jQuery UI Datepicker是一个高效的为您的页面添加日期的插件. 你可以自定义日期格式和语言, 您可以限制可选择的日期范围,可以轻易的将事件添加到按钮或者其他的选项中.</p>
+<p>默认情况下, datepicker calendar 在onFocus上打开并且自动在选择日期触发onBlur后关闭. 如果要添加一个内置的calendar, 只需要在div或者span上调用datepicker即可.
+</p><p>您可以使用键盘或者快捷键操作datepicker:
+</p>
+<ul>
+ <li>page up/down - 上个月/下个月
+ <li>ctrl+page up/down - 去年/明年
+ <li>ctrl+home - 当前月或者在关闭时打开
+ <li>ctrl+left/right - 昨天/明天
+ <li>ctrl+up/down - 上周/下周
+ <li>enter - 选择当前日期
+ <li>ctrl+end - 关闭和删除日期
+ <li>escape - 关闭datepicker不进行任何选择
+</ul>
+    </div>
+    <div id="overview-dependencies">
+        <h3>其他附加文件</h3>
+        <ul>
+<li>UI Core</li>
+</ul>
+    </div>
+    <div id="overview-example">
+        <h3>示例</h3>
+        <div id="overview-example" class="example">
+<ul><li><a href="#demo"><span>代码示范</span></a></li><li><a href="#source"><span>查看源文件</span></a></li></ul>
+<p><div id="demo" class="tabs-container" rel="220">
+一个简单的 jQuery UI Datepicker.<br />
+</p>
+<pre>$(&quot;#datepicker&quot;).datepicker();
+</pre>
+<p></div><div id="source" class="tabs-container">
+</p>
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;link type=&quot;text/css&quot; href=&quot;themes/base/ui.all.css&quot; rel=&quot;stylesheet&quot; /&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;js/jquery.min.js&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;ui/ui.core.js&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;ui/ui.datepicker.js&quot;&gt;&lt;/script&gt;
+  &lt;script type="text/javascript"&gt;
+  $(document).ready(function(){
+    $(&quot;#datepicker&quot;).datepicker();
+  });
+  &lt;/script&gt;
+&lt;/head&gt;
+&lt;body style="font-size:62.5%;"&gt;
+  
+&lt;div type=&quot;text&quot; id=&quot;datepicker&quot;&gt;&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p></div>
+</p><p></div>
+    </div>
+  </div>
+  <div id="options">
+    <h2 class="top-header">参数</h2>
+    <ul class="options-list">
+      
+<li class="option" id="option-altField">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-altField">altField</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">String</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">''</dd>
+      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>使用jQuery selector选择的另一个地方更新datepicker选择的日期. 使用<code>altFormat</code> 指定的这一区域设置如下改变格式的日期(使用input最直观). 如果没有代替的区域则使用空白.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">
+    
+<dt>
+  使用指定的<code>altField</code>参数初始化一个datepicker.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({ altField: '#actualDate' });</code></pre>
+</dd>
+    
+<dt>
+  在初始化后设置或者获取<code>altField</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var altField = $('.selector').datepicker('option', 'altField');
+//设置
+$('.selector').datepicker('option', 'altField', '#actualDate');</code></pre>
+</dd>
+
+    </dl>
+  </div>
+</li>
+
+
+<li class="option" id="option-altFormat">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-altFormat">altFormat</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">String</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">''</dd>
+      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p><code>dateFormat</code> 被 <code>altField</code> 项所使用. 它允许用户选择一种日期格式, 而实际的格式则是来自后台.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">
+    
+<dt>
+  使用指定的<code>altFormat</code>参数初始化一个datepicker.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({ altFormat: 'yy-mm-dd' });</code></pre>
+</dd>
+
+    
+<dt>
+  在初始化后设置或者获取<code>altFormat</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var altFormat = $('.selector').datepicker('option', 'altFormat');
+//设置
+$('.selector').datepicker('option', 'altFormat', 'yy-mm-dd');</code></pre>
+</dd>
+
+    </dl>
+  </div>
+</li>
+
+
+<li class="option" id="option-appendText">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-appendText">appendText</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">String</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">''</dd>
+      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>这些文字显示在每一个日期段, 例. 显示所需的格式.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">
+    
+<dt>
+  使用指定的<code>appendText</code>参数初始化一个datepicker.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({ appendText: '(yyyy-mm-dd)' });</code></pre>
+</dd>
+
+    
+<dt>
+  在初始化后设置或者获取<code>appendText</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var appendText = $('.selector').datepicker('option', 'appendText');
+//设置
+$('.selector').datepicker('option', 'appendText', '(yyyy-mm-dd)');</code></pre>
+</dd>
+
+    </dl>
+  </div>
+</li>
+
+
+<li class="option" id="option-buttonImage">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-buttonImage">buttonImage</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">String</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">''</dd>
+      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>弹出按钮的图片url地址. 如果设置了此参数, 按钮的text将变成<i>alt</i>属性而不是直接显示.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">
+    
+<dt>
+  使用指定的<code>buttonImage</code>参数初始化一个datepicker.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({ buttonImage: '/images/datepicker.gif' });</code></pre>
+</dd>
+
+    
+<dt>
+  在初始化后设置或者获取<code>buttonImage</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var buttonImage = $('.selector').datepicker('option', 'buttonImage');
+//设置
+$('.selector').datepicker('option', 'buttonImage', '/images/datepicker.gif');</code></pre>
+</dd>
+
+    </dl>
+  </div>
+</li>
+
+
+<li class="option" id="option-buttonImageOnly">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-buttonImageOnly">buttonImageOnly</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Boolean</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">false</dd>
+      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>设置为true将会在field后出现一个图片用来触发日期选择,没有的话将使用按钮触发.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">
+    
+<dt>
+  使用指定的<code>buttonImageOnly</code>参数初始化一个datepicker.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({ buttonImageOnly: true });</code></pre>
+</dd>
+
+    
+<dt>
+  在初始化后设置或者获取<code>buttonImageOnly</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var buttonImageOnly = $('.selector').datepicker('option', 'buttonImageOnly');
+//设置
+$('.selector').datepicker('option', 'buttonImageOnly', true);</code></pre>
+</dd>
+
+    </dl>
+  </div>
+</li>
+
+
+<li class="option" id="option-buttonText">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-buttonText">buttonText</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">String</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">'...'</dd>
+      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>触发按钮上显示的文字. 在 <i>showOn</i> 等于 'button' or 'both'时使用.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">
+    
+<dt>
+  使用指定的<code>buttonText</code>参数初始化一个datepicker.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({ buttonText: 'Choose' });</code></pre>
+</dd>
+
+    
+<dt>
+  在初始化后设置或者获取<code>buttonText</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var buttonText = $('.selector').datepicker('option', 'buttonText');
+//设置
+$('.selector').datepicker('option', 'buttonText', 'Choose');</code></pre>
+</dd>
+
+    </dl>
+  </div>
+</li>
+
+
+<li class="option" id="option-calculateWeek">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-calculateWeek">calculateWeek</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Function</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">$.datepicker.iso8601Week</dd>
+      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>执行一年中周的计算. 这个函数接受一个日期作为参数并且返回一个表示当前周是一年中的第几周的数字. 默认使用ISO 8601的定义执行: 每周从周一开始每年的第一周包含1月4日. 这意味着今年的第一周中可能会包含去年的3天,并且今年的3天可能会被包含进去年的最后一周中.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">
+    
+<dt>
+  使用指定的<code>calculateWeek</code>参数初始化一个datepicker.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({ calculateWeek: MyWeeks });</code></pre>
+</dd>
+
+    
+<dt>
+  在初始化后设置或者获取<code>calculateWeek</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var calculateWeek = $('.selector').datepicker('option', 'calculateWeek');
+//设置
+$('.selector').datepicker('option', 'calculateWeek', MyWeeks);</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+
+<li class="option" id="option-changeFirstDay">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-changeFirstDay">changeFirstDay</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Boolean</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">true</dd>
+      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>允许你选择一个日期的名字作为每周的起点. 你可以通过将参数设置为false来禁用此功能.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">
+    
+<dt>
+  使用指定的<code>changeFirstDay</code>参数初始化一个datepicker.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({ changeFirstDay: false });</code></pre>
+</dd>
+
+    
+<dt>
+  在初始化后设置或者获取<code>changeFirstDay</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var changeFirstDay = $('.selector').datepicker('option', 'changeFirstDay');
+//设置
+$('.selector').datepicker('option', 'changeFirstDay', false);</code></pre>
+</dd>
+
+    </dl>
+  </div>
+</li>
+
+
+<li class="option" id="option-changeMonth">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-changeMonth">changeMonth</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Boolean</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">false</dd>
+      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>允许你通过一个下拉菜单来改变当前的月份. 你可以通过将参数设置为false来禁用此功能.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">
+    
+<dt>
+  使用指定的<code>changeMonth</code>参数初始化一个datepicker.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({ changeMonth: true });</code></pre>
+</dd>
+
+    
+<dt>
+  在初始化后设置或者获取<code>changeMonth</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var changeMonth = $('.selector').datepicker('option', 'changeMonth');
+//设置
+$('.selector').datepicker('option', 'changeMonth', true);</code></pre>
+</dd>
+
+    </dl>
+  </div>
+</li>
+
+
+<li class="option" id="option-changeYear">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-changeYear">changeYear</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Boolean</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">false</dd>
+      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>允许你使用一个下拉菜单来改变当前年. 你可以通过将参数设置为false来禁用此功能.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>changeYear</code>参数初始化一个datepicker.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({ changeYear: true });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>changeYear</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var changeYear = $('.selector').datepicker('option', 'changeYear');
+//设置
+$('.selector').datepicker('option', 'changeYear', true);</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+
+<li class="option" id="option-closeText">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-closeText">closeText</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">String</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">'Close'</dd>
+      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>关闭连接显示的文字. 这个属性是一个区域化属性.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">
+    
+<dt>
+  使用指定的<code>closeText</code>参数初始化一个datepicker.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({ closeText: 'X' });</code></pre>
+</dd>
+
+    
+<dt>
+  在初始化后设置或者获取<code>closeText</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var closeText = $('.selector').datepicker('option', 'closeText');
+//设置
+$('.selector').datepicker('option', 'closeText', 'X');</code></pre>
+</dd>
+
+    </dl>
+  </div>
+</li>
+
+
+<li class="option" id="option-constrainInput">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-constrainInput">constrainInput</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Boolean</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">true</dd>
+      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>输入栏限制为当前的日期格式时为true.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">
+    
+<dt>
+  使用指定的<code>constrainInput</code>参数初始化一个datepicker.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({ constrainInput: false });</code></pre>
+</dd>
+
+    
+<dt>
+  在初始化后设置或者获取<code>constrainInput</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var constrainInput = $('.selector').datepicker('option', 'constrainInput');
+//设置
+$('.selector').datepicker('option', 'constrainInput', false);</code></pre>
+</dd>
+
+    </dl>
+  </div>
+</li>
+
+
+<li class="option" id="option-currentText">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-currentText">currentText</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">String</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">'Today'</dd>
+      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>今天链接显示的文字. 这个属性是一个区域化属性.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">
+    
+<dt>
+  使用指定的<code>currentText</code>参数初始化一个datepicker.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({ currentText: 'Now' });</code></pre>
+</dd>
+
+    
+<dt>
+  在初始化后设置或者获取<code>currentText</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var currentText = $('.selector').datepicker('option', 'currentText');
+//设置
+$('.selector').datepicker('option', 'currentText', 'Now');</code></pre>
+</dd>
+
+    </dl>
+  </div>
+</li>
+
+
+<li class="option" id="option-dateFormat">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-dateFormat">dateFormat</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">String</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">'mm/dd/yy'</dd>
+      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>描述和显示日期的格式. 这个属性是一个区域化属性. 所有可能格式的列表请参看 <a href="http://docs.jquery.com/UI/Datepicker/%24.datepicker.formatDate" title="UI/Datepicker/$.datepicker.formatDate">formatDate</a> .</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>dateFormat</code>参数初始化一个datepicker.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({ dateFormat: 'yy-mm-dd' });</code></pre>
+</dd>
+
+    
+<dt>
+  在初始化后设置或者获取<code>dateFormat</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var dateFormat = $('.selector').datepicker('option', 'dateFormat');
+//设置
+$('.selector').datepicker('option', 'dateFormat', 'yy-mm-dd');</code></pre>
+</dd>
+
+    </dl>
+  </div>
+</li>
+
+
+<li class="option" id="option-dayNames">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-dayNames">dayNames</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Array</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']</dd>
+      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>列表中长日期的名字, 从周日开始(Sunday), 依照<i>dateFormat</i>的设置进行使用. 他们还在悬停在相应的列标题时弹出提示. 这个属性是一个区域化属性.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">
+    
+<dt>
+  使用指定的<code>dayNames</code>参数初始化一个datepicker.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({ dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'] });</code></pre>
+</dd>
+
+    
+<dt>
+  在初始化后设置或者获取<code>dayNames</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var dayNames = $('.selector').datepicker('option', 'dayNames');
+//设置
+$('.selector').datepicker('option', 'dayNames', ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi']);</code></pre>
+</dd>
+
+    </dl>
+  </div>
+</li>
+
+
+<li class="option" id="option-dayNamesMin">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-dayNamesMin">dayNamesMin</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Array</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']</dd>
+      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>这个是日期最小化的简称, 从周日开始(Sunday), 用在datepicker每列的头部. 这个属性是一个区域化属性.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>dayNamesMin</code>参数初始化一个datepicker.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({ dayNamesMin: ['Di', 'Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa'] });</code></pre>
+</dd>
+
+    
+<dt>
+  在初始化后设置或者获取<code>dayNamesMin</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var dayNamesMin = $('.selector').datepicker('option', 'dayNamesMin');
+//设置
+$('.selector').datepicker('option', 'dayNamesMin', ['Di', 'Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa']);</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+
+<li class="option" id="option-dayNamesShort">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-dayNamesShort">dayNamesShort</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Array</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>日期名称的简写列表, 从周日开始(Sunday), 依照<i>dateFormat</i>的设置使用. 这个属性是一个区域化属性.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>dayNamesShort</code>参数初始化一个datepicker.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({ dayNamesShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'] });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>dayNamesShort</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var dayNamesShort = $('.selector').datepicker('option', 'dayNamesShort');
+//设置
+$('.selector').datepicker('option', 'dayNamesShort', ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam']);</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="option" id="option-defaultDate">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-defaultDate">defaultDate</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Date(yyyy, mm - 1, dd), Number, String</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">null</dd>
+      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>如果内容为空时设置第一次打开时显示的日期. 通过date对象指定一个实际的日期, 或者一个和今天对比的数字 (例如. +7) 或者一个连续的字符串值('y' 表示年, 'm' 表示月, 'w'表示周, 'd'表示日, 例如. '+1m +7d'), 或者为空则是今天.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>defaultDate</code>参数初始化一个datepicker.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({ defaultDate: +7 });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>defaultDate</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var defaultDate = $('.selector').datepicker('option', 'defaultDate');
+//设置
+$('.selector').datepicker('option', 'defaultDate', +7);</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+
+<li class="option" id="option-duration">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-duration">duration</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">String, Number</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">'normal'</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>控制datepicker出现的速度, 可以是一个毫秒值, 也可以使用以下的三种字符值来表示("slow", "normal", "fast"), 或者为 ''则马上显示.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>duration</code>参数初始化一个datepicker.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({ duration: 'slow' });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>duration</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var duration = $('.selector').datepicker('option', 'duration');
+//设置
+$('.selector').datepicker('option', 'duration', 'slow');</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="option" id="option-firstDay">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-firstDay">firstDay</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Number</dd>      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">0</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>设置一周中的第一天:周日是 0, 周一是 1, ... 这个属性是一个区域化属性.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">
+    
+<dt>
+  使用指定的<code>firstDay</code>参数初始化一个datepicker.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({ firstDay: 1 });</code></pre>
+</dd>
+
+    
+<dt>
+  在初始化后设置或者获取<code>firstDay</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var firstDay = $('.selector').datepicker('option', 'firstDay');
+//设置
+$('.selector').datepicker('option', 'firstDay', 1);</code></pre>
+</dd>
+
+    </dl>
+  </div>
+</li>
+
+
+<li class="option" id="option-gotoCurrent">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-gotoCurrent">gotoCurrent</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Boolean</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">false</dd>
+      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>如果设置为true, 当前日的链接将进入当前选中的日期而不是今天.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>gotoCurrent</code>参数初始化一个datepicker.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({ gotoCurrent: true });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>gotoCurrent</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var gotoCurrent = $('.selector').datepicker('option', 'gotoCurrent');
+//设置
+$('.selector').datepicker('option', 'gotoCurrent', true);</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+
+<li class="option" id="option-hideIfNoPrevNext">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-hideIfNoPrevNext">hideIfNoPrevNext</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Boolean</dd>      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">false</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>通常当前一个和下一个链接被禁用时不适用 (参看 <i>minDate</i>/<i>maxDate</i>). 你可以通过设置此属性为true完全的隐藏他们.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>hideIfNoPrevNext</code>参数初始化一个datepicker.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({ hideIfNoPrevNext: true });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>hideIfNoPrevNext</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var hideIfNoPrevNext = $('.selector').datepicker('option', 'hideIfNoPrevNext');
+//设置
+$('.selector').datepicker('option', 'hideIfNoPrevNext', true);</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="option" id="option-isRTL">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-isRTL">isRTL</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Boolean</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">false</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>如果当前语言是自右向左的则为true. 这个属性是一个区域化属性.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>isRTL</code>参数初始化一个datepicker.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({ isRTL: true });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>isRTL</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var isRTL = $('.selector').datepicker('option', 'isRTL');
+//设置
+$('.selector').datepicker('option', 'isRTL', true);</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="option" id="option-maxDate">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-maxDate">maxDate</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Date(yyyy, mm - 1, dd), Number, String</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">null</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>使用Date对象设置一个允许选择的最大日期, 或者指定一个相对于今天的数字(例. +7) 或者一个连续的字符串值('y'表示年, 'm'表示月, 'w'表示周, 'd'表示日, 例. '+1m +1w'), 为空时没有最大值.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>maxDate</code>参数初始化一个datepicker.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({ maxDate: '+1m +1w' });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>maxDate</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var maxDate = $('.selector').datepicker('option', 'maxDate');
+//设置
+$('.selector').datepicker('option', 'maxDate', '+1m +1w');</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="option" id="option-minDate">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-minDate">minDate</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Date(yyyy, mm - 1, dd), Number, String</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">null</dd>
+      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>使用Date对象设置一个允许选择的最小日期, 或者指定一个相对于今天的数字(例. +7) 或者一个连续的字符串值('y'表示年, 'm'表示月, 'w'表示周, 'd'表示日, 例. '+1m +1w'), 为空时没有最小值.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">
+    
+<dt>
+  使用指定的<code>minDate</code>参数初始化一个datepicker.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({ minDate: new Date(2007, 1 - 1, 1) });</code></pre>
+</dd>
+
+    
+<dt>
+  在初始化后设置或者获取<code>minDate</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var minDate = $('.selector').datepicker('option', 'minDate');
+//设置
+$('.selector').datepicker('option', 'minDate', new Date(2007, 1 - 1, 1));</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="option" id="option-monthNames">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-monthNames">monthNames</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Array</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']</dd>
+      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>月份的完全名称列表, 用在datepicker的月份头部并且按照<i>dateFormat</i>的请求进行设置. 这个属性是一个区域化属性.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>monthNames</code>参数初始化一个datepicker.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({ monthNames: ['Januar','Februar','Marts','April','Maj','Juni','Juli','August','September','Oktober','November','December'] });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>monthNames</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var monthNames = $('.selector').datepicker('option', 'monthNames');
+//设置
+$('.selector').datepicker('option', 'monthNames', ['Januar','Februar','Marts','April','Maj','Juni','Juli','August','September','Oktober','November','December']);</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="option" id="option-monthNamesShort">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-monthNamesShort">monthNamesShort</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Array</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>月份简称的列表, 根据<i>dateFormat</i>的请求来进行设置并使用. 这个属性是一个区域化属性.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>monthNamesShort</code>参数初始化一个datepicker.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({ monthNamesShort: ['Jan','Feb','Mar','Apr','Maj','Jun','Jul','Aug','Sep','Okt','Nov','Dec'] });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>monthNamesShort</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var monthNamesShort = $('.selector').datepicker('option', 'monthNamesShort');
+//设置
+$('.selector').datepicker('option', 'monthNamesShort', ['Jan','Feb','Mar','Apr','Maj','Jun','Jul','Aug','Sep','Okt','Nov','Dec']);</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="option" id="option-navigationAsDateFormat">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-navigationAsDateFormat">navigationAsDateFormat</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Boolean</dd>      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">false</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>为true时在显示之前<i>formatDate</i>函数将应用于<i>prevText</i>, <i>nextText</i>, 和 <i>currentText</i>的值, 让他们能够显示目标的月份名称.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>navigationAsDateFormat</code>参数初始化一个datepicker.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({ navigationAsDateFormat: true });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>navigationAsDateFormat</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var navigationAsDateFormat = $('.selector').datepicker('option', 'navigationAsDateFormat');
+//设置
+$('.selector').datepicker('option', 'navigationAsDateFormat', true);</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="option" id="option-nextText">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-nextText">nextText</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">String</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">'Next&gt;'</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>下个月链接现实的文字. 这个属性是一个区域化属性.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>nextText</code>参数初始化一个datepicker.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({ nextText: 'Later' });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>nextText</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var nextText = $('.selector').datepicker('option', 'nextText');
+//设置
+$('.selector').datepicker('option', 'nextText', 'Later');</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+
+<li class="option" id="option-numberOfMonths">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-numberOfMonths">numberOfMonths</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Number</dd>      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">1</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>设置一次显示几个月. 这个值可以是一个连续的整数, or can be a two-element array to define the number of rows and columns to display.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>numberOfMonths</code>参数初始化一个datepicker.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({ numberOfMonths: 2 });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>numberOfMonths</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var numberOfMonths = $('.selector').datepicker('option', 'numberOfMonths');
+//设置
+$('.selector').datepicker('option', 'numberOfMonths', 2);</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="option" id="option-prevText">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-prevText">prevText</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">String</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">'&lt;Prev'</dd>
+      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>上个月链接显示的文字. 这个属性是一个区域化属性.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>prevText</code>参数初始化一个datepicker.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({ prevText: 'Earlier' });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>prevText</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var prevText = $('.selector').datepicker('option', 'prevText');
+//设置
+$('.selector').datepicker('option', 'prevText', 'Earlier');</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="option" id="option-shortYearCutoff">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-shortYearCutoff">shortYearCutoff</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">String, Number</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">'+10'</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>设置一个定义日期所处实际的截断年份值(与<i>dateFormat</i>中的 'y'共同使用). 如果是一个数值 (0-99)那么将直接使用这些值. 如果提供的是一个字符串值那么它将被转换为数值添加到当前年. 一旦截断年开始计算, 任何输入的日期的年份小于或者等于它的话将被判定为在本世纪,大于他的将被判定为在上个世纪.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>shortYearCutoff</code>参数初始化一个datepicker.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({ shortYearCutoff: 50 });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>shortYearCutoff</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var shortYearCutoff = $('.selector').datepicker('option', 'shortYearCutoff');
+//设置
+$('.selector').datepicker('option', 'shortYearCutoff', 50);</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="option" id="option-showAnim">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-showAnim">showAnim</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">String</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">'show'</dd>
+      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>设置显示/隐藏datepicker的动画名称. 使用 'show' (默认), 'slideDown', 'fadeIn', 或其他任何的显示/隐藏效果 <a href="http://docs.jquery.com/UI/Effects" class="external text" title="http://docs.jquery.com/UI/Effects">jQuery UI effects</a>.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>showAnim</code>参数初始化一个datepicker.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({ showAnim: 'fold' });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>showAnim</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var showAnim = $('.selector').datepicker('option', 'showAnim');
+//设置
+$('.selector').datepicker('option', 'showAnim', 'fold');</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="option" id="option-showButtonPanel">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-showButtonPanel">showButtonPanel</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Boolean</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">false</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>是否显示按钮面板.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>showButtonPanel</code>参数初始化一个datepicker.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({ showButtonPanel: true });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>showButtonPanel</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var showButtonPanel = $('.selector').datepicker('option', 'showButtonPanel');
+//设置
+$('.selector').datepicker('option', 'showButtonPanel', true);</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+
+<li class="option" id="option-showOn">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-showOn">showOn</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">String</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">'focus'</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>设置触发datepicker自动出现的事件名称,是focus ('focus')还是clicked ('button')或者任何事件('both').</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>showOn</code>参数初始化一个datepicker.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({ showOn: 'both' });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>showOn</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var showOn = $('.selector').datepicker('option', 'showOn');
+//设置
+$('.selector').datepicker('option', 'showOn', 'both');</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="option" id="option-showOptions">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-showOptions">showOptions</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Options</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">{}</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>为<i>showAnim</i>使用一个jQuery UI effects动画, 你可以为动画提供一些额外的设置.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>showOptions</code>参数初始化一个datepicker.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({ showOptions: {direction: 'up' });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>showOptions</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var showOptions = $('.selector').datepicker('option', 'showOptions');
+//设置
+$('.selector').datepicker('option', 'showOptions', {direction: 'up');</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>}
+
+<li class="option" id="option-showOtherMonths">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-showOtherMonths">showOtherMonths</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Boolean</dd>      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">false</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>当启动时或者离开本月时日期是否显示在其他月(未选择).</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">
+<dt>
+  使用指定的<code>showOtherMonths</code>参数初始化一个datepicker.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({ showOtherMonths: true });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>showOtherMonths</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var showOtherMonths = $('.selector').datepicker('option', 'showOtherMonths');
+//设置
+$('.selector').datepicker('option', 'showOtherMonths', true);</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="option" id="option-stepMonths">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-stepMonths">stepMonths</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Number</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">1</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>设置当点击上个月/下个月链接时移动多少个月.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>stepMonths</code>参数初始化一个datepicker.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({ stepMonths: 3 });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>stepMonths</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var stepMonths = $('.selector').datepicker('option', 'stepMonths');
+//设置
+$('.selector').datepicker('option', 'stepMonths', 3);</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+
+<li class="option" id="option-yearRange">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-yearRange">yearRange</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">String</dd>      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">'-10:+10'</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>设置下拉列表中显示的年份范围: 全部相对于今年 (-nn:+nn) 或者绝对值 (nnnn:nnnn).</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">
+<dt>
+  使用指定的<code>yearRange</code>参数初始化一个datepicker.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({ yearRange: '2000:2010' });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>yearRange</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var yearRange = $('.selector').datepicker('option', 'yearRange');
+//设置
+$('.selector').datepicker('option', 'yearRange', '2000:2010');</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+    </ul>
+  </div>
+  <div id="events">
+    <h2 class="top-header">事件</h2>
+    <ul class="events-list">
+      
+<li class="event" id="event-beforeShow">
+  <div class="event-header">
+    <h3 class="event-name"><a href="#event-beforeShow">beforeShow</a></h3>
+    <dl>
+      <dt class="event-type-label"></dt>
+        <dd class="event-type">function(input)</dd>
+    </dl>
+  </div>
+  <div class="event-description">
+    <p>可以是一个函数提供一个input field和当前datepicker的实例并且返回一个选项更新当前的datepicker. 这个事件只发生在datepicker显示之前.</p>
+  </div>
+  <div class="event-examples">
+    <h4>代码示例</h4>
+    <dl class="event-examples-list">    
+<dt>
+  提供一个回调函数对<code>beforeShow</code>事件进行操作.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({
+   beforeShow: function(input) { ... }
+});</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+
+<li class="event" id="event-beforeShowDay">
+  <div class="event-header">
+    <h3 class="event-name"><a href="#event-beforeShowDay">beforeShowDay</a></h3>
+    <dl>
+      <dt class="event-type-label"></dt>
+        <dd class="event-type">function(date)</dd>
+    </dl>
+  </div>
+  <div class="event-description">
+    <p>这个函数使用一个日期作为参数并且必须返回一个数组,[0]中的true/false指示这个日期是否被选中,[1]中是默认的CSS样式名称或者''. 这个事件在datepicker中每一天显示之前触发.</p>
+  </div>
+  <div class="event-examples">
+    <h4>代码示例</h4>
+    <dl class="event-examples-list">
+    
+<dt>
+  提供一个回调函数对<code>beforeShowDay</code>事件进行操作.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({
+   beforeShowDay: function(date) { ... }
+});</code></pre>
+</dd>
+
+    </dl>
+  </div>
+</li>
+
+<li class="event" id="event-onChangeMonthYear">
+  <div class="event-header">
+    <h3 class="event-name"><a href="#event-onChangeMonthYear">onChangeMonthYear</a></h3>
+    <dl>
+      <dt class="event-type-label"></dt>
+        <dd class="event-type">function(date)</dd>
+    </dl>
+  </div>
+  <div class="event-description">
+    <p>允许你定义自己的事件在datepicker移动到其他的月份/年份时. 这个函数接受当前显示的第一个月的第一天作为参数. <i>this</i>指的是相关的input field.</p>
+  </div>
+  <div class="event-examples">
+    <h4>代码示例</h4>
+    <dl class="event-examples-list">    
+<dt>
+  提供一个回调函数对<code>onChangeMonthYear</code>事件进行操作.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({
+   onChangeMonthYear: function(date) { ... }
+});</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="event" id="event-onClose">
+  <div class="event-header">
+    <h3 class="event-name"><a href="#event-onClose">onClose</a></h3>
+    <dl>
+      <dt class="event-type-label"></dt>
+        <dd class="event-type">function(date)</dd>
+    </dl>
+  </div>
+  <div class="event-description">
+    <p>允许你在datepicker关闭时定义自己的事件. 是否有日期被选中. 这个函数接受被选中的日期作为参数. <i>this</i>指的是相关的input field.</p>
+  </div>
+  <div class="event-examples">
+    <h4>代码示例</h4>
+    <dl class="event-examples-list">    
+<dt>
+  提供一个回调函数对<code>onClose</code>事件进行操作.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({
+   onClose: function(date) { ... }
+});</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="event" id="event-onSelect">
+  <div class="event-header">
+    <h3 class="event-name"><a href="#event-onSelect">onSelect</a></h3>
+    <dl>
+      <dt class="event-type-label"></dt>
+        <dd class="event-type">function(dateText)</dd>
+    </dl>
+  </div>
+  <div class="event-description">
+    <p>允许你在datepicker选中时定义自己的事件. 这个函数接受被选中的日期作为参数. <i>this</i>指的是相关的input field.</p>
+  </div>
+  <div class="event-examples">
+    <h4>代码示例</h4>
+    <dl class="event-examples-list">    
+<dt>
+  提供一个回调函数对<code>onSelect</code>事件进行操作.
+</dt>
+<dd>
+<pre><code>$('.selector').datepicker({
+   onSelect: function(dateText) { ... }
+});</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+    </ul>
+  </div>
+  <div id="methods">
+    <h2 class="top-header">方法</h2>
+    <ul class="methods-list">
+      
+<li class="method" id="method-destroy">
+  <div class="method-header">
+    <h3 class="method-name"><a href="#method-destroy">destroy</a></h3>
+    <dl>
+      <dt class="method-signature-label">方法签名:</dt>
+        <dd class="method-signature">.datepicker( 'destroy' )</dd>
+    </dl>
+  </div>
+  <div class="method-description">
+    <p>完全移除datepicker功能. 这将使元素返回到之前的初始化状态.</p>
+  </div>
+</li>
+
+
+<li class="method" id="method-disable">
+  <div class="method-header">
+    <h3 class="method-name"><a href="#method-disable">disable</a></h3>
+    <dl>
+      <dt class="method-signature-label">方法签名:</dt>
+        <dd class="method-signature">.datepicker( 'disable' )</dd>
+    </dl>
+  </div>
+  <div class="method-description">
+    <p>关闭datepicker.</p>
+  </div>
+</li>
+
+
+<li class="method" id="method-enable">
+  <div class="method-header">
+    <h3 class="method-name"><a href="#method-enable">enable</a></h3>
+    <dl>
+      <dt class="method-signature-label">方法签名:</dt>
+        <dd class="method-signature">.datepicker( 'enable' )</dd>
+    </dl>
+  </div>
+  <div class="method-description">
+    <p>打开 datepicker.</p>
+  </div>
+</li>
+
+
+<li class="method" id="method-option">
+  <div class="method-header">
+    <h3 class="method-name"><a href="#method-option">option</a></h3>
+    <dl>
+      <dt class="method-signature-label">方法签名:</dt>
+        <dd class="method-signature">.datepicker( 'option'
+
+, optionName
+
+, <span class="optional">[</span>value<span class="optional">] </span>
+
+
+
+)</dd>
+    </dl>
+  </div>
+  <div class="method-description">
+    <p>获取或者设置datepicker参数. 如果没有提供参数值则是获取.</p>
+  </div>
+</li>
+
+
+<li class="method" id="method-dialog">
+  <div class="method-header">
+    <h3 class="method-name"><a href="#method-dialog">dialog</a></h3>
+    <dl>
+      <dt class="method-signature-label">方法签名:</dt>
+        <dd class="method-signature">.datepicker( 'dialog', dateText, <span class="optional">[</span>onSelect<span class="optional">] </span>, <span class="optional">[</span>settings<span class="optional">] </span>, <span class="optional">[</span>pos<span class="optional">] </span>)</dd>
+    </dl>
+  </div>
+  <div class="method-description">
+    <p>在一个"dialog"中打开一个datepicker.
+</p><p>dateText: 初始化的日期.
+</p><p>onSelect: 当一个日期被选中时的回调函数. 这个函数接收datepicker选中的日期作为参数.
+</p><p>settings: datepicker的设定.
+</p><p>pos:dialog的top/left的[x, y]坐标 或者一个鼠标事件(MouseEvent)的坐标. 如果不提供此参数dialog将显示在屏幕正中.</p>
+  </div>
+</li>
+
+<li class="method" id="method-isDisabled">
+  <div class="method-header">
+    <h3 class="method-name"><a href="#method-isDisabled">isDisabled</a></h3>
+    <dl>
+      <dt class="method-signature-label">方法签名:</dt>
+        <dd class="method-signature">.datepicker( 'isDisabled' )</dd>
+    </dl>
+  </div>
+  <div class="method-description">
+    <p>确定一个datepicker是否已关闭.</p>
+  </div>
+</li>
+
+
+<li class="method" id="method-hide">
+  <div class="method-header">
+    <h3 class="method-name"><a href="#method-hide">hide</a></h3>
+    <dl>
+      <dt class="method-signature-label">方法签名:</dt>
+        <dd class="method-signature">.datepicker( 'hide', <span class="optional">[</span>speed<span class="optional">] </span>)</dd>
+    </dl>
+  </div>
+  <div class="method-description">
+    <p>关闭一个先前打开的datepicker.
+</p><p>speed: 关闭的速度.</p>
+  </div>
+</li>
+
+
+<li class="method" id="method-show">
+  <div class="method-header">
+    <h3 class="method-name"><a href="#method-show">show</a></h3>
+    <dl>
+      <dt class="method-signature-label">方法签名:</dt>
+        <dd class="method-signature">.datepicker( 'show' )</dd>
+    </dl>
+  </div>
+  <div class="method-description">
+    <p>呼出一个先前访问的datepicker.</p>
+  </div>
+</li>
+
+<li class="method" id="method-getDate">
+  <div class="method-header">
+    <h3 class="method-name"><a href="#method-getDate">getDate</a></h3>
+    <dl>
+      <dt class="method-signature-label">方法签名:</dt>
+        <dd class="method-signature">.datepicker( 'getDate' )</dd>
+    </dl>
+  </div>
+  <div class="method-description">
+    <p>返回一个datepicker中当前日期, 或者返回两个日期成为一个时间范围.</p>
+  </div>
+</li>
+
+<li class="method" id="method-setDate">
+  <div class="method-header">
+    <h3 class="method-name"><a href="#method-setDate">setDate</a></h3>
+    <dl>
+      <dt class="method-signature-label">方法签名:</dt>
+        <dd class="method-signature">.datepicker( 'setDate', date, <span class="optional">[</span>endDate<span class="optional">] </span>)</dd>
+    </dl>
+  </div>
+  <div class="method-description">
+    <p>设置当前时间给datepicker作为第一次控制,或者两个时间作为时间范围.
+</p><p>endDate: 时间范围中新的结束时间.</p>
+  </div>
+</li>
+
+    </ul>
+  </div>
+  <div id="theming">
+    <h2 class="top-header">主题</h2>
+    <p>jQuery UI Datepicker插件使用jQuery UI CSS 框架的外观和风格，包括颜色和背景纹理.我们建议您使用ThemeRoller工具来创建和下载的自定义主题，很容易建立和维护.
+</p>
+  <p>如果有更深层次的个性化需要，有特定类别的工具ui.datepicker.css样式可供参考，可以修改这些参考。这些课程是下面以高亮和粗体显示的。
+</p>
+    
+  <h3>jQuery UI CSS Framework classes示例</h3>
+  &lt;div id=&quot;ui-datepicker-div&quot; class=&quot;<strong>ui-datepicker</strong> ui-widget ui-widget-content ui-helper-clearfix ui-corner-all ui-helper-hidden-accessible&quot;&gt;<br />
+&nbsp;&nbsp;&nbsp;&lt;div class=&quot;<strong>ui-datepicker-header</strong> ui-widget-header ui-helper-clearfix ui-corner-all&quot;&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a class=&quot;<strong>ui-datepicker-prev</strong> ui-corner-all&quot;&gt;title=&quot;Prev&quot;&gt;&lt;span class=&quot;ui-icon ui-icon-circle-triangle-w&quot;&gt;Prev&lt;/span&gt;&lt;/a&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a class=&quot;<strong>ui-datepicker-next</strong> ui-corner-all&quot; title=&quot;Next&quot;&gt;&lt;span class=&quot;ui-icon ui-icon-circle-triangle-e&quot;&gt;Next&lt;/span&gt;&lt;/a&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=&quot;<strong>ui-datepicker-title</strong>&quot;&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span class=&quot;<strong>ui-datepicker-month</strong>&quot;&gt;January&lt;/span&gt;&lt;span class=&quot;<strong>ui-datepicker-year</strong>&quot;&gt;2009&lt;/span&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />
+&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />
+&nbsp;&nbsp;&nbsp;&lt;table class=&quot;<strong>ui-datepicker-calendar</strong>&quot;&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;thead&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th class=&quot;<strong>ui-datepicker-week-end</strong>&quot;&gt;&lt;span title=&quot;Sunday&quot;&gt;Su&lt;/span&gt;&lt;/th&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/thead&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tbody&gt;&lt;tr&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td class=&quot;<strong>ui-datepicker-week-end ui-datepicker-other-month</strong> &quot;&gt;&nbsp;1&nbsp;&lt;/td&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tbody&gt;<br />
+&nbsp;&nbsp;&nbsp;&lt;/table&gt;<br />
+&nbsp;&nbsp;&nbsp;&lt;div class=&quot;<strong>ui-datepicker-buttonpane</strong> ui-widget-content&quot;&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;button type=&quot;button&quot; class=&quot;<strong>ui-datepicker-current</strong> ui-state-default ui-priority-secondary ui-corner-all&quot;&gt;Today&lt;/button&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;button type=&quot;button&quot; class=&quot;<strong>ui-datepicker-close</strong> ui-state-default ui-priority-primary ui-corner-all&quot;&gt;Done&lt;/button&gt;<br />
+&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />
+&lt;/div&gt;<br />
+  <p class="theme-note">
+    <strong>
+      Note: 注：这是一个示例datepicker插件所产生的标记,而不是你应该使用的标记.创建一个datepicker唯一需要的标记是 &lt;input type="text" /&gt; or &lt;div&gt;&lt;/div&gt;.
+    </strong>
+  </p>
+
+  </div>
+</div>
+
+</p><!-- 
+Pre-expand include size: 82354 bytes
+Post-expand include size: 160978 bytes
+Template argument size: 100370 bytes
+Maximum: 2097152 bytes
+-->
+
+<!-- Saved in parser cache with key jqdocs_docs:pcache:idhash:3071-1!1!0!!en!2 and timestamp 20090303120111 -->
+
+
+						<!-- end content -->
+		</div>
+	</div>
+		</div>
+				</div><!-- /#primaryContent -->				
+			</div><!-- /#content -->
+	</div><!-- /#siteContain -->	
+	</body>
+<!-- Cached 20090303115837 -->
+</html>

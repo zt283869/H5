@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+	<head>
+		<title></title>
+		<meta charset = "utf-8"/>
+	</head>
+	<style type="text/css">
+		*{
+			margin:0px;
+			padding:0px;
+		}
+		
+		#divId{
+			position:absolute;
+			padding:5px;
+			width:100%;
+			height:800px;
+		}
+		
+		#tt{
+			border:5px solid black;
+			background-color:red;
+			display:none;
+		}
+	</style>
+<body>	
+	
+	<div id="tt" style="width:400px;height:300px">
+		
+	</div>
+	
+	<input id="btn01" type="button" value="显示" />
+	
+	<br/><br/><br/><br/>
+</body>
+</html>
+
+<script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+<script type="text/javascript">
+
+$(function(){
+	$("#btn01")[0].onclick = function(){	
+		//$("#tt").slideDown(3000).delay(1000).slideUp(3000);
+		autoShow();
+	}
+	
+	function autoShow(){
+		$("#tt").slideDown(3000).delay(1000).slideUp(3000,function(){autoShow();});
+	}
+	
+});
+
+
+
+</script>

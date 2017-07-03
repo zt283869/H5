@@ -1,0 +1,1457 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="keywords" content="UI/API/1.7/Draggable" />
+		<title>UI/API/1.7/Draggable - jQuery JavaScript Library</title>
+		<link rel="stylesheet" href="style/reset.css" type="text/css" />
+		<link rel="stylesheet" href="style/screen.css" type="text/css" />
+		<style type="text/css" media="screen,projection">/*<![CDATA[*/ @import "http://www.winswd.com/aboutme/jquery/ui/style/main.css?9"; /*]]>*/</style>
+
+		<link rel="stylesheet" type="text/css" href="style/jquery.tabs.css" />
+		<!--[if lte IE 7]>
+		<link rel="stylesheet" href="style/jquery.tabs-ie.css" type="text/css" media="projection, screen"/>
+		<![endif]-->
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script src="js/jquery.tabs.js"></script>
+
+		<script>$(function(){
+			$("div[id=examples]").each(function(){
+				$(this).siblings("div:first").find("div.desc").after(
+					$(this).find("div.example:has(#demo):first").remove().clone());
+
+				if ( !$("div.example", this).length )
+					$(this).remove();
+			});
+
+			$("div.entry")
+				.children("p").remove().end()
+				.find("ul:first li").each(function(){
+					if ( !$(this).parent().siblings( $("a",this).attr("href") ).length )
+						$(this).remove();
+				}).end()
+				.not(".ui")
+				.tabs();
+
+			$("div.args > br").remove();
+
+			$("div.example")
+				.children("p").remove().end()
+				.tabs();
+
+			var keywords = "String,Number,Object,Options,Array,Function,Callback,Selector,Event,Element,Integer,Float,Boolean".split(",");
+
+			$("td.default span, td.type").each(function(){
+				var html = this.innerHTML;
+				jQuery.each(keywords, function(i,key){
+					html = html.replace(new RegExp(key, "ig"), "<a href='/Types#" + key + "'>" + key + "</a>");
+				});
+				this.innerHTML = html;
+			});
+
+			$("div[id=source]").each(function(){
+				var source = $("pre", this).html()
+					.replace(/<\/?a.*?>/ig, "")
+					.replace(/<\/?strong.*?>/ig, "")
+					.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&");
+
+				//var items = [];
+				//source = source.replace(/\s*<(link|script).*?>\s\*/g, function(m){
+					//items.push(m);
+					//return "";
+				//}).replace("</head>", items.join("") + "</head>")
+				//*/
+
+				var iframe = document.createElement("iframe");
+				iframe.src = "http://www.winswd.com/index-blank.html";
+				iframe.width = "100%";
+				iframe.height = $(this).prev().attr("rel") || "125";
+				iframe.style.border = "none";
+				$(this).prev().append(iframe);
+
+
+				$(window).load(function(){
+					var doc = iframe.contentDocument || iframe.contentWindow.document;
+					source = source
+						// IE needs to wait for the script to load (?)
+						.replace("$(document).ready(function(){", "window.onload = (function(){try{")
+						.replace(/}\);\s*<\/sc/, "}catch(e){}});</sc")
+						//.replace("http://code.jquery.com/jquery-latest.js", "http://code.jquery.com/jquery-1.3rc2.js")
+						.replace("</head>", "<style>html,body{border:0; margin:0; padding:0;}</style></head>");
+					doc.open();
+					doc.write( source );
+					doc.close();
+				});
+
+			});
+		});</script>
+		<script type="text/javascript" src="js/custom.js"></script>
+		<!--[if lt IE 5.5000]><style type="text/css">@import "http://www.winswd.com/aboutme/jquery/ui/style/IE50Fixes.css";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "http://www.winswd.com/aboutme/jquery/ui/style/IE55Fixes.css";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "http://www.winswd.com/aboutme/jquery/ui/style/IE60Fixes.css";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "http://www.winswd.com/aboutme/jquery/ui/style/IE70Fixes.css?1";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="http://www.winswd.com/aboutme/jquery/ui/style/IEFixes.js"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<!-- Head Scripts -->
+			</head>
+	<body id="jq-interior"  class="mediawiki ns-0 ltr">
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  08/18/09 18:19:48.<br>
+<b>Address:</b> <a class="info" href="http://www.winswd.com/aboutme/jquery/ui/Dialog.html">http://www.winswd.com/aboutme/jquery/ui/Dialog.html</a><br>
+<b>Title:</b> UI/API/1.7/Draggable - jQuery JavaScript Library &nbsp;&bull;&nbsp; <b>Size:</b> 45831 &nbsp;&bull;&nbsp; <b>Last Modified:</b> 03/14/09 23:14:18<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+
+	<div id="jq-siteContain">
+			<div id="jq-content" class="jq-clearfix">
+
+				<div id="jq-interiorNavigation">
+					<div class='jq-portlet' id='jq-p-Getting-Started'>
+						<h5></h5>
+						<div class='jq-pBody'>
+							<ul>
+								<li id="jq-ui-doc-n-Draggable"><a href="Draggable.html">Draggable</a></li>
+								<li id="jq-ui-doc-n-Droppable"><a href="Droppable.html">Droppable</a></li>				
+								<li id="jq-ui-doc-n-Resizable"><a href="Resizable.html">Resizable</a></li>
+								<li id="jq-ui-doc-n-Selectable"><a href="Selectable.html">Selectable</a></li>
+								<li id="jq-ui-doc-n-Sortable"><a href="Sortable.html">Sortable</a></li>
+							</ul>				
+						</div>
+					</div>
+						<div class='jq-portlet' id='jq-p-API-Reference'>
+						<h5>部件</h5>
+						<div class='jq-pBody'>
+							<ul>
+								<li id="jq-ui-doc-n-Accordion"><a href="Accordion.html">Accordion</a></li>
+								<li id="jq-ui-doc-n-Datepicker"><a href="Datepicker.html">Datepicker</a></li>				
+								<li id="jq-ui-doc-n-Dialog"><a href="Dialog.html">Dialog</a></li>
+								<li id="jq-ui-doc-n-Progressbar"><a href="Progressbar.html">Progressbar</a></li>
+								<li id="jq-ui-doc-n-Slider"><a href="Slider.html">Slider</a></li>
+								<li id="jq-ui-doc-n-Tabs"><a href="Tabs.html">Tabs</a></li>
+							</ul>
+						</div>
+					</div>
+						<div class='jq-portlet' id='jq-p-Plugins'>
+				
+						<h5>动画</h5>
+						<div class='jq-pBody'>
+							<ul>
+								<li id="jq-ui-doc-n-AddClass"><a href="AddClass.html">AddClass</a></li>
+								<li id="jq-ui-doc-n-RemoveClass"><a href="RemoveClass.html">RemoveClass</a></li>
+                                <li id="jq-ui-doc-n-Animate"><a href="Animate.html">Animate</a></li>
+                                <li id="jq-ui-doc-n-Effect"><a href="Effect.html">Effect</a></li>
+                                <li id="jq-ui-doc-n-Hide"><a href="Hide.html">Hide</a></li>
+                                <li id="jq-ui-doc-n-Show"><a href="Show.html">Show</a></li>
+                                <li id="jq-ui-doc-n-SwitchClass"><a href="SwitchClass.html">SwitchClass</a></li>
+                                <li id="jq-ui-doc-n-Toggle"><a href="Toggle.html">Toggle</a></li>
+                                <li id="jq-ui-doc-n-ToggleClass"><a href="ToggleClass.html">ToggleClass</a></li>
+							</ul>
+						</div>				
+					</div>					
+				</div><!-- /#interiorNavigation -->
+
+				<div id="jq-primaryContent">
+		<div id="column-content">
+	<div id="docs-content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">UI/API/1.7/Dialog</h1>
+		<div id="bodyContent">
+<!-- start content -->
+
+<p>
+<ul class="UIAPIPlugin-toc">
+<li><a href="#overview">概述</a></li>
+<li><a href="#options">参数</a></li>
+<li><a href="#events">事件</a></li>
+<li><a href="#methods">方法</a></li>
+<li><a href="#theming">主题</a></li>
+</ul>
+<div class="UIAPIPlugin">
+  <h1>jQuery UI Dialog</h1>
+  <div id="overview">
+    <h2 class="top-header">概述</h2>
+    <div id="overview-main">
+        一个dialog是一个浮动的包含标题栏和内容区域的窗口. 默认的dialog窗口可以被拖动, 改变大小和使用'x'图标关闭.
+</p><p>加入内容的长度超出了最大的高度, 将会自动添加一个滚动条.
+</p>
+一个底部的按钮栏和一个半透明的覆盖层是最常用的添加方式.
+    </div>
+    <div id="overview-dependencies">
+        <h3>其他附加文件</h3>
+        <ul>
+<li>UI Core</li>
+<li>UI Draggable (Optional)</li>
+<li>UI Resizable (Optional)</li>
+</ul>
+    </div>
+    <div id="overview-example">
+        <h3>示例</h3>
+        <div id="overview-example" class="example">
+<ul><li><a href="#demo"><span>代码示范</span></a></li><li><a href="#source"><span>查看源文件</span></a></li></ul>
+<p><div id="demo" class="tabs-container" rel="300">
+一个简单的 jQuery UI Dialog.<br />
+</p>
+<pre>$(&quot;#dialog&quot;).dialog();
+</pre>
+<p></div><div id="source" class="tabs-container">
+</p>
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;link type=&quot;text/css&quot; href=&quot;themes/base/ui.all.css&quot; rel=&quot;stylesheet&quot; /&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;js/jquery.min.js&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;ui/ui.core.js&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;ui/ui.draggable.js&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;ui/ui.resizable.js&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;ui/ui.dialog.js&quot;&gt;&lt;/script&gt;
+  &lt;script type="text/javascript"&gt;
+  $(document).ready(function(){
+    $(&quot;#dialog&quot;).dialog();
+  });
+  &lt;/script&gt;
+&lt;/head&gt;
+&lt;body style="font-size:62.5%;"&gt;
+  
+&lt;div id=&quot;dialog&quot; title=&quot;Dialog Title&quot;&gt;I'm in a dialog&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p></div>
+</p><p></div>
+    </div>
+  </div>
+  <div id="options">
+    <h2 class="top-header">参数</h2>
+    <ul class="options-list">      
+<li class="option" id="option-autoOpen">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-autoOpen">autoOpen</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Boolean</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">true</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>当 <i>autoOpen</i> 设置为 <i>true</i>时 dialog 会在呼叫时自动打开. 如果为 <i>false</i> 它将会继续隐藏直到显示的调用 <i>.dialog("open")</i> .</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>autoOpen</code>参数初始化一个dialog.
+</dt>
+<dd>
+<pre><code>$('.selector').dialog({ autoOpen: false });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>autoOpen</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var autoOpen = $('.selector').dialog('option', 'autoOpen');
+//设置
+$('.selector').dialog('option', 'autoOpen', false);</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+
+<li class="option" id="option-bgiframe">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-bgiframe">bgiframe</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Boolean</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">false</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>设置为true时, 将会使用 bgiframe 插件, 去修正在IE6中select元素始终位于其他元素之上的问题. 需要加载 bgiframe 插件. 将来的版本可能会依赖于其他的插件.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">
+    
+<dt>
+  使用指定的<code>bgiframe</code>参数初始化一个dialog.
+</dt>
+<dd>
+<pre><code>$('.selector').dialog({ bgiframe: true });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>bgiframe</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var bgiframe = $('.selector').dialog('option', 'bgiframe');
+//设置
+$('.selector').dialog('option', 'bgiframe', true);</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+
+<li class="option" id="option-buttons">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-buttons">buttons</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Object</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">{ }</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>指定哪个按钮显示在dialog上. 这个属性是按钮的文本标识. 值是点击按钮后执行的回调函数.  回调的环境是dialog元素; 如果你需要访问该按钮, 它可以作为目标的事件对象.
+</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>buttons</code>参数初始化一个dialog.
+</dt>
+<dd>
+<pre><code>$('.selector').dialog({ buttons: { &quot;Ok&quot;: function() { $(this).dialog(&quot;close&quot;); } } });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>buttons</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var buttons = $('.selector').dialog('option', 'buttons');
+//设置
+$('.selector').dialog('option', 'buttons', { &quot;Ok&quot;: function() { $(this).dialog(&quot;close&quot;); } });</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+
+<li class="option" id="option-closeOnEscape">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-closeOnEscape">closeOnEscape</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Boolean</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">true</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>指定dialog是否在其获得焦点并且当用户按下esacpe (ESC)键时关闭.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>closeOnEscape</code>参数初始化一个dialog.
+</dt>
+<dd>
+<pre><code>$('.selector').dialog({ closeOnEscape: false });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>closeOnEscape</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var closeOnEscape = $('.selector').dialog('option', 'closeOnEscape');
+//设置
+$('.selector').dialog('option', 'closeOnEscape', false);</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="option" id="option-dialogClass">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-dialogClass">dialogClass</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">String</dd>      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">''</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>将指定的样式添加到dialog中以提供更多的主题.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>dialogClass</code>参数初始化一个dialog.
+</dt>
+<dd>
+<pre><code>$('.selector').dialog({ dialogClass: 'alert' });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>dialogClass</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var dialogClass = $('.selector').dialog('option', 'dialogClass');
+//设置
+$('.selector').dialog('option', 'dialogClass', 'alert');</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="option" id="option-draggable">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-draggable">draggable</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Boolean</dd>      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">true</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>如果设置为true,dialog将可以使用标题栏实现拖动.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>draggable</code>参数初始化一个dialog.
+</dt>
+<dd>
+<pre><code>$('.selector').dialog({ draggable: false });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>draggable</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var draggable = $('.selector').dialog('option', 'draggable');
+//设置
+$('.selector').dialog('option', 'draggable', false);</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="option" id="option-height">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-height">height</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Number</dd>      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">'auto'</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>指定dialog的高度,单位像素.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>height</code>参数初始化一个dialog.
+</dt>
+<dd>
+<pre><code>$('.selector').dialog({ height: 530 });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>height</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var height = $('.selector').dialog('option', 'height');
+//设置
+$('.selector').dialog('option', 'height', 530);</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+
+<li class="option" id="option-hide">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-hide">hide</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">String</dd>      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">null</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>为dialog关闭时指定一个动画效果.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>hide</code>参数初始化一个dialog.
+</dt>
+<dd>
+<pre><code>$('.selector').dialog({ hide: 'slide' });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>hide</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var hide = $('.selector').dialog('option', 'hide');
+//设置
+$('.selector').dialog('option', 'hide', 'slide');</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="option" id="option-maxHeight">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-maxHeight">maxHeight</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Number</dd>      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">false</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>设定一个dialog可以被调整的最大高度,单位像素.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>maxHeight</code>参数初始化一个dialog.
+</dt>
+<dd>
+<pre><code>$('.selector').dialog({ maxHeight: 400 });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>maxHeight</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var maxHeight = $('.selector').dialog('option', 'maxHeight');
+//设置
+$('.selector').dialog('option', 'maxHeight', 400);</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="option" id="option-maxWidth">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-maxWidth">maxWidth</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Number</dd>      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">false</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>为dialog设置一个可以被调整的最大宽度,单位像素.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>maxWidth</code>参数初始化一个dialog.
+</dt>
+<dd>
+<pre><code>$('.selector').dialog({ maxWidth: 600 });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>maxWidth</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var maxWidth = $('.selector').dialog('option', 'maxWidth');
+//设置
+$('.selector').dialog('option', 'maxWidth', 600);</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="option" id="option-minHeight">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-minHeight">minHeight</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Number</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">150</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>为dialog指定一个可以被调整的最小高度,单位像素.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>minHeight</code>参数初始化一个dialog.
+</dt>
+<dd>
+<pre><code>$('.selector').dialog({ minHeight: 300 });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>minHeight</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var minHeight = $('.selector').dialog('option', 'minHeight');
+//设置
+$('.selector').dialog('option', 'minHeight', 300);</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="option" id="option-minWidth">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-minWidth">minWidth</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Number</dd>      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">150</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>为dialog指定一个可以被调整的最小宽度,单位像素.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>minWidth</code>参数初始化一个dialog.
+</dt>
+<dd>
+<pre><code>$('.selector').dialog({ minWidth: 400 });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>minWidth</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var minWidth = $('.selector').dialog('option', 'minWidth');
+//设置
+$('.selector').dialog('option', 'minWidth', 400);</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="option" id="option-modal">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-modal">modal</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Boolean</dd>      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">false</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>如果设置为true,dialog将会有一个模块行为; 页面中的其他元素将被禁用 (i.e.不能互动). Modal dialogs 将创建一个覆盖页面上其他元素的对象.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>modal</code>参数初始化一个dialog.
+</dt>
+<dd>
+<pre><code>$('.selector').dialog({ modal: true });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>modal</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var modal = $('.selector').dialog('option', 'modal');
+//设置
+$('.selector').dialog('option', 'modal', true);</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="option" id="option-position">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-position">position</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">String, Array</dd>      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">'center'</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>指定dialog将会显示在何处. 允许使用的值: 'center', 'left', 'right', 'top', 'bottom', 或者一个包含成对坐标的数组(相对于视窗top和left的像素值) 或者允许的字符串值(例. ['right','top'] 设置到右上角).</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>position</code>参数初始化一个dialog.
+</dt>
+<dd>
+<pre><code>$('.selector').dialog({ position: 'top' });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>position</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var position = $('.selector').dialog('option', 'position');
+//设置
+$('.selector').dialog('option', 'position', 'top');</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="option" id="option-resizable">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-resizable">resizable</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Boolean</dd>      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">true</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>设置dialog是否允许调整大小.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>resizable</code>参数初始化一个dialog.
+</dt>
+<dd>
+<pre><code>$('.selector').dialog({ resizable: false });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>resizable</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var resizable = $('.selector').dialog('option', 'resizable');
+//设置
+$('.selector').dialog('option', 'resizable', false);</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="option" id="option-show">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-show">show</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">String</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">null</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>dialog打开时的动画效果.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>show</code>参数初始化一个dialog.
+</dt>
+<dd>
+<pre><code>$('.selector').dialog({ show: 'slide' });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>show</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var show = $('.selector').dialog('option', 'show');
+//设置
+$('.selector').dialog('option', 'show', 'slide');</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="option" id="option-stack">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-stack">stack</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Boolean</dd>      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">true</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>指定此dialog是否堆叠在其他dialog之上. 这将会使该dialog在获得焦点时位于其他dialog的前方.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>stack</code>参数初始化一个dialog.
+</dt>
+<dd>
+<pre><code>$('.selector').dialog({ stack: false });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>stack</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var stack = $('.selector').dialog('option', 'stack');
+//设置
+$('.selector').dialog('option', 'stack', false);</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="option" id="option-title">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-title">title</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">String</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">''</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>指定dialog的标题文字. 这个标题也可以使用dialog的元素源的title属性指定.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>title</code>参数初始化一个dialog.
+</dt>
+<dd>
+<pre><code>$('.selector').dialog({ title: 'Dialog Title' });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>title</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var title = $('.selector').dialog('option', 'title');
+//设置
+$('.selector').dialog('option', 'title', 'Dialog Title');</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="option" id="option-width">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-width">width</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Number</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">300</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>dialog的宽度, 单位像素.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>width</code>参数初始化一个dialog.
+</dt>
+<dd>
+<pre><code>$('.selector').dialog({ width: 460 });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>width</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var width = $('.selector').dialog('option', 'width');
+//设置
+$('.selector').dialog('option', 'width', 460);</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="option" id="option-zIndex">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-zIndex">zIndex</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Integer</dd>      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">1000</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>dialog的初始z-index.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>zIndex</code>参数初始化一个dialog.
+</dt>
+<dd>
+<pre><code>$('.selector').dialog({ zIndex: 3999 });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>zIndex</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var zIndex = $('.selector').dialog('option', 'zIndex');
+//设置
+$('.selector').dialog('option', 'zIndex', 3999);</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+    </ul>
+  </div>
+  <div id="events">
+    <h2 class="top-header">事件</h2>
+    <ul class="events-list">      
+<li class="event" id="event-beforeclose">
+  <div class="event-header">
+    <h3 class="event-name"><a href="#event-beforeclose">beforeclose</a></h3>
+    <dl>
+      <dt class="event-type-label">类型:</dt>
+        <dd class="event-type">dialogbeforeclose</dd>
+    </dl>
+  </div>
+  <div class="event-description">
+    <p>这个事件在dialog试图关闭时触发. 如果之前的事件句柄(回调函数)返回false,关闭将停止.</p>
+  </div>
+  <div class="event-examples">
+    <h4>代码示例</h4>
+    <dl class="event-examples-list">    
+<dt>
+  提供一个回调函数对<code>beforeclose</code>事件进行操作.
+</dt>
+<dd>
+<pre><code>$('.selector').dialog({
+   beforeclose: function(event, ui) { ... }
+});</code></pre>
+</dd>    
+<dt>
+  使用<code>dialogbeforeclose</code>类型来绑定<code>beforeclose</code>事件.
+</dt>
+<dd>
+<pre><code>$('.selector').bind('dialogbeforeclose', function(event, ui) {
+  ...
+});</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="event" id="event-open">
+  <div class="event-header">
+    <h3 class="event-name"><a href="#event-open">open</a></h3>
+    <dl>
+      <dt class="event-type-label">类型:</dt>
+        <dd class="event-type">dialogopen</dd>
+    </dl>
+  </div>
+  <div class="event-description">
+    <p>此事件在dialog打开时触发.</p>
+  </div>
+  <div class="event-examples">
+    <h4>代码示例</h4>
+    <dl class="event-examples-list">    
+<dt>
+  提供一个回调函数对<code>open</code>事件进行操作.
+</dt>
+<dd>
+<pre><code>$('.selector').dialog({
+   open: function(event, ui) { ... }
+});</code></pre>
+</dd>    
+<dt>
+  使用<code>dialogopen</code>类型来绑定<code>open</code>事件.
+</dt>
+<dd>
+<pre><code>$('.selector').bind('dialogopen', function(event, ui) {
+  ...
+});</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="event" id="event-focus">
+  <div class="event-header">
+    <h3 class="event-name"><a href="#event-focus">focus</a></h3>
+    <dl>
+      <dt class="event-type-label">类型:</dt>
+        <dd class="event-type">dialogfocus</dd>
+    </dl>
+  </div>
+  <div class="event-description">
+    <p>此事件在dialog获得焦点时触发.</p>
+  </div>
+  <div class="event-examples">
+    <h4>代码示例</h4>
+    <dl class="event-examples-list">    
+<dt>
+  提供一个回调函数对<code>focus</code>事件进行操作.
+</dt>
+<dd>
+<pre><code>$('.selector').dialog({
+   focus: function(event, ui) { ... }
+});</code></pre>
+</dd>    
+<dt>
+  使用<code>dialogfocus</code>类型来绑定<code>focus</code>事件.
+</dt>
+<dd>
+<pre><code>$('.selector').bind('dialogfocus', function(event, ui) {
+  ...
+});</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="event" id="event-dragStart">
+  <div class="event-header">
+    <h3 class="event-name"><a href="#event-dragStart">dragStart</a></h3>
+    <dl>
+      <dt class="event-type-label">类型:</dt>
+        <dd class="event-type">dragStart</dd>
+    </dl>
+  </div>
+  <div class="event-description">
+    <p>这个事件在dialog拖动开始之前触发.</p>
+  </div>
+  <div class="event-examples">
+    <h4>代码示例</h4>
+    <dl class="event-examples-list">    
+<dt>
+  提供一个回调函数对<code>dragStart</code>事件进行操作.
+</dt>
+<dd>
+<pre><code>$('.selector').dialog({
+   dragStart: function(event, ui) { ... }
+});</code></pre>
+</dd>    
+<dt>
+  使用<code>dragStart</code>类型来绑定<code>dragStart</code>事件.
+</dt>
+<dd>
+<pre><code>$('.selector').bind('dragStart', function(event, ui) {
+  ...
+});</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="event" id="event-drag">
+  <div class="event-header">
+    <h3 class="event-name"><a href="#event-drag">drag</a></h3>
+    <dl>
+      <dt class="event-type-label">类型:</dt>
+        <dd class="event-type">drag</dd>
+    </dl>
+  </div>
+  <div class="event-description">
+    <p>这个事件在dialog被拖动时触发.</p>
+  </div>
+  <div class="event-examples">
+    <h4>代码示例</h4>
+    <dl class="event-examples-list">    
+<dt>
+  提供一个回调函数对<code>drag</code>事件进行操作.
+</dt>
+<dd>
+<pre><code>$('.selector').dialog({
+   drag: function(event, ui) { ... }
+});</code></pre>
+</dd>    
+<dt>
+  使用<code>drag</code>类型来绑定<code>drag</code>事件.
+</dt>
+<dd>
+<pre><code>$('.selector').bind('drag', function(event, ui) {
+  ...
+});</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="event" id="event-dragStop">
+  <div class="event-header">
+    <h3 class="event-name"><a href="#event-dragStop">dragStop</a></h3>
+    <dl>
+      <dt class="event-type-label">类型:</dt>
+        <dd class="event-type">dragStop</dd>
+    </dl>
+  </div>
+  <div class="event-description">
+    <p>这个事件在dialog拖动结束时触发.</p>
+  </div>
+  <div class="event-examples">
+    <h4>代码示例</h4>
+    <dl class="event-examples-list">    
+<dt>
+  提供一个回调函数对<code>dragStop</code>事件进行操作.
+</dt>
+<dd>
+<pre><code>$('.selector').dialog({
+   dragStop: function(event, ui) { ... }
+});</code></pre>
+</dd>    
+<dt>
+  使用<code>dragStop</code>类型来绑定<code>dragStop</code>事件.
+</dt>
+<dd>
+<pre><code>$('.selector').bind('dragStop', function(event, ui) {
+  ...
+});</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="event" id="event-resizeStart">
+  <div class="event-header">
+    <h3 class="event-name"><a href="#event-resizeStart">resizeStart</a></h3>
+    <dl>
+      <dt class="event-type-label">类型:</dt>
+        <dd class="event-type">resizeStart</dd>
+    </dl>
+  </div>
+  <div class="event-description">
+    <p>这个事件在dialog开始调整大小时触发.</p>
+  </div>
+  <div class="event-examples">
+    <h4>代码示例</h4>
+    <dl class="event-examples-list">    
+<dt>
+  提供一个回调函数对<code>resizeStart</code>事件进行操作.
+</dt>
+<dd>
+<pre><code>$('.selector').dialog({
+   resizeStart: function(event, ui) { ... }
+});</code></pre>
+</dd>    
+<dt>
+  使用<code>resizeStart</code>类型来绑定<code>resizeStart</code>事件.
+</dt>
+<dd>
+<pre><code>$('.selector').bind('resizeStart', function(event, ui) {
+  ...
+});</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="event" id="event-resize">
+  <div class="event-header">
+    <h3 class="event-name"><a href="#event-resize">resize</a></h3>
+    <dl>
+      <dt class="event-type-label">类型:</dt>
+        <dd class="event-type">resize</dd>
+    </dl>
+  </div>
+  <div class="event-description">
+    <p>这个事件在dialog调整大小时触发.</p>
+  </div>
+  <div class="event-examples">
+    <h4>代码示例</h4>
+    <dl class="event-examples-list">    
+<dt>
+  提供一个回调函数对<code>resize</code>事件进行操作.
+</dt>
+<dd>
+<pre><code>$('.selector').dialog({
+   resize: function(event, ui) { ... }
+});</code></pre>
+</dd>    
+<dt>
+  使用<code>resize</code>类型来绑定<code>resize</code>事件.
+</dt>
+<dd>
+<pre><code>$('.selector').bind('resize', function(event, ui) {
+  ...
+});</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="event" id="event-resizeStop">
+  <div class="event-header">
+    <h3 class="event-name"><a href="#event-resizeStop">resizeStop</a></h3>
+    <dl>
+      <dt class="event-type-label">类型:</dt>
+        <dd class="event-type">resizeStop</dd>
+    </dl>
+  </div>
+  <div class="event-description">
+    <p>这个事件在dialog调整大小结束时触发.</p>
+  </div>
+  <div class="event-examples">
+    <h4>代码示例</h4>
+    <dl class="event-examples-list">    
+<dt>
+  提供一个回调函数对<code>resizeStop</code>事件进行操作.
+</dt>
+<dd>
+<pre><code>$('.selector').dialog({
+   resizeStop: function(event, ui) { ... }
+});</code></pre>
+</dd>    
+<dt>
+  使用<code>resizeStop</code>类型来绑定<code>resizeStop</code>事件.
+</dt>
+<dd>
+<pre><code>$('.selector').bind('resizeStop', function(event, ui) {
+  ...
+});</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="event" id="event-close">
+  <div class="event-header">
+    <h3 class="event-name"><a href="#event-close">close</a></h3>
+    <dl>
+      <dt class="event-type-label">类型:</dt>
+        <dd class="event-type">dialogclose</dd>
+    </dl>
+  </div>
+  <div class="event-description">
+    <p>这个事件在dialog关闭时触发.</p>
+  </div>
+  <div class="event-examples">
+    <h4>代码示例</h4>
+    <dl class="event-examples-list">    
+<dt>
+  提供一个回调函数对<code>close</code>事件进行操作.
+</dt>
+<dd>
+<pre><code>$('.selector').dialog({
+   close: function(event, ui) { ... }
+});</code></pre>
+</dd>    
+<dt>
+  使用<code>dialogclose</code>类型来绑定<code>close</code>事件.
+</dt>
+<dd>
+<pre><code>$('.selector').bind('dialogclose', function(event, ui) {
+  ...
+});</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+    </ul>
+  </div>
+  <div id="methods">
+    <h2 class="top-header">方法</h2>
+    <ul class="methods-list">
+      
+<li class="method" id="method-destroy">
+  <div class="method-header">
+    <h3 class="method-name"><a href="#method-destroy">destroy</a></h3>
+    <dl>
+      <dt class="method-signature-label">方法签名:</dt>
+        <dd class="method-signature">.dialog( 'destroy' )</dd>
+    </dl>
+  </div>
+  <div class="method-description">
+    <p>完全移除dialog功能. 这将使元素返回到之前的初始化状态.</p>
+  </div>
+</li>
+
+<li class="method" id="method-disable">
+  <div class="method-header">
+    <h3 class="method-name"><a href="#method-disable">disable</a></h3>
+    <dl>
+      <dt class="method-signature-label">方法签名:</dt>
+        <dd class="method-signature">.dialog( 'disable' )</dd>
+    </dl>
+  </div>
+  <div class="method-description">
+    <p>禁用dialog.</p>
+  </div>
+</li>
+
+<li class="method" id="method-enable">
+  <div class="method-header">
+    <h3 class="method-name"><a href="#method-enable">enable</a></h3>
+    <dl>
+      <dt class="method-signature-label">方法签名:</dt>
+        <dd class="method-signature">.dialog( 'enable' )</dd>
+    </dl>
+  </div>
+  <div class="method-description">
+    <p>启用dialog.</p>
+  </div>
+</li>
+
+<li class="method" id="method-option">
+  <div class="method-header">
+    <h3 class="method-name"><a href="#method-option">option</a></h3>
+    <dl>
+      <dt class="method-signature-label">方法签名:</dt>
+        <dd class="method-signature">.dialog( 'option', optionName, <span class="optional">[</span>value<span class="optional">] </span>)</dd>
+    </dl>
+  </div>
+  <div class="method-description">
+    <p>获取或者设置dialog参数. 如果没有提供参数值则是获取.</p>
+  </div>
+</li>
+
+<li class="method" id="method-close">
+  <div class="method-header">
+    <h3 class="method-name"><a href="#method-close">close</a></h3>
+    <dl>
+      <dt class="method-signature-label">方法签名:</dt>
+        <dd class="method-signature">.dialog( 'close' )</dd>
+    </dl>
+  </div>
+  <div class="method-description">
+    <p>关闭 dialog.</p>
+  </div>
+</li>
+
+
+<li class="method" id="method-isOpen">
+  <div class="method-header">
+    <h3 class="method-name"><a href="#method-isOpen">isOpen</a></h3>
+    <dl>
+      <dt class="method-signature-label">方法签名:</dt>
+        <dd class="method-signature">.dialog( 'isOpen' )</dd>
+    </dl>
+  </div>
+  <div class="method-description">
+    <p>测试dialog是否已被打开.</p>
+  </div>
+</li>
+
+
+<li class="method" id="method-moveToTop">
+  <div class="method-header">
+    <h3 class="method-name"><a href="#method-moveToTop">moveToTop</a></h3>
+    <dl>
+      <dt class="method-signature-label">方法签名:</dt>
+        <dd class="method-signature">.dialog( 'moveToTop' )</dd>
+    </dl>
+  </div>
+  <div class="method-description">
+    <p>将dialog移动到dialog堆的最上方.</p>
+  </div>
+</li>
+
+<li class="method" id="method-open">
+  <div class="method-header">
+    <h3 class="method-name"><a href="#method-open">open</a></h3>
+    <dl>
+      <dt class="method-signature-label">方法签名:</dt>
+        <dd class="method-signature">.dialog( 'open' )</dd>
+    </dl>
+  </div>
+  <div class="method-description">
+    <p>打开 dialog.</p>
+  </div>
+</li>
+
+    </ul>
+  </div>
+  <div id="theming">
+    <h2 class="top-header">主题</h2>
+    <p>jQuery UI Dialog插件使用jQuery UI CSS 框架的外观和风格，包括颜色和背景纹理.我们建议您使用ThemeRoller工具来创建和下载的自定义主题，很容易建立和维护.
+</p>
+  <p>如果有更深层次的个性化需要，有特定类别的工具ui.dialog.css样式可供参考，可以修改这些参考。这些课程是下面以高亮和粗体显示的。
+</p>
+    
+  <h3>jQuery UI CSS Framework classes示例</h3>
+  &lt;div class=&quot;<strong>ui-dialog</strong> ui-widget ui-widget-content ui-corner-all undefined ui-draggable ui-resizable&quot;&gt;<br />
+&nbsp;&nbsp;&nbsp;&lt;div class=&quot;<strong>ui-dialog-titlebar</strong> ui-widget-header ui-corner-all ui-helper-clearfix&quot;&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span id=&quot;<strong>ui-dialog-title-dialog</strong>&quot; class=&quot;ui-dialog-title&quot;&gt;Dialog title&lt;/span&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a class=&quot;<strong>ui-dialog-titlebar-close</strong> ui-corner-all&quot; href=&quot;#&quot;&gt;&lt;span class=&quot;ui-icon ui-icon-closethick&quot;&gt;close&lt;/span&gt;&lt;/a&gt;<br />
+&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />
+&nbsp;&nbsp;&nbsp;&lt;div style=&quot;height: 200px; min-height: 109px; width: auto;&quot; class=&quot;<strong>ui-dialog-content</strong> ui-widget-content&quot; id=&quot;dialog&quot;&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Dialog content goes here.&lt;/p&gt;<br />
+&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />
+&lt;/div&gt;<br />
+  <p class="theme-note">
+    <strong>
+      Note: 注：这是一个示例dialog插件所产生的标记,而不是你应该使用的标记.创建一个dialog唯一需要的标记是 &lt;div&gt;&lt;/div&gt;.
+    </strong>
+  </p>
+
+  </div>
+</div>
+
+</p><!-- 
+Pre-expand include size: 58797 bytes
+Post-expand include size: 99942 bytes
+Template argument size: 56593 bytes
+Maximum: 2097152 bytes
+-->
+
+<!-- Saved in parser cache with key jqdocs_docs:pcache:idhash:3072-1!1!0!!en!2 and timestamp 20090303120112 -->
+
+
+
+						<!-- end content -->
+		</div>
+	</div>
+		</div>
+				</div><!-- /#primaryContent -->				
+			</div><!-- /#content -->
+	</div><!-- /#siteContain -->	
+	</body>
+<!-- Cached 20090303115837 -->
+</html>

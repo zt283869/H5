@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style type="text/css">
+		*{
+			margin:0px;
+			padding:0px;
+		}
+		
+		#divId{
+			position:absolute;
+			padding:5px;
+			width:100%;
+			height:800px;
+		}
+	</style>
+	<body>
+		<input type="text" id="search"/>
+	<br/><br/><br/><br/>
+	<div id="tt" style="position:relative;border:5px solid black; width:400px;height:300px;overflow:auto">
+		<div id="divId">
+			sss
+			sd
+			sdsd
+			ssad
+			as
+		</div>
+	</div>
+	
+	
+	<input id="btn01" type="button" value="测试" />
+	
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+	</body>
+</html>
+<script src="../jq框架/jquery-1.8.3.js"></script>
+<script>
+	(function($){
+		$("#btn01")[0].onclick = function(){
+			$("#tt").scrollTop($("#tt").scrollTop()+10);
+		}
+	})(jQuery)
+</script>
+
+
+
+
+
+
+
+

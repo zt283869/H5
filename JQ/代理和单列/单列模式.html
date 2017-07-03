@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			"use strict";
+			let man = {
+				obj:null,
+				getChairMAnInstance:function(id,name,sex){
+					function ChairMan(id,name,sex){
+						this.id=id;
+						this.name = name;
+						this.sex = sex;
+					}
+					if(this.obj==null){
+						this.obj = new ChairMan(id,name,sex)
+					}
+					return this.obj;
+				}
+			}
+			window.onload = function(){
+				let c1 = man.getChairMAnInstance("007","习大大","男");//得到单个实例
+				let c2 = man.getChairMAnInstance("008","习大大","男");//得到单个实例
+				alert(c1.id);
+				alert(c2.id);
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+	<head>
+		<title></title>
+		<meta charset = "utf-8"/>
+	</head>
+	<style type="text/css">
+		*{
+			margin:0px;
+			padding:0px;
+		}
+		
+		
+		
+		.myClass{
+			border:5px solid black;
+			background-color:red;
+		}
+	</style>
+<body>	
+	
+	<div id="tt" style="width:400px;height:300px;border:1px solid red">
+		
+	</div>
+	
+	
+	<input id="btn01" type="button" value="测试" />
+	
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+</body>
+</html>
+
+<script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+<script type="text/javascript">
+
+$(function(){
+	$("#btn01")[0].onclick = function(){
+	    
+		$("#tt").toggleClass("myClass");
+		
+	}
+	
+});
+
+
+
+</script>

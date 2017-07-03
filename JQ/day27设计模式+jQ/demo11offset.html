@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+	<head>
+		<title></title>
+		<meta charset = "utf-8"/>
+	</head>
+	<style type="text/css">
+		*{
+			margin:0px;
+			padding:0px;
+		}
+		
+		#divId{
+			position:absolute;
+			left:10px;
+			top:20px;
+			margin:10px 20px;
+			border:2px solid pink;
+			padding:5px;
+			width:200px;
+			height:150px;
+		}
+	</style>
+<body>	
+	<input type="text" id="search"/>
+	<br/><br/><br/><br/>
+	<div style="position:relative;border:5px solid black; width:400px;height:300px">
+		<div id="divId">
+			
+		</div>
+	</div>
+	
+	
+	<input id="btn01" type="button" value="测试" />
+	
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+</body>
+</html>
+
+<script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+<script type="text/javascript">
+
+$(function(){
+	$("#btn01")[0].onclick = function(){
+		let point = $("#divId").offset();
+		console.log(point.left+","+point.top);
+		
+	}
+	
+});
+
+
+
+</script>

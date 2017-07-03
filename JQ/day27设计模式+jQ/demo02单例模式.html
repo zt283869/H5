@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+	<head>
+		<title></title>
+		<meta charset = "utf-8"/>
+	</head>
+	<style type="text/css">
+		*{
+			margin:0px;
+			padding:0px;
+		}
+	</style>
+<body>	
+<!--
+	<div id="mapId">
+		
+	</div>
+	-->
+</body>
+</html>
+
+<script type="text/javascript">
+"use strict";
+
+let man = {
+   obj:null,
+   getChairManInstance : function(id,name,sex){
+		function ChairMan(id,name,sex){
+			this.id = id;
+			this.name = name;
+			this.sex = sex;
+		}
+		
+		if(this.obj==null){
+			this.obj = new ChairMan(id,name,sex);
+		}
+		return this.obj;
+	}
+}
+
+
+
+window.onload=function(){
+	let c1 = man.getChairManInstance("007","习大大","男");//得到单个实例
+	let c2 = man.getChairManInstance("008","习小小","男");//得到单个实例
+	
+	alert(c1.id);
+	alert(c2.id);
+	
+	
+}
+
+
+</script>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+	<head>
+		<title></title>
+		<meta charset = "utf-8"/>
+	</head>
+	<style type="text/css">
+		*{
+			margin:0px;
+			padding:0px;
+		}
+	</style>
+<body>	
+<!--
+	<div id="mapId">
+		
+	</div>
+	-->
+</body>
+</html>
+
+<script type="text/javascript">
+"use strict";
+
+//代理：
+//
+
+function Person(name,delegate){
+	this.name = name;
+	this.delegate = delegate;
+}
+
+Person.prototype.lookDoor = function(days){
+	this.delegate.lookDoor(days);
+}
+
+function Dog(name){
+	this.name = name;
+}
+
+Dog.prototype.lookDoor = function(days){
+	alert(this.name+"聚精会神地盯着大门,一下子盯了"+days+"天");
+}
+
+window.onload=function(){
+	let d1 = new Dog("大黄");	
+	let p1= new Person("孙帅",d1);	
+	p1.lookDoor(5);
+}
+
+</script>

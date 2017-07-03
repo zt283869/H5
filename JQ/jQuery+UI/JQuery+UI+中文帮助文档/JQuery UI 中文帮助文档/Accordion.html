@@ -1,0 +1,965 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="keywords" content="UI/API/1.7/Draggable" />
+		<title>UI/API/1.7/Draggable - jQuery JavaScript Library</title>
+		<link rel="stylesheet" href="style/reset.css" type="text/css" />
+		<link rel="stylesheet" href="style/screen.css" type="text/css" />
+		<style type="text/css" media="screen,projection">/*<![CDATA[*/ @import "http://www.winswd.com/aboutme/jquery/ui/style/main.css?9"; /*]]>*/</style>
+
+		<link rel="stylesheet" type="text/css" href="style/jquery.tabs.css" />
+		<!--[if lte IE 7]>
+		<link rel="stylesheet" href="style/jquery.tabs-ie.css" type="text/css" media="projection, screen"/>
+		<![endif]-->
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script src="js/jquery.tabs.js"></script>
+
+		<script>$(function(){
+			$("div[id=examples]").each(function(){
+				$(this).siblings("div:first").find("div.desc").after(
+					$(this).find("div.example:has(#demo):first").remove().clone());
+
+				if ( !$("div.example", this).length )
+					$(this).remove();
+			});
+
+			$("div.entry")
+				.children("p").remove().end()
+				.find("ul:first li").each(function(){
+					if ( !$(this).parent().siblings( $("a",this).attr("href") ).length )
+						$(this).remove();
+				}).end()
+				.not(".ui")
+				.tabs();
+
+			$("div.args > br").remove();
+
+			$("div.example")
+				.children("p").remove().end()
+				.tabs();
+
+			var keywords = "String,Number,Object,Options,Array,Function,Callback,Selector,Event,Element,Integer,Float,Boolean".split(",");
+
+			$("td.default span, td.type").each(function(){
+				var html = this.innerHTML;
+				jQuery.each(keywords, function(i,key){
+					html = html.replace(new RegExp(key, "ig"), "<a href='/Types#" + key + "'>" + key + "</a>");
+				});
+				this.innerHTML = html;
+			});
+
+			$("div[id=source]").each(function(){
+				var source = $("pre", this).html()
+					.replace(/<\/?a.*?>/ig, "")
+					.replace(/<\/?strong.*?>/ig, "")
+					.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&");
+
+				//var items = [];
+				//source = source.replace(/\s*<(link|script).*?>\s\*/g, function(m){
+					//items.push(m);
+					//return "";
+				//}).replace("</head>", items.join("") + "</head>")
+				//*/
+
+				var iframe = document.createElement("iframe");
+				iframe.src = "http://www.winswd.com/index-blank.html";
+				iframe.width = "100%";
+				iframe.height = $(this).prev().attr("rel") || "125";
+				iframe.style.border = "none";
+				$(this).prev().append(iframe);
+
+
+				$(window).load(function(){
+					var doc = iframe.contentDocument || iframe.contentWindow.document;
+					source = source
+						// IE needs to wait for the script to load (?)
+						.replace("$(document).ready(function(){", "window.onload = (function(){try{")
+						.replace(/}\);\s*<\/sc/, "}catch(e){}});</sc")
+						//.replace("http://code.jquery.com/jquery-latest.js", "http://code.jquery.com/jquery-1.3rc2.js")
+						.replace("</head>", "<style>html,body{border:0; margin:0; padding:0;}</style></head>");
+					doc.open();
+					doc.write( source );
+					doc.close();
+				});
+
+			});
+		});</script>
+		<script type="text/javascript" src="js/custom.js"></script>
+		<!--[if lt IE 5.5000]><style type="text/css">@import "http://www.winswd.com/aboutme/jquery/ui/style/IE50Fixes.css";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "http://www.winswd.com/aboutme/jquery/ui/style/IE55Fixes.css";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "http://www.winswd.com/aboutme/jquery/ui/style/IE60Fixes.css";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "http://www.winswd.com/aboutme/jquery/ui/style/IE70Fixes.css?1";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="http://www.winswd.com/aboutme/jquery/ui/style/IEFixes.js"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<!-- Head Scripts -->
+			</head>
+	<body id="jq-interior"  class="mediawiki ns-0 ltr">
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  08/18/09 18:19:48.<br>
+<b>Address:</b> <a class="info" href="http://www.winswd.com/aboutme/jquery/ui/Accordion.html">http://www.winswd.com/aboutme/jquery/ui/Accordion.html</a><br>
+<b>Title:</b> UI/API/1.7/Draggable - jQuery JavaScript Library &nbsp;&bull;&nbsp; <b>Size:</b> 32287 &nbsp;&bull;&nbsp; <b>Last Modified:</b> 03/14/09 23:14:17<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+
+	<div id="jq-siteContain">
+			<div id="jq-content" class="jq-clearfix">
+
+				<div id="jq-interiorNavigation">
+					<div class='jq-portlet' id='jq-p-Getting-Started'>
+						<h5></h5>
+						<div class='jq-pBody'>
+							<ul>
+								<li id="jq-ui-doc-n-Draggable"><a href="Draggable.html">Draggable</a></li>
+								<li id="jq-ui-doc-n-Droppable"><a href="Droppable.html">Droppable</a></li>				
+								<li id="jq-ui-doc-n-Resizable"><a href="Resizable.html">Resizable</a></li>
+								<li id="jq-ui-doc-n-Selectable"><a href="Selectable.html">Selectable</a></li>
+								<li id="jq-ui-doc-n-Sortable"><a href="Sortable.html">Sortable</a></li>
+							</ul>				
+						</div>
+					</div>
+						<div class='jq-portlet' id='jq-p-API-Reference'>
+						<h5>部件</h5>
+						<div class='jq-pBody'>
+							<ul>
+								<li id="jq-ui-doc-n-Accordion"><a href="Accordion.html">Accordion</a></li>
+								<li id="jq-ui-doc-n-Datepicker"><a href="Datepicker.html">Datepicker</a></li>				
+								<li id="jq-ui-doc-n-Dialog"><a href="Dialog.html">Dialog</a></li>
+								<li id="jq-ui-doc-n-Progressbar"><a href="Progressbar.html">Progressbar</a></li>
+								<li id="jq-ui-doc-n-Slider"><a href="Slider.html">Slider</a></li>
+								<li id="jq-ui-doc-n-Tabs"><a href="Tabs.html">Tabs</a></li>
+							</ul>
+						</div>
+					</div>
+						<div class='jq-portlet' id='jq-p-Plugins'>
+				
+						<h5>动画</h5>
+						<div class='jq-pBody'>
+							<ul>
+								<li id="jq-ui-doc-n-AddClass"><a href="AddClass.html">AddClass</a></li>
+								<li id="jq-ui-doc-n-RemoveClass"><a href="RemoveClass.html">RemoveClass</a></li>
+                                <li id="jq-ui-doc-n-Animate"><a href="Animate.html">Animate</a></li>
+                                <li id="jq-ui-doc-n-Effect"><a href="Effect.html">Effect</a></li>
+                                <li id="jq-ui-doc-n-Hide"><a href="Hide.html">Hide</a></li>
+                                <li id="jq-ui-doc-n-Show"><a href="Show.html">Show</a></li>
+                                <li id="jq-ui-doc-n-SwitchClass"><a href="SwitchClass.html">SwitchClass</a></li>
+                                <li id="jq-ui-doc-n-Toggle"><a href="Toggle.html">Toggle</a></li>
+                                <li id="jq-ui-doc-n-ToggleClass"><a href="ToggleClass.html">ToggleClass</a></li>
+							</ul>
+						</div>				
+					</div>					
+				</div><!-- /#interiorNavigation -->
+
+				<div id="jq-primaryContent">
+		<div id="column-content">
+	<div id="docs-content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">UI/API/1.7/Accordion</h1>
+		<div id="bodyContent">
+<!-- start content -->
+
+
+
+<ul class="UIAPIPlugin-toc">
+<li><a href="#overview">概述</a></li>
+<li><a href="#options">参数</a></li>
+<li><a href="#events">事件</a></li>
+<li><a href="#methods">方法</a></li>
+<li><a href="#theming">主题</a></li>
+</ul>
+<div class="UIAPIPlugin">
+  <h1>jQuery UI Accordion</h1>
+  <div id="overview">
+    <h2 class="top-header">概述</h2>
+    <div id="overview-main">
+        <p>使选择的元素成为 Accordion 部件. 语义要求:</p>
+<p>你的accordion容器需要按照一个元素成组的满足拥有配对的头部和内容面板的格式要求. 默认的头部是锚点, 假设结构如下:</p>
+<pre>&lt;div id=&quot;accordion&quot;&gt;
+  &lt;div&gt;
+    &lt;a href=&quot;#&quot;&gt;First header&lt;/a&gt;
+    &lt;div&gt;First content&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;a href=&quot;#&quot;&gt;Second header&lt;/a&gt;
+    &lt;div&gt;Second content&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+<p>如果使用了其他的元素来做头部, 应使用适当的选择来作为标题, 例如. 头部: 'h3'. 内容元素必须紧接着它的头部元素.</p>
+<p>如果您有连接到accordion内容的元素,并使用它来作为头部, 应添加一个样式使他们成为标题, 例如. 头部: 'a.header'.</p>
+<p>程序通过激活(编号)来改变访问的内容.</p>
+<a name="NOTE:_If_you_want_multiple_sections_open_at_once.2C_don.27t_use_an_accordion"></a><h4>注: 如果你想一次打开多个内容节, 请不要使用accordion</h4>
+<p>accordion不允许在同一时间打开多个内容节, 做到这一点需要很大的努力. 如果你正在寻找一个允许一次打开多个内容的部件,请不要使用accordion. 通常可以写几行jQuery,就像这样:</p>
+<pre>jQuery(document).ready(function(){
+	$('.accordion .head').click(function() {
+		$(this).next().toggle();
+		return false;
+	}).next().hide();
+});</pre>
+<p>或者使用动画:</p>
+<pre>jQuery(document).ready(function(){
+	$('.accordion .head').click(function() {
+		$(this).next().toggle('slow');
+		return false;
+	}).next().hide();
+});</pre>
+    </div>
+    <div id="overview-dependencies">
+        <h3>其他附加文件</h3>
+        <ul>
+<li>UI Core</li>
+<li>UI Effects Core (可选 - 仅用于非默认的动画)</li>
+</ul>
+    </div>
+    <div id="overview-example">
+        <h3>示例</h3>
+        <div id="overview-example" class="example">
+<ul><li><a href="#demo"><span>代码示范</span></a></li><li><a href="#source"><span>查看源文件</span></a></li></ul>
+<p><div id="demo" class="tabs-container" rel="300">
+一个简单的 jQuery UI Accordion.<br />
+</p>
+<pre>$(&quot;#accordion&quot;).accordion();
+</pre>
+<p></div><div id="source" class="tabs-container">
+</p>
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;link type=&quot;text/css&quot; href=&quot;themes/base/ui.all.css&quot; rel=&quot;stylesheet&quot; /&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;js/jquery.min.js&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;ui/ui.core.js&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;ui/ui.accordion.js&quot;&gt;&lt;/script&gt;
+  &lt;script type="text/javascript"&gt;
+  $(document).ready(function(){
+    $(&quot;#accordion&quot;).accordion();
+  });
+  &lt;/script&gt;
+&lt;/head&gt;
+&lt;body style="font-size:62.5%;"&gt;
+  
+&lt;div id=&quot;accordion&quot;&gt;
+	&lt;h3&gt;&lt;a href=&quot;#&quot;&gt;Section 1&lt;/a&gt;&lt;/h3&gt;
+	&lt;div&gt;
+		&lt;p&gt;
+		Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
+		ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
+		amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
+		odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
+		&lt;/p&gt;
+	&lt;/div&gt;
+	&lt;h3&gt;&lt;a href=&quot;#&quot;&gt;Section 2&lt;/a&gt;&lt;/h3&gt;
+	&lt;div&gt;
+		&lt;p&gt;
+		Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet
+		purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor
+		velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In
+		suscipit faucibus urna.
+		&lt;/p&gt;
+	&lt;/div&gt;
+	&lt;h3&gt;&lt;a href=&quot;#&quot;&gt;Section 3&lt;/a&gt;&lt;/h3&gt;
+	&lt;div&gt;
+		&lt;p&gt;
+		Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis.
+		Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero
+		ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis
+		lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui.
+		&lt;/p&gt;
+		&lt;ul&gt;
+			&lt;li&gt;List item one&lt;/li&gt;
+			&lt;li&gt;List item two&lt;/li&gt;
+			&lt;li&gt;List item three&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/div&gt;
+	&lt;h3&gt;&lt;a href=&quot;#&quot;&gt;Section 4&lt;/a&gt;&lt;/h3&gt;
+	&lt;div&gt;
+		&lt;p&gt;
+		Cras dictum. Pellentesque habitant morbi tristique senectus et netus
+		et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in
+		faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia
+		mauris vel est.
+		&lt;/p&gt;
+		&lt;p&gt;
+		Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus.
+		Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
+		inceptos himenaeos.
+		&lt;/p&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p></div>
+</p><p></div>
+    </div>
+  </div>
+  <div id="options">
+    <h2 class="top-header">参数</h2>
+    <ul class="options-list">
+      
+<li class="option" id="option-active">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-active">active</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Selector, Element, jQuery, Boolean, Number</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">first child</dd>
+      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>选择一个可访问项. 设置为false在开始时不显示任何一项. 需要 &laquo;collapsible: true&raquo;.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">
+    
+<dt>
+  使用指定的<code>active</code>参数初始化一个accordion.
+</dt>
+<dd>
+<pre><code>$('.selector').accordion({ active: 2 });</code></pre>
+</dd>
+
+    
+<dt>
+  在初始化后设置或者获取<code>active</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var active = $('.selector').accordion('option', 'active');
+//设置
+$('.selector').accordion('option', 'active', 2);</code></pre>
+</dd>
+
+    </dl>
+  </div>
+</li>
+
+
+<li class="option" id="option-animated">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-animated">animated</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Boolean, String</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">false</dd>
+      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>选择你喜欢的动画, 或者关闭动画效果(设置为false). 除了默认的之外, 'bounceslide' 和 'easeslide' 也被支持 (都需要依赖一些简单的插件).</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">
+    
+<dt>
+  使用指定的<code>animated</code>参数初始化一个accordion.
+</dt>
+<dd>
+<pre><code>$('.selector').accordion({ animated: 'easeslide' });</code></pre>
+</dd>
+
+    
+<dt>
+  在初始化后设置或者获取<code>animated</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var animated = $('.selector').accordion('option', 'animated');
+//设置
+$('.selector').accordion('option', 'animated', 'easeslide');</code></pre>
+</dd>
+
+    </dl>
+  </div>
+</li>
+
+
+<li class="option" id="option-autoHeight">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-autoHeight">autoHeight</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Boolean</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">true</dd>
+      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>如果设置了该参数,高度最高的内容区域会被作为所有区域的高度,以提供更加一直的展开动画.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">
+    
+<dt>
+  使用指定的<code>autoHeight</code>参数初始化一个accordion.
+</dt>
+<dd>
+<pre><code>$('.selector').accordion({ autoHeight: false });</code></pre>
+</dd>
+
+    
+<dt>
+  在初始化后设置或者获取<code>autoHeight</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var autoHeight = $('.selector').accordion('option', 'autoHeight');
+//设置
+$('.selector').accordion('option', 'autoHeight', false);</code></pre>
+</dd>
+
+    </dl>
+  </div>
+</li>
+
+
+<li class="option" id="option-clearStyle">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-clearStyle">clearStyle</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Boolean</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">false</dd>
+      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>设置此参数, 可以在动画结束后清除height和overflow样式. 如果accordions的工作依赖于动态内容. 请不要和此参数共同使用.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">
+    
+<dt>
+  使用指定的<code>clearStyle</code>参数初始化一个accordion.
+</dt>
+<dd>
+<pre><code>$('.selector').accordion({ clearStyle: true });</code></pre>
+</dd>
+
+    
+<dt>
+  在初始化后设置或者获取<code>clearStyle</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var clearStyle = $('.selector').accordion('option', 'clearStyle');
+//设置
+$('.selector').accordion('option', 'clearStyle', true);</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+
+<li class="option" id="option-collapsible">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-collapsible">collapsible</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Boolean</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">false</dd>
+      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>所有的章节是否可以一次关闭. 允许在触发事件时关闭打开的章节 (默认是点击操作).</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">
+    
+<dt>
+  使用指定的<code>collapsible</code>参数初始化一个accordion.
+</dt>
+<dd>
+<pre><code>$('.selector').accordion({ collapsible: true });</code></pre>
+</dd>
+
+    
+<dt>
+  在初始化后设置或者获取<code>collapsible</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var collapsible = $('.selector').accordion('option', 'collapsible');
+//设置
+$('.selector').accordion('option', 'collapsible', true);</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+
+<li class="option" id="option-event">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-event">event</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">String</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">'click'</dd>
+      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>使用哪个事件触发展开操作.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">
+    
+<dt>
+  使用指定的<code>event</code>参数初始化一个accordion.
+</dt>
+<dd>
+<pre><code>$('.selector').accordion({ event: 'mouseover' });</code></pre>
+</dd>
+
+    
+<dt>
+  在初始化后设置或者获取<code>event</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var event = $('.selector').accordion('option', 'event');
+//设置
+$('.selector').accordion('option', 'event', 'mouseover');</code></pre>
+</dd>
+
+    </dl>
+  </div>
+</li>
+
+
+<li class="option" id="option-fillSpace">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-fillSpace">fillSpace</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Boolean</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">false</dd>
+      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>设置此参数, 可以使accordion与父容器的高度一致. 将覆盖autoheight参数.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">
+    
+<dt>
+  使用指定的<code>fillSpace</code>参数初始化一个accordion.
+</dt>
+<dd>
+<pre><code>$('.selector').accordion({ fillSpace: true });</code></pre>
+</dd>
+
+    
+<dt>
+  在初始化后设置或者获取<code>fillSpace</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var fillSpace = $('.selector').accordion('option', 'fillSpace');
+//设置
+$('.selector').accordion('option', 'fillSpace', true);</code></pre>
+</dd>
+
+    </dl>
+  </div>
+</li>
+
+
+<li class="option" id="option-header">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-header">header</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Selector, jQuery</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">'&gt; li &gt;&nbsp;:first-child,&gt;&nbsp;:not(li):even'</dd>
+      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>头部元素的Selector.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">
+    
+<dt>
+  使用指定的<code>header</code>参数初始化一个accordion.
+</dt>
+<dd>
+<pre><code>$('.selector').accordion({ header: 'h3' });</code></pre>
+</dd>
+
+    
+<dt>
+  在初始化后设置或者获取<code>header</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var header = $('.selector').accordion('option', 'header');
+//设置
+$('.selector').accordion('option', 'header', 'h3');</code></pre>
+</dd>
+
+    </dl>
+  </div>
+</li>
+
+
+<li class="option" id="option-icons">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-icons">icons</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Object</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">{ 'header': 'ui-icon-triangle-1-e', 'headerSelected': 'ui-icon-triangle-1-s' }</dd>
+      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>头部使用的Icons图标. 可以为'header'和'headerSelected'指定Icons, 我们推荐用<a href="http://www.themeroller.com/" class="external text" title="http://www.themeroller.com">jQuery UI ThemeRoller</a>来使用jQuery UI CSS Framework</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">
+    
+<dt>
+  使用指定的<code>icons</code>参数初始化一个accordion.
+</dt>
+<dd>
+<pre><code>$('.selector').accordion({ icons: { 'header': 'ui-icon-plus', 'headerSelected': 'ui-icon-minus' } });</code></pre>
+</dd>
+
+    
+<dt>
+  在初始化后设置或者获取<code>icons</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var icons = $('.selector').accordion('option', 'icons');
+//设置
+$('.selector').accordion('option', 'icons', { 'header': 'ui-icon-plus', 'headerSelected': 'ui-icon-minus' });</code></pre>
+</dd>
+
+    </dl>
+  </div>
+</li>
+
+
+<li class="option" id="option-navigation">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-navigation">navigation</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Boolean</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">false</dd>
+      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>设置此参数, 可以寻找锚点相匹配的location.href并且访问它. 良好的基于链接的状态存储. 使用navigationFilter参数使你自定义的选择生效.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">
+    
+<dt>
+  使用指定的<code>navigation</code>参数初始化一个accordion.
+</dt>
+<dd>
+<pre><code>$('.selector').accordion({ navigation: true });</code></pre>
+</dd>
+
+    
+<dt>
+  在初始化后设置或者获取<code>navigation</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var navigation = $('.selector').accordion('option', 'navigation');
+//设置
+$('.selector').accordion('option', 'navigation', true);</code></pre>
+</dd>
+
+    </dl>
+  </div>
+</li>
+
+
+<li class="option" id="option-navigationFilter">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-navigationFilter">navigationFilter</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Function</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default"> </dd>
+      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>使用你自己的选择器,使与之匹配的默认location.href被覆盖.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">
+    
+<dt>
+  使用指定的<code>navigationFilter</code>参数初始化一个accordion.
+</dt>
+<dd>
+<pre><code>$('.selector').accordion({ navigationFilter: function(){ ... } });</code></pre>
+</dd>
+
+    
+<dt>
+  在初始化后设置或者获取<code>navigationFilter</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var navigationFilter = $('.selector').accordion('option', 'navigationFilter');
+//设置
+$('.selector').accordion('option', 'navigationFilter', function(){ ... });</code></pre>
+</dd>
+
+    </dl>
+  </div>
+</li>
+
+    </ul>
+  </div>
+  <div id="events">
+    <h2 class="top-header">事件</h2>
+    <ul class="events-list">
+      
+<li class="event" id="event-change">
+  <div class="event-header">
+    <h3 class="event-name"><a href="#event-change">change</a></h3>
+    <dl>
+      <dt class="event-type-label">类型:</dt>
+        <dd class="event-type">accordionchange</dd>
+    </dl>
+  </div>
+  <div class="event-description">
+    <p>此事件在accordion切换时触发. 如果accordion有动画, 此事件将在动画结束后触发; 否则, 立刻触发.
+</p>
+<pre>$('.ui-accordion').bind('accordionchange', function(event, ui) {
+  ui.newHeader // jQuery object, activated header
+  ui.oldHeader // jQuery object, previous header
+  ui.newContent // jQuery object, activated content
+  ui.oldContent // jQuery object, previous content
+});</pre></p>
+  </div>
+  <div class="event-examples">
+    <h4>代码示例</h4>
+    <dl class="event-examples-list">
+    
+<dt>
+  提供一个回调函数对<code>change</code>事件进行操作.
+</dt>
+<dd>
+<pre><code>$('.selector').accordion({
+   change: function(event, ui) { ... }
+});</code></pre>
+</dd>
+
+    
+<dt>
+  使用<code>accordionchange</code>类型来绑定<code>change</code>事件.
+</dt>
+<dd>
+<pre><code>$('.selector').bind('accordionchange', function(event, ui) {
+  ...
+});</code></pre>
+</dd>
+
+    </dl>
+  </div>
+</li>
+
+    </ul>
+  </div>
+  <div id="methods">
+    <h2 class="top-header">方法</h2>
+    <ul class="methods-list">
+      
+<li class="method" id="method-destroy">
+  <div class="method-header">
+    <h3 class="method-name"><a href="#method-destroy">destroy</a></h3>
+    <dl>
+      <dt class="method-signature-label">方法签名:</dt>
+        <dd class="method-signature">.accordion( 'destroy' )</dd>
+    </dl>
+  </div>
+  <div class="method-description">
+    <p>完全移除accordion功能. 这将使元素返回到之前的初始化状态.</p>
+  </div>
+</li>
+
+<p>
+<li class="method" id="method-disable">
+  <div class="method-header">
+    <h3 class="method-name"><a href="#method-disable">disable</a></h3>
+    <dl>
+      <dt class="method-signature-label">方法签名:</dt>
+        <dd class="method-signature">.accordion( 'disable' )</dd>
+    </dl>
+  </div>
+  <div class="method-description">
+    <p>关闭 accordion.</p>
+  </div>
+</li>
+
+
+<li class="method" id="method-enable">
+  <div class="method-header">
+    <h3 class="method-name"><a href="#method-enable">enable</a></h3>
+    <dl>
+      <dt class="method-signature-label">方法签名:</dt>
+        <dd class="method-signature">.accordion( 'enable' )</dd>
+    </dl>
+  </div>
+  <div class="method-description">
+    <p>打开 accordion.</p>
+  </div>
+</li>
+
+
+<li class="method" id="method-option">
+  <div class="method-header">
+    <h3 class="method-name"><a href="#method-option">option</a></h3>
+    <dl>
+      <dt class="method-signature-label">方法签名:</dt>
+        <dd class="method-signature">.accordion( 'option'
+
+, optionName
+
+, <span class="optional">[</span>value<span class="optional">] </span>
+
+
+
+)</dd>
+    </dl>
+  </div>
+  <div class="method-description">
+    <p>获取或者设置accordion参数. 如果没有提供参数值则是获取.</p>
+  </div>
+</li>
+
+
+<li class="method" id="method-activate">
+  <div class="method-header">
+    <h3 class="method-name"><a href="#method-activate">activate</a></h3>
+    <dl>
+      <dt class="method-signature-label">方法签名:</dt>
+        <dd class="method-signature">.accordion( 'activate', index )</dd>
+    </dl>
+  </div>
+  <div class="method-description">
+    <p>激活Accordion内容中的一部分. index可以是选择器匹配的元素,也可以是由0开始到所有匹配的header的编号. 设置为 -1 则关闭所有 (仅当collapsible参数设置为:true).</p>
+  </div>
+</li>
+
+    </ul>
+  </div>
+  <div id="theming">
+    <h2 class="top-header">主题</h2>
+    <p>jQuery UI Accordion插件使用jQuery UI CSS 框架的外观和风格，包括颜色和背景纹理.我们建议您使用ThemeRoller工具来创建和下载的自定义主题，很容易建立和维护.
+</p>
+  <p>如果有更深层次的个性化需要，有特定类别的工具ui.accordion.css样式可供参考，可以修改这些参考。这些课程是下面以高亮和粗体显示的。
+</p>
+    
+  <h3>jQuery UI CSS Framework classes示例</h3>
+  &lt;div role=&quot;tablist&quot; class=&quot;<strong>ui-accordion</strong> ui-widget ui-helper-reset&quot; id=&quot;accordion&quot;&gt;<br />
+&nbsp;&nbsp;&lt;div class=&quot;<strong>ui-accordion-group ui-accordion-selected</strong>&quot;&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;h3 tabindex=&quot;0&quot; class=&quot;<strong>ui-accordion-header</strong> ui-helper-reset ui-state-active ui-corner-top&quot;&gt;&lt;span class=&quot;ui-icon ui-icon-triangle-1-s&quot;&gt;&lt;/span&gt;&lt;a tabindex=&quot;-1&quot; href=&quot;#&quot;&gt;Section 1&lt;/a&gt;&lt;/h3&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div style=&quot;height: 113px;&quot; class=&quot;<strong>ui-accordion-content-wrap</strong> ui-helper-reset ui-widget-content ui-corner-bottom&quot;&gt;&lt;div class=&quot;<strong>ui-accordion-content</strong>&quot;&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Content for section one&lt;/p&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;&lt;/div&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;...<br />
+&nbsp;&nbsp;&lt;/div&gt;<br />
+&lt;/div&gt;<br />
+  <p class="theme-note">
+    <strong>
+      Note: 注：这是一个示例accordion插件所产生的标记,而不是你应该使用的标记.创建一个accordion唯一需要的标记是 <br />&lt;div&gt;<br />
+&#160;&#160;&#160;&lt;h3&gt;&lt;a href=&quot;#&quot;&gt;Section 1&lt;/a&gt;&lt;/h3&gt;<br />
+&#160;&#160;&#160;&lt;div&gt;<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&lt;p&gt;Section 1 content&lt;/p&gt;<br />
+&#160;&#160;&#160;&lt;/div&gt;<br />
+&#160;&#160;&#160;&lt;h3&gt;&lt;a href=&quot;#&quot;&gt;Section 2&lt;/a&gt;&lt;/h3&gt;<br />
+&#160;&#160;&#160;&lt;div&gt;<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&lt;p&gt;Section 2 content&lt;/p&gt;<br />
+&#160;&#160;&#160;&lt;/div&gt;<br />
+&#160;&#160;&#160;&lt;h3&gt;&lt;a href=&quot;#&quot;&gt;Section 3&lt;/a&gt;&lt;/h3&gt;<br />
+&#160;&#160;&#160;&lt;div&gt;<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&lt;p&gt;Section 3 content&lt;/p&gt;<br />
+&#160;&#160;&#160;&lt;/div&gt;<br />
+&lt;/div&gt;.
+    </strong>
+  </p>
+
+  </div>
+</div>
+
+</p><!-- 
+Pre-expand include size: 29461 bytes
+Post-expand include size: 51383 bytes
+Template argument size: 30451 bytes
+Maximum: 2097152 bytes
+-->
+
+<!-- Saved in parser cache with key jqdocs_docs:pcache:idhash:3070-1!1!0!!en!2 and timestamp 20090303120109 -->
+
+
+						<!-- end content -->
+		</div>
+	</div>
+		</div>
+				</div><!-- /#primaryContent -->				
+			</div><!-- /#content -->
+	</div><!-- /#siteContain -->	
+	</body>
+<!-- Cached 20090303115837 -->
+</html>

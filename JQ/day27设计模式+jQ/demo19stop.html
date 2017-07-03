@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+	<head>
+		<title></title>
+		<meta charset = "utf-8"/>
+	</head>
+	<style type="text/css">
+		*{
+			margin:0px;
+			padding:0px;
+		}
+		
+		
+		#tt{
+			position:absolute;
+			left:0px;
+			top:100px;
+			border:5px solid black;
+			background-color:red;
+		}
+	</style>
+<body>	
+	<input id="btn01" type="button" value="走" />
+	<input id="btnStop" type="button" value="停" />
+	
+	<div id="tt" style="width:400px;height:300px">
+		
+	</div>
+	
+	
+	<br/><br/><br/><br/>
+</body>
+</html>
+
+<script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+<script type="text/javascript">
+
+$(function(){
+	$("#btn01")[0].onclick = function(){	
+		$("#tt").animate({
+			"left":"500px",
+			"top":"250px",
+			"width":"1px",
+			"height":"1px",
+			"opacity":"0"
+		},5000);
+		
+	}
+	
+	$("#btnStop")[0].onclick = function(){
+		//$("#tt").stop();
+		$("#tt").stop();
+	}
+});
+
+
+
+</script>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+		*{margin: 0;padding: 0;}
+		ul li{
+			list-style: none;
+		}
+			#btn01{
+				width: 300px;
+				height: 500px;
+				box-shadow: 0 0 0 5px rgba(0,0,0,.2);
+				margin: 0 auto;
+				margin-top: 100px;
+				text-align: center;
+				border-radius: 10px;
+			}
+			.xball{
+				height: 30px;
+				text-align: center;
+			}
+			.xball span{
+				width: 111px;
+				height: 20px;
+				background-color: #999;
+				border-radius: 10px;
+				 display: inline-block; 
+				 margin-left: 10px;
+				 margin-top: 9px;
+			}
+			#list{
+				width: 230px;
+				height: 402px;
+				border-radius: 10px;
+				border: 1px solid #777d6e; 
+				background-color: #f9f9f9;
+				 overflow: auto;
+				 padding: 15px;
+				  display: inline-block; 
+			}
+			 img { width: 50px; height: 50px; border-radius: 5px;}
+			 .user1 img{ float: left;}
+			 .user2 img { float: right;}
+			.user1{height: 50px;width: 100%;}
+				.user2{height: 50px;width: 100%;display: block;}
+				 .text { max-width: 160px; margin: 5px 15px; padding: 10px; line-height: 20px; border-radius: 5px;}
+        .user1 .text { float: left;  background-color: #fff;width: 100%;}
+        .user2 .text { float: right; text-align: right; background-color:#9f0;width: 100%;}
+        #text1{
+        	width: 191px;height: 26px;border: none;border:px solid #999999;border-radius:15px ;
+        	float: left;margin-left: 28px;
+        }
+        #send {float: left; width: 40px; border: none; outline: none; cursor: pointer; box-sizing: content-box; color: #fff; background-color: #35d;border-radius: 3px; line-height: 20px; padding: 5px;}
+		</style>
+	</head>
+	<body>
+		<div id="btn01">
+			<div class="xball">
+				<span> </span>
+			</div>
+		
+			<ul id="list">
+				<li class="user2">
+					<div class="cont">
+						<img src="2.jpg">
+						<p  class="text">你是谁</p>
+					</div>
+				</li>	   
+				<li class="user1">
+					<div class="cont">
+						<img src="1.jpg">
+						<p  class="text">我是图灵</p>
+					</div>
+				</li>
+			</ul>
+		<input type="text" id="text1" value="" placeholder="只需要输入城市名称">
+		<input type="button" type="button" id="send" value="发送">
+		</div>
+	</body>
+</html>
+<script src="jquery-1.8.3.js"></script>
+<script>
+	(function($){
+		$("#send")[0].onclick = function(){
+			objtext();
+		}					
+	})(jQuery)
+	function objtext(){	
+		if($("#text1")[0].value==""){
+			return;
+		}else{
+			//发送留言
+				$("#list").append('<li class="user2">'
+						+'<div class="cont">'
+						+'<img src="2.jpg">'
+						+'<p class="text">'+$("#text1")[0].value+'</p>'
+						+'</div>'
+						+'</li>')		
+					returntext();
+					$("#text1")[0].value="";				
+			}		
+		}
+		function returntext(){				
+		$(function(){
+			var content = $("#text1").val();		
+			var sendData = {
+				showapi_appid:36343,
+				showapi_sign:"84a62eb335a74fcb9804c182527b4a87",
+				info:content,
+				
+			}
+			$.post("https://route.showapi.com/60-27",sendData,function(data){
+				console.log(data.showapi_res_body.text);
+				//创建数据
+				var str = data.showapi_res_body.text;
+				$("#list").append('<li class="user1">'
+						+'<div class="cont">'
+						+'<img src="1.jpg">'
+						+'<p class="text">'+str+'</p>'
+						+'</div>'
+						+'</li>')			
+					})
+			})	
+			}
+		</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+	<head>
+		<title></title>
+		<meta charset = "utf-8"/>
+	</head>
+	<style type="text/css">
+		*{
+			margin:0px;
+			padding:0px;
+		}
+	</style>
+<body>	
+	<input type="text" id="search"/>
+	<ul id="ul01">
+		<li>何少辉  男  18 </li>
+		<li>朱婷    女  15</li>
+		<li>畅子威  男  16</li>
+		<li>何鑫    男  14</li>
+		<li>朱涛    男  12</li>	
+	</ul>
+</body>
+</html>
+
+<script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+<script type="text/javascript">
+
+$(function(){
+	$("#search")[0].onkeyup = function(){
+		let val = $("#search")[0].value;
+		
+		$("#ul01 li").css("display","none");//所有隐藏了
+		
+		$("#ul01 li:contains('"+val+"')").css("display","block");
+		
+		//console.log($("#ul01 li:contains('"+val+"')").css("display","block").siblings());
+		//($("#ul01 li:contains('"+val+"')").css("display":"block").siblings();//.css("display","none");
+		
+	}
+});
+
+
+
+</script>

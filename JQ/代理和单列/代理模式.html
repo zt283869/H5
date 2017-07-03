@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			function obj(name,strt){
+				this.name = name;
+				this.strt = strt;
+			}
+			obj.prototype.look = function(daye){
+				this.strt.look(daye)
+			}
+			function Dog(name){
+				this.name = name;
+			}
+			Dog.prototype.look = function(daye){
+				alert(this.name+"看门"+daye+"天")
+			}
+			var str = new Dog("旺财");
+			var objr = new obj("A",str);
+				objr.look("2");
+		</script>
+	</body>
+</html>

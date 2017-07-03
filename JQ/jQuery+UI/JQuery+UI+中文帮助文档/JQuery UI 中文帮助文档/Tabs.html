@@ -1,0 +1,1388 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="keywords" content="UI/API/1.7/Draggable" />
+		<title>UI/API/1.7/Draggable - jQuery JavaScript Library</title>
+		<link rel="stylesheet" href="style/reset.css" type="text/css" />
+		<link rel="stylesheet" href="style/screen.css" type="text/css" />
+		<style type="text/css" media="screen,projection">/*<![CDATA[*/ @import "http://www.winswd.com/aboutme/jquery/ui/style/main.css?9"; /*]]>*/</style>
+
+		<link rel="stylesheet" type="text/css" href="style/jquery.tabs.css" />
+		<!--[if lte IE 7]>
+		<link rel="stylesheet" href="style/jquery.tabs-ie.css" type="text/css" media="projection, screen"/>
+		<![endif]-->
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script src="js/jquery.tabs.js"></script>
+
+		<script>$(function(){
+			$("div[id=examples]").each(function(){
+				$(this).siblings("div:first").find("div.desc").after(
+					$(this).find("div.example:has(#demo):first").remove().clone());
+
+				if ( !$("div.example", this).length )
+					$(this).remove();
+			});
+
+			$("div.entry")
+				.children("p").remove().end()
+				.find("ul:first li").each(function(){
+					if ( !$(this).parent().siblings( $("a",this).attr("href") ).length )
+						$(this).remove();
+				}).end()
+				.not(".ui")
+				.tabs();
+
+			$("div.args > br").remove();
+
+			$("div.example")
+				.children("p").remove().end()
+				.tabs();
+
+			var keywords = "String,Number,Object,Options,Array,Function,Callback,Selector,Event,Element,Integer,Float,Boolean".split(",");
+
+			$("td.default span, td.type").each(function(){
+				var html = this.innerHTML;
+				jQuery.each(keywords, function(i,key){
+					html = html.replace(new RegExp(key, "ig"), "<a href='/Types#" + key + "'>" + key + "</a>");
+				});
+				this.innerHTML = html;
+			});
+
+			$("div[id=source]").each(function(){
+				var source = $("pre", this).html()
+					.replace(/<\/?a.*?>/ig, "")
+					.replace(/<\/?strong.*?>/ig, "")
+					.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&");
+
+				//var items = [];
+				//source = source.replace(/\s*<(link|script).*?>\s\*/g, function(m){
+					//items.push(m);
+					//return "";
+				//}).replace("</head>", items.join("") + "</head>")
+				//*/
+
+				var iframe = document.createElement("iframe");
+				iframe.src = "http://www.winswd.com/index-blank.html";
+				iframe.width = "100%";
+				iframe.height = $(this).prev().attr("rel") || "125";
+				iframe.style.border = "none";
+				$(this).prev().append(iframe);
+
+
+				$(window).load(function(){
+					var doc = iframe.contentDocument || iframe.contentWindow.document;
+					source = source
+						// IE needs to wait for the script to load (?)
+						.replace("$(document).ready(function(){", "window.onload = (function(){try{")
+						.replace(/}\);\s*<\/sc/, "}catch(e){}});</sc")
+						//.replace("http://code.jquery.com/jquery-latest.js", "http://code.jquery.com/jquery-1.3rc2.js")
+						.replace("</head>", "<style>html,body{border:0; margin:0; padding:0;}</style></head>");
+					doc.open();
+					doc.write( source );
+					doc.close();
+				});
+
+			});
+		});</script>
+		<script type="text/javascript" src="js/custom.js"></script>
+		<!--[if lt IE 5.5000]><style type="text/css">@import "http://www.winswd.com/aboutme/jquery/ui/style/IE50Fixes.css";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "http://www.winswd.com/aboutme/jquery/ui/style/IE55Fixes.css";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "http://www.winswd.com/aboutme/jquery/ui/style/IE60Fixes.css";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "http://www.winswd.com/aboutme/jquery/ui/style/IE70Fixes.css?1";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="http://www.winswd.com/aboutme/jquery/ui/style/IEFixes.js"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<!-- Head Scripts -->
+			</head>
+	<body id="jq-interior"  class="mediawiki ns-0 ltr">
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  08/18/09 18:19:48.<br>
+<b>Address:</b> <a class="info" href="http://www.winswd.com/aboutme/jquery/ui/Tabs.html">http://www.winswd.com/aboutme/jquery/ui/Tabs.html</a><br>
+<b>Title:</b> UI/API/1.7/Draggable - jQuery JavaScript Library &nbsp;&bull;&nbsp; <b>Size:</b> 51915 &nbsp;&bull;&nbsp; <b>Last Modified:</b> 03/14/09 23:14:24<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+
+	<div id="jq-siteContain">
+			<div id="jq-content" class="jq-clearfix">
+
+				<div id="jq-interiorNavigation">
+					<div class='jq-portlet' id='jq-p-Getting-Started'>
+						<h5></h5>
+						<div class='jq-pBody'>
+							<ul>
+								<li id="jq-ui-doc-n-Draggable"><a href="Draggable.html">Draggable</a></li>
+								<li id="jq-ui-doc-n-Droppable"><a href="Droppable.html">Droppable</a></li>				
+								<li id="jq-ui-doc-n-Resizable"><a href="Resizable.html">Resizable</a></li>
+								<li id="jq-ui-doc-n-Selectable"><a href="Selectable.html">Selectable</a></li>
+								<li id="jq-ui-doc-n-Sortable"><a href="Sortable.html">Sortable</a></li>
+							</ul>				
+						</div>
+					</div>
+						<div class='jq-portlet' id='jq-p-API-Reference'>
+						<h5>部件</h5>
+						<div class='jq-pBody'>
+							<ul>
+								<li id="jq-ui-doc-n-Accordion"><a href="Accordion.html">Accordion</a></li>
+								<li id="jq-ui-doc-n-Datepicker"><a href="Datepicker.html">Datepicker</a></li>				
+								<li id="jq-ui-doc-n-Dialog"><a href="Dialog.html">Dialog</a></li>
+								<li id="jq-ui-doc-n-Progressbar"><a href="Progressbar.html">Progressbar</a></li>
+								<li id="jq-ui-doc-n-Slider"><a href="Slider.html">Slider</a></li>
+								<li id="jq-ui-doc-n-Tabs"><a href="Tabs.html">Tabs</a></li>
+							</ul>
+						</div>
+					</div>
+						<div class='jq-portlet' id='jq-p-Plugins'>
+				
+						<h5>动画</h5>
+						<div class='jq-pBody'>
+							<ul>
+								<li id="jq-ui-doc-n-AddClass"><a href="AddClass.html">AddClass</a></li>
+								<li id="jq-ui-doc-n-RemoveClass"><a href="RemoveClass.html">RemoveClass</a></li>
+                                <li id="jq-ui-doc-n-Animate"><a href="Animate.html">Animate</a></li>
+                                <li id="jq-ui-doc-n-Effect"><a href="Effect.html">Effect</a></li>
+                                <li id="jq-ui-doc-n-Hide"><a href="Hide.html">Hide</a></li>
+                                <li id="jq-ui-doc-n-Show"><a href="Show.html">Show</a></li>
+                                <li id="jq-ui-doc-n-SwitchClass"><a href="SwitchClass.html">SwitchClass</a></li>
+                                <li id="jq-ui-doc-n-Toggle"><a href="Toggle.html">Toggle</a></li>
+                                <li id="jq-ui-doc-n-ToggleClass"><a href="ToggleClass.html">ToggleClass</a></li>
+							</ul>
+						</div>				
+					</div>					
+				</div><!-- /#interiorNavigation -->
+
+				<div id="jq-primaryContent">
+		<div id="column-content">
+	<div id="docs-content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">UI/API/1.7/Tabs</h1>
+		<div id="bodyContent">
+<!-- start content -->
+
+
+
+<ul class="UIAPIPlugin-toc">
+<li><a href="#overview">概述</a></li>
+<li><a href="#options">参数</a></li>
+<li><a href="#events">事件</a></li>
+<li><a href="#methods">方法</a></li>
+<li><a href="#theming">主题</a></li>
+</ul>
+<div class="UIAPIPlugin">
+  <h1>jQuery UI Tabs</h1>
+  <div id="overview">
+    <h2 class="top-header">概述</h2>
+    <div id="overview-main">
+        <p>Tabs通常被用来将内容分成不同的场景片段来交换显示,类似于accordion.</p>
+<p>通常tab不见通过点击一个tab标头来实现交换, 但是这个事件也可以是onHover. Tab的内容可以使用Ajax来获取其链接的内容.</p>
+<table id="toc" class="toc" summary="Contents"><tr><td><div id="toctitle"><h2>目录</h2></div>
+<ul>
+<li class="toclevel-1"><a href="#Events"><span class="tocnumber">1</span> <span class="toctext">事件</span></a></li>
+<li class="toclevel-1"><a href="#Ajax_mode"><span class="tocnumber">2</span> <span class="toctext">Ajax 模式</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Back_button_and_bookmarking"><span class="tocnumber">2.1</span> <span class="toctext">返回按钮和书签</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#How_to..."><span class="tocnumber">3</span> <span class="toctext">如何...</span></a>
+<ul>
+<li class="toclevel-2"><a href="#...retrieve_the_currently_selected_tab"><span class="tocnumber">3.1</span> <span class="toctext">...获取当前选中的tab</span></a></li>
+<li class="toclevel-2"><a href="#...open_links_in_the_current_tab_instead_of_leaving_the_page"><span class="tocnumber">3.2</span> <span class="toctext">...不离开页面在当前标签中打开链接</span></a></li>
+<li class="toclevel-2"><a href="#...select_a_tab_from_a_text_link_instead_of_clicking_a_tab_itself"><span class="tocnumber">3.3</span> <span class="toctext">...从一个文本链接选择一个tab而不是点击该tab</span></a></li>
+<li class="toclevel-2"><a href="#...prevent_switching_to_the_tab_on_click_depending_on_form_validation"><span class="tocnumber">3.4</span> <span class="toctext">...根据表单验证来组织在tab上的交换点击</span></a></li>
+<li class="toclevel-2"><a href="#...immediately_select_a_just_added_tab"><span class="tocnumber">3.5</span> <span class="toctext">...立即选择刚才添加的tab</span></a></li>
+<li class="toclevel-2"><a href="#...open_a_tab_in_a_new_window_instead"><span class="tocnumber">3.6</span> <span class="toctext">...使用打开一个新窗口代替打开tab</span></a></li>
+<li class="toclevel-2"><a href="#...prevent_a_FOUC_.28Flash_of_Unstyled_Content.29_before_tabs_are_initialized"><span class="tocnumber">3.7</span> <span class="toctext">...在tab初始化之前预防FOUC (文档样式短暂失效)</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#Why_does..."><span class="tocnumber">4</span> <span class="toctext">为什么...</span></a>
+<ul>
+<li class="toclevel-2"><a href="#...my_slider.2C_Google_Map.2C_sIFR_etc._not_work_when_placed_in_a_hidden_.28inactive.29_tab.3F"><span class="tocnumber">4.1</span> <span class="toctext">...我的slider,Google Map,sIFR 等等.无法工作在隐藏的(不在活动的)tab中?</span></a></li>
+</ul>
+</li>
+</ul>
+</td></tr></table><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<a name="Events"></a><h2>事件</h2>
+<p>标签互动时的一系列事件:</p>
+<ul><li> tabsselect, tabsload, tabsshow (在该序列中)</li>
+	<li> tabsadd, tabsremove</li>
+    <li> tabsenable, tabsdisable</li>
+</ul>
+<p>事件绑定示例:</p>
+<pre>
+	$('#example').bind('tabsselect', function(event, ui) {
+    // 函数上下文中可用的对象:
+    ui.tab     // 所选择的tab锚点对象
+    ui.panel   // 所选择的tab内容对象
+    ui.index   // 所选择的tab的排序序列号(从0开始)
+	});
+</pre>
+<p>注: 如果tabsselect事件的处理程序返回false, 点击的tab将不会被选中 (例如:在一个表单验证中点击下一步时很有用).
+</p>
+<a name="Ajax_mode"></a><h2> Ajax 模式 </h2>
+<p>Tab支持使用隐式的方式调用Ajax来加载内容.
+</p><p>你需要使用的HTML只有一点少许的不同: 列表的链接指向现有的资源 (从哪里加载内容)并且所有的内容项不需要多余的容器 (隐式的!). 容器标记将是即时创建的:
+</p>
+<pre>
+&lt;div id=&quot;example&quot;&gt;
+     &lt;ul&gt;
+         &lt;li&gt;&lt;a href=&quot;ahah_1.html&quot;&gt;&lt;span&gt;Content 1&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;ahah_2.html&quot;&gt;&lt;span&gt;Content 2&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;ahah_3.html&quot;&gt;&lt;span&gt;Content 3&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+     &lt;/ul&gt;
+&lt;/div&gt;
+</pre>
+<p>显然这会增强通用性, 例如. 内容的链接在JavaScript被禁用时依然有效.
+</p><p>注: 如果您还是想使用一个现有的容器,你可以给连接设置一个title属性,这个title属性要和内容容器的id相匹配(相同):
+</p>
+<pre>
+&lt;li&gt;&lt;a href=&quot;hello/world.html&quot; title=&quot;Todo Overview&quot;&gt; ... &lt;/a&gt;&lt;/li&gt;
+</pre>
+<p>容器设置为类似与下面这样:
+</p>
+<pre>
+&lt;div id=&quot;Todo_Overview&quot;&gt; ... &lt;/div&gt;
+</pre>
+<p>(注: 空格应使用下划线来代替)
+</p><p>这是非常有用的,如果你想使用一个人性化的读取散列来代替隐性生成的那个的话.
+</p>
+<a name="Back_button_and_bookmarking"></a><h3>返回按钮和书签</h3>
+<p>两个标签即支持此功能, 虽然历史记录插件第一次在tabs上建立功能时需要重写(不支持Safari 3,而且总体来说有点勉强). 但是事实上UI tabs插件中的bug自身总是有更高的优先.
+</p>
+<a name="How_to..."></a><h2>如何...</h2>
+<a name="...retrieve_the_currently_selected_tab"></a><h3>...获取当前选中的tab</h3>
+<pre>var $tabs = $('#example').tabs();
+var selected = $tabs.data('selected.tabs');</pre>
+<a name="...open_links_in_the_current_tab_instead_of_leaving_the_page"></a><h3>...不离开页面在当前标签中打开链接</h3>
+<p>经过"Hijax" 链接后,加载tabs的内容:
+</p>
+<pre>$('#example').tabs({
+    load: function(event, ui) {
+        $('a', ui.panel).click(function() {
+            $(ui.panel).load(this.href);
+            return false;
+        });
+    }
+});</pre>
+<a name="...select_a_tab_from_a_text_link_instead_of_clicking_a_tab_itself"></a><h3>...从一个文本链接选择一个tab而不是点击该tab </h3>
+<pre>var $tabs = $('#example').tabs(); // first tab selected
+
+$('#my-text-link').click(function() { // bind click event to link
+    $tabs.tabs('select', 2); // switch to third tab
+    return false;
+});</pre>
+<a name="...prevent_switching_to_the_tab_on_click_depending_on_form_validation"></a><h3>...根据表单验证来组织在tab上的交换点击 </h3>
+<p>Returning false in the tabs select handler prevents the clicked tab from becoming selected.
+</p>
+<pre>$('#example').tabs({
+    select: function(event, ui) {
+        var isValid = ... // form validation returning true or false
+        return isValid;
+    }
+});</pre>
+<a name="...immediately_select_a_just_added_tab"></a><h3>...立即选择刚才添加的tab </h3>
+<pre>var $tabs = $('#example').tabs({
+    add: function(event, ui) {
+        $tabs.tabs('select', '#' + ui.panel.id);
+    }
+});</pre>
+<a name="...open_a_tab_in_a_new_window_instead"></a><h3>...使用打开一个新窗口代替打开tab</h3>
+<p>注意:标签中打开一个新窗口会让人感到意外, 例如.
+不一致的行为暴露了可用性问题 (<a href="http://www.useit.com/alertbox/tabs.html" class="external free" title="http://www.useit.com/alertbox/tabs.html">http://www.useit.com/alertbox/tabs.html</a>).
+</p>
+<pre>$('#example').tabs({
+    select: function(event, ui) {
+        location.href = $.data(ui.tab, 'load.tabs');
+        return false;
+    }
+});</pre>
+<a name="...prevent_a_FOUC_.28Flash_of_Unstyled_Content.29_before_tabs_are_initialized"></a><h3>...在tab初始化之前预防FOUC (文档样式短暂失效) </h3>
+<p>立刻添加必要的样式隐藏无效的tab面板 - 注意:在将在JavaScript被禁用时不会影响页面效果:
+</p>
+<pre>&lt;div id=&quot;example&quot; class=&quot;ui-tabs&quot;&gt;
+  ...
+  &lt;div id=&quot;a-tab-panel&quot; class=&quot;ui-tabs-hide&quot;&gt; &lt;/div&gt;
+  ...
+&lt;/div&gt;</pre>
+<a name="Why_does..."></a><h2>为什么...</h2>
+<a name="...my_slider.2C_Google_Map.2C_sIFR_etc._not_work_when_placed_in_a_hidden_.28inactive.29_tab.3F"></a><h3>...我的slider,Google Map,sIFR 等等.无法工作在隐藏的(不在活动的)tab中? 
+</h3>
+<p>其初始化需要一些空间计算的任何组成部分都不会工作在一个隐藏的tab中, 因为tab面板通过<code>display: none</code>来隐藏自己,所以任何在其中的元素都无法反馈自己的宽度和高度 (大多数浏览器返回0).
+</p><p>这里有一个简单的解决方法. 使用<em>off-left</em> 技巧来隐藏不活动的面板. 例. 在你的样式表中使用下面的代码替换 ".ui-tabs .ui-tabs-hide"
+</p>
+<pre>.ui-tabs .ui-tabs-hide {
+    position: absolute;
+    left: -10000px;
+}</pre>
+<p>对于Google maps 你还可以使用下面的方法在它显示后调整大小:
+</p>
+<pre>$('#example').bind('tabsshow', function(event, ui) {
+    if (ui.panel.id == &quot;map-tab&quot;) {
+        resizeMap();
+    }
+});</pre>
+resizeMap() 会在指定的地图上调用 Google Map 的 checkResize().
+    </div>
+    <div id="overview-dependencies">
+        <h3>其他附加文件</h3>
+        <ul>
+<li>UI Core</li>
+<li>使用cookie选项: <a href="http://plugins.jquery.com/project/cookie" class="external text" title="http://plugins.jquery.com/project/cookie">jquery.cookie.js</a></li>
+<li>必需的CSS:
+<pre>.ui-tabs .ui-tabs-hide {
+     display: none;
+}</pre></li>
+</ul>
+    </div>
+    <div id="overview-example">
+        <h3>示例</h3>
+        <div id="overview-example" class="example">
+<ul><li><a href="#demo"><span>代码示范</span></a></li><li><a href="#source"><span>查看源文件</span></a></li></ul>
+<p><div id="demo" class="tabs-container" rel="295">
+一个简单的 jQuery UI Tabs.<br />
+</p>
+<pre>$(&quot;#tabs&quot;).tabs();
+</pre>
+<p></div><div id="source" class="tabs-container">
+</p>
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;link type=&quot;text/css&quot; href=&quot;themes/base/ui.all.css&quot; rel=&quot;stylesheet&quot; /&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;js/jquery.min.js&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;ui/ui.core.js&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;ui/ui.tabs.js&quot;&gt;&lt;/script&gt;
+  &lt;script type="text/javascript"&gt;
+  $(document).ready(function(){
+    $(&quot;#tabs&quot;).tabs();
+  });
+  &lt;/script&gt;
+&lt;/head&gt;
+&lt;body style="font-size:62.5%;"&gt;
+  
+&lt;div id=&quot;tabs&quot;&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&quot;#fragment-1&quot;&gt;&lt;span&gt;One&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#fragment-2&quot;&gt;&lt;span&gt;Two&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#fragment-3&quot;&gt;&lt;span&gt;Three&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;div id=&quot;fragment-1&quot;&gt;
+        &lt;p&gt;First tab is active by default:&lt;/p&gt;
+        &lt;pre&gt;&lt;code&gt;$('#example').tabs();&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;fragment-2&quot;&gt;
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+    &lt;/div&gt;
+    &lt;div id=&quot;fragment-3&quot;&gt;
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p></div>
+</p><p></div>
+    </div>
+  </div>
+  <div id="options">
+    <h2 class="top-header">参数</h2>
+    <ul class="options-list">
+      
+<li class="option" id="option-ajaxOptions">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-ajaxOptions">ajaxOptions</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Options</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">null</dd>
+      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>在tab内容载入时额外需要的Ajax选项 (参考jQuery文档 $.ajax).</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>ajaxOptions</code>参数初始化一个tabs.
+</dt>
+<dd>
+<pre><code>$('.selector').tabs({ ajaxOptions: { async: false } });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>ajaxOptions</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var ajaxOptions = $('.selector').tabs('option', 'ajaxOptions');
+//设置
+$('.selector').tabs('option', 'ajaxOptions', { async: false });</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="option" id="option-cache">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-cache">cache</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Boolean</dd>      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">false</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>是否缓存远程tab内容, 例如: 是只加载一次还是每次点击都重新加载. 缓存内容是惰性加载的, 譬如只加载一次且只在第一次点击时才加载. 注意:将此项设置为false将阻止你需要的缓存被Ajax从浏览器缓存中取出缓存内容.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>cache</code>参数初始化一个tabs.
+</dt>
+<dd>
+<pre><code>$('.selector').tabs({ cache: true });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>cache</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var cache = $('.selector').tabs('option', 'cache');
+//设置
+$('.selector').tabs('option', 'cache', true);</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="option" id="option-collapsible">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-collapsible">collapsible</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Boolean</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">false</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>设置为true时将设置一个选中的tab再此被选中时执行反选操作.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>collapsible</code>参数初始化一个tabs.
+</dt>
+<dd>
+<pre><code>$('.selector').tabs({ collapsible: true });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>collapsible</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var collapsible = $('.selector').tabs('option', 'collapsible');
+//设置
+$('.selector').tabs('option', 'collapsible', true);</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+
+<li class="option" id="option-cookie">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-cookie">cookie</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Object</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">null</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>存储最后一个选中的tab到cookie中. 如果没有定义<i>selected</i>参数,cookie用来确定最初选定的tab的选项. 需要 cookie 插件. 该对象需要以键/值对的形式提供给Cookie插件作为参数. 可用的选项 (例): &#123; expires: 7, path: '/', domain: 'jquery.com', secure: true &#125;. 从jQuery UI 1.7 开始 还可以通过<i>name</i>属性来定义它的cookie名.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>cookie</code>参数初始化一个tabs.
+</dt>
+<dd>
+<pre><code>$('.selector').tabs({ cookie: { expires: 30 } });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>cookie</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var cookie = $('.selector').tabs('option', 'cookie');
+//设置
+$('.selector').tabs('option', 'cookie', { expires: 30 });</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="option" id="option-deselectable">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-deselectable">deselectable</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Boolean</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">false</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>jQuery UI 1.7 不推荐使用, 请使用collapsible.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>deselectable</code>参数初始化一个tabs.
+</dt>
+<dd>
+<pre><code>$('.selector').tabs({ deselectable: true });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>deselectable</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var deselectable = $('.selector').tabs('option', 'deselectable');
+//设置
+$('.selector').tabs('option', 'deselectable', true);</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="option" id="option-disabled">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-disabled">disabled</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Array&lt;Number&gt;</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">[]</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>一个包含tabs序列编号的数组(从0开始),在初始化时他们将被禁用A.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>disabled</code>参数初始化一个tabs.
+</dt>
+<dd>
+<pre><code>$('.selector').tabs({ disabled: [1, 2] });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>disabled</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var disabled = $('.selector').tabs('option', 'disabled');
+//设置
+$('.selector').tabs('option', 'disabled', [1, 2]);</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="option" id="option-event">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-event">event</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">String</dd>      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">'click'</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>出发tab选择事件所使用的事件名称.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>event</code>参数初始化一个tabs.
+</dt>
+<dd>
+<pre><code>$('.selector').tabs({ event: 'mouseover' });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>event</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var event = $('.selector').tabs('option', 'event');
+//设置
+$('.selector').tabs('option', 'event', 'mouseover');</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="option" id="option-fx">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-fx">fx</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Options, Array&lt;Options&gt;</dd>      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">null</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>在隐藏或者显示面板的时候开启动画.. duration选项可以是预设的三种速度 ("slow", "normal", "fast") 或者设置一个动画持续的毫秒数 (默认"normal").</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>fx</code>参数初始化一个tabs.
+</dt>
+<dd>
+<pre><code>$('.selector').tabs({ fx: { opacity: 'toggle' } });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>fx</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var fx = $('.selector').tabs('option', 'fx');
+//设置
+$('.selector').tabs('option', 'fx', { opacity: 'toggle' });</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="option" id="option-idPrefix">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-idPrefix">idPrefix</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">String</dd>      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">'ui-tabs-'</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>如果是远程tab, 其锚点元素, 没有从id产生title属性, 将从这个前缀创建一个 id/片段 的标识和使用$.data(el)产生的唯一标识, 例如 "ui-tabs-54".</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>idPrefix</code>参数初始化一个tabs.
+</dt>
+<dd>
+<pre><code>$('.selector').tabs({ idPrefix: 'ui-tabs-primary' });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>idPrefix</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var idPrefix = $('.selector').tabs('option', 'idPrefix');
+//设置
+$('.selector').tabs('option', 'idPrefix', 'ui-tabs-primary');</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="option" id="option-panelTemplate">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-panelTemplate">panelTemplate</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">String</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">'&lt;div&gt;&lt;/div&gt;'</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>在使用添加方法创建新的tab面板并且添加到tab 上时它所使用的HTML模板.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>panelTemplate</code>参数初始化一个tabs.
+</dt>
+<dd>
+<pre><code>$('.selector').tabs({ panelTemplate: '&lt;li&gt;&lt;/li&gt;' });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>panelTemplate</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var panelTemplate = $('.selector').tabs('option', 'panelTemplate');
+//设置
+$('.selector').tabs('option', 'panelTemplate', '&lt;li&gt;&lt;/li&gt;');</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="option" id="option-selected">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-selected">selected</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">Number</dd>      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">0</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>从0开始的序列值,设置第几个tab将在初始化时被选中. 设置为-1则不选中所有tab.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>selected</code>参数初始化一个tabs.
+</dt>
+<dd>
+<pre><code>$('.selector').tabs({ selected: 3 });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>selected</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var selected = $('.selector').tabs('option', 'selected');
+//设置
+$('.selector').tabs('option', 'selected', 3);</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="option" id="option-spinner">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-spinner">spinner</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">String</dd>
+      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">'&lt;em&gt;Loading&amp;#8230;&lt;/em&gt;'</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>这个设置在远程内容加载时显示在tab标题的文字. 设置为空字符串则这个动作无效.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">    
+<dt>
+  使用指定的<code>spinner</code>参数初始化一个tabs.
+</dt>
+<dd>
+<pre><code>$('.selector').tabs({ spinner: 'Retrieving data...' });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>spinner</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var spinner = $('.selector').tabs('option', 'spinner');
+//设置
+$('.selector').tabs('option', 'spinner', 'Retrieving data...');</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+<li class="option" id="option-tabTemplate">
+  <div class="option-header">
+    <h3 class="option-name"><a href="#option-tabTemplate">tabTemplate</a></h3>
+    <dl>
+      <dt class="option-type-label">类型:</dt>
+        <dd class="option-type">String</dd>      
+      <dt class="option-default-label">默认值:</dt>
+        <dd class="option-default">'&lt;li&gt;&lt;a href&#61;"#&#123;href&#125;"&gt;&lt;span&gt;#&#123;label&#125;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;'</dd>      
+    </dl>
+  </div>
+  <div class="option-description">
+    <p>在创建并添加一个新的tab的时候所使用的HTML模板. 通过add方法#&#123;href&#125; and #&#123;label&#125; 占位符会被 url 和 tab label 替换.</p>
+  </div>
+  <div class="option-examples">
+    <h4>代码示例</h4>
+    <dl class="option-examples-list">
+    
+<dt>
+  使用指定的<code>tabTemplate</code>参数初始化一个tabs.
+</dt>
+<dd>
+<pre><code>$('.selector').tabs({ tabTemplate: '&lt;div&gt;&lt;a href&#61;"#&#123;href&#125;"&gt;&lt;span&gt;#&#123;label&#125;&lt;/span&gt;&lt;/a&gt;&lt;/div&gt;' });</code></pre>
+</dd>    
+<dt>
+  在初始化后设置或者获取<code>tabTemplate</code>参数.
+</dt>
+<dd>
+<pre><code>//获取
+var tabTemplate = $('.selector').tabs('option', 'tabTemplate');
+//设置
+$('.selector').tabs('option', 'tabTemplate', '&lt;div&gt;&lt;a href&#61;"#&#123;href&#125;"&gt;&lt;span&gt;#&#123;label&#125;&lt;/span&gt;&lt;/a&gt;&lt;/div&gt;');</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+    </ul>
+  </div>
+  <div id="events">
+    <h2 class="top-header">事件</h2>
+    <ul class="events-list">
+      
+<li class="event" id="event-select">
+  <div class="event-header">
+    <h3 class="event-name"><a href="#event-select">select</a></h3>
+    <dl>
+      <dt class="event-type-label">类型:</dt>
+        <dd class="event-type">tabsselect</dd>
+    </dl>
+  </div>
+  <div class="event-description">
+    <p>这个事件在点击一个tab的时候触发.</p>
+  </div>
+  <div class="event-examples">
+    <h4>代码示例</h4>
+    <dl class="event-examples-list">    
+<dt>
+  提供一个回调函数对<code>select</code>事件进行操作.
+</dt>
+<dd>
+<pre><code>$('.selector').tabs({
+   select: function(event, ui) { ... }
+});</code></pre>
+</dd>    
+<dt>
+  使用<code>tabsselect</code>类型来绑定<code>select</code>事件.
+</dt>
+<dd>
+<pre><code>$('.selector').bind('tabsselect', function(event, ui) {
+  ...
+});</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+
+<li class="event" id="event-load">
+  <div class="event-header">
+    <h3 class="event-name"><a href="#event-load">load</a></h3>
+    <dl>
+      <dt class="event-type-label">类型:</dt>
+        <dd class="event-type">tabsload</dd>
+    </dl>
+  </div>
+  <div class="event-description">
+    <p>这个事件在一个远程的tab被加载以后触发.</p>
+  </div>
+  <div class="event-examples">
+    <h4>代码示例</h4>
+    <dl class="event-examples-list">    
+<dt>
+  提供一个回调函数对<code>load</code>事件进行操作.
+</dt>
+<dd>
+<pre><code>$('.selector').tabs({
+   load: function(event, ui) { ... }
+});</code></pre>
+</dd>    
+<dt>
+  使用<code>tabsload</code>类型来绑定<code>load</code>事件.
+</dt>
+<dd>
+<pre><code>$('.selector').bind('tabsload', function(event, ui) {
+  ...
+});</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+
+<li class="event" id="event-show">
+  <div class="event-header">
+    <h3 class="event-name"><a href="#event-show">show</a></h3>
+    <dl>
+      <dt class="event-type-label">类型:</dt>
+        <dd class="event-type">tabsshow</dd>
+    </dl>
+  </div>
+  <div class="event-description">
+    <p>这个事件在一个tab显示的时候触发.</p>
+  </div>
+  <div class="event-examples">
+    <h4>代码示例</h4>
+    <dl class="event-examples-list">    
+<dt>
+  提供一个回调函数对<code>show</code>事件进行操作.
+</dt>
+<dd>
+<pre><code>$('.selector').tabs({
+   show: function(event, ui) { ... }
+});</code></pre>
+</dd>    
+<dt>
+  使用<code>tabsshow</code>类型来绑定<code>show</code>事件.
+</dt>
+<dd>
+<pre><code>$('.selector').bind('tabsshow', function(event, ui) {
+  ...
+});</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+
+<li class="event" id="event-add">
+  <div class="event-header">
+    <h3 class="event-name"><a href="#event-add">add</a></h3>
+    <dl>
+      <dt class="event-type-label">类型:</dt>
+        <dd class="event-type">tabsadd</dd>
+    </dl>
+  </div>
+  <div class="event-description">
+    <p>这个事件在一个tab被添加后触发.</p>
+  </div>
+  <div class="event-examples">
+    <h4>代码示例</h4>
+    <dl class="event-examples-list">    
+<dt>
+  提供一个回调函数对<code>add</code>事件进行操作.
+</dt>
+<dd>
+<pre><code>$('.selector').tabs({
+   add: function(event, ui) { ... }
+});</code></pre>
+</dd>    
+<dt>
+  使用<code>tabsadd</code>类型来绑定<code>add</code>事件.
+</dt>
+<dd>
+<pre><code>$('.selector').bind('tabsadd', function(event, ui) {
+  ...
+});</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+
+<li class="event" id="event-remove">
+  <div class="event-header">
+    <h3 class="event-name"><a href="#event-remove">remove</a></h3>
+    <dl>
+      <dt class="event-type-label">类型:</dt>
+        <dd class="event-type">tabsremove</dd>
+    </dl>
+  </div>
+  <div class="event-description">
+    <p>这个事件在一个tab被移除时触发.</p>
+  </div>
+  <div class="event-examples">
+    <h4>代码示例</h4>
+    <dl class="event-examples-list">    
+<dt>
+  提供一个回调函数对<code>remove</code>事件进行操作.
+</dt>
+<dd>
+<pre><code>$('.selector').tabs({
+   remove: function(event, ui) { ... }
+});</code></pre>
+</dd>    
+<dt>
+  使用<code>tabsremove</code>类型来绑定<code>remove</code>事件.
+</dt>
+<dd>
+<pre><code>$('.selector').bind('tabsremove', function(event, ui) {
+  ...
+});</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+
+<li class="event" id="event-enable">
+  <div class="event-header">
+    <h3 class="event-name"><a href="#event-enable">enable</a></h3>
+    <dl>
+      <dt class="event-type-label">类型:</dt>
+        <dd class="event-type">tabsenable</dd>
+    </dl>
+  </div>
+  <div class="event-description">
+    <p>这个事件在一个tab被启用时触发.</p>
+  </div>
+  <div class="event-examples">
+    <h4>代码示例</h4>
+    <dl class="event-examples-list">    
+<dt>
+  提供一个回调函数对<code>enable</code>事件进行操作.
+</dt>
+<dd>
+<pre><code>$('.selector').tabs({
+   enable: function(event, ui) { ... }
+});</code></pre>
+</dd>    
+<dt>
+  使用<code>tabsenable</code>类型来绑定<code>enable</code>事件.
+</dt>
+<dd>
+<pre><code>$('.selector').bind('tabsenable', function(event, ui) {
+  ...
+});</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+
+<li class="event" id="event-disable">
+  <div class="event-header">
+    <h3 class="event-name"><a href="#event-disable">disable</a></h3>
+    <dl>
+      <dt class="event-type-label">类型:</dt>
+        <dd class="event-type">tabsdisable</dd>
+    </dl>
+  </div>
+  <div class="event-description">
+    <p>这个事件在一个tab被禁用时触发.</p>
+  </div>
+  <div class="event-examples">
+    <h4>代码示例</h4>
+    <dl class="event-examples-list">    
+<dt>
+  提供一个回调函数对<code>disable</code>事件进行操作.
+</dt>
+<dd>
+<pre><code>$('.selector').tabs({
+   disable: function(event, ui) { ... }
+});</code></pre>
+</dd>    
+<dt>
+  使用<code>tabsdisable</code>类型来绑定<code>disable</code>事件.
+</dt>
+<dd>
+<pre><code>$('.selector').bind('tabsdisable', function(event, ui) {
+  ...
+});</code></pre>
+</dd>
+    </dl>
+  </div>
+</li>
+
+    </ul>
+  </div>
+  <div id="methods">
+    <h2 class="top-header">方法</h2>
+    <ul class="methods-list">
+      
+<li class="method" id="method-destroy">
+  <div class="method-header">
+    <h3 class="method-name"><a href="#method-destroy">destroy</a></h3>
+    <dl>
+      <dt class="method-signature-label">方法签名:</dt>
+        <dd class="method-signature">.tabs( 'destroy' )</dd>
+    </dl>
+  </div>
+  <div class="method-description">
+    <p>完全移除tabs功能. 这将使元素返回到之前的初始化状态.</p>
+  </div>
+</li>
+
+
+<li class="method" id="method-disable">
+  <div class="method-header">
+    <h3 class="method-name"><a href="#method-disable">disable</a></h3>
+    <dl>
+      <dt class="method-signature-label">方法签名:</dt>
+        <dd class="method-signature">.tabs( 'disable' )</dd>
+    </dl>
+  </div>
+  <div class="method-description">
+    <p>禁用 tabs.</p>
+  </div>
+</li>
+
+
+<li class="method" id="method-enable">
+  <div class="method-header">
+    <h3 class="method-name"><a href="#method-enable">enable</a></h3>
+    <dl>
+      <dt class="method-signature-label">方法签名:</dt>
+        <dd class="method-signature">.tabs( 'enable' )</dd>
+    </dl>
+  </div>
+  <div class="method-description">
+    <p>启用 tabs.</p>
+  </div>
+</li>
+
+
+<li class="method" id="method-option">
+  <div class="method-header">
+    <h3 class="method-name"><a href="#method-option">option</a></h3>
+    <dl>
+      <dt class="method-signature-label">方法签名:</dt>
+        <dd class="method-signature">.tabs( 'option', optionName, <span class="optional">[</span>value<span class="optional">] </span>
+
+
+
+)</dd>
+    </dl>
+  </div>
+  <div class="method-description">
+    <p>获取或者设置tabs参数. 如果没有提供参数值则是获取.</p>
+  </div>
+</li>
+
+
+<li class="method" id="method-add">
+  <div class="method-header">
+    <h3 class="method-name"><a href="#method-add">add</a></h3>
+    <dl>
+      <dt class="method-signature-label">方法签名:</dt>
+        <dd class="method-signature">.tabs( 'add', url, label, <span class="optional">[</span>index<span class="optional">] </span>
+)</dd>
+    </dl>
+  </div>
+  <div class="method-description">
+    <p>添加一个新的tab. 第二个参数是一个url地址或者是一个组成的片段标识符,只允许在Ajax tab上创建一个页内的tab或者一个完整的url (相对或绝对, 不支持跨域). 第三个参数是该tab要插入的位置标识(从0开始,可选参数). 默认新添加的tab会添加到最后一个位置.</p>
+  </div>
+</li>
+
+
+<li class="method" id="method-remove">
+  <div class="method-header">
+    <h3 class="method-name"><a href="#method-remove">remove</a></h3>
+    <dl>
+      <dt class="method-signature-label">方法签名:</dt>
+        <dd class="method-signature">.tabs( 'remove', index )</dd>
+    </dl>
+  </div>
+  <div class="method-description">
+    <p>移除一个tab. 第二个参数是一个从0开始的标识,它标识了要移除的tab在tabs中的排序位置.</p>
+  </div>
+</li>
+
+
+<li class="method" id="method-enable">
+  <div class="method-header">
+    <h3 class="method-name"><a href="#method-enable">enable</a></h3>
+    <dl>
+      <dt class="method-signature-label">方法签名:</dt>
+        <dd class="method-signature">.tabs( 'enable', index )</dd>
+    </dl>
+  </div>
+  <div class="method-description">
+    <p>让一个tab启用.  可以设置属性象下面这样一次重置多个tab的disabled属性: <code>$('#example').data('disabled.tabs', []);</code>. 第二个参数是要启用的tab在tabs中的排序位置(从0开始).</p>
+  </div>
+</li>
+
+
+<li class="method" id="method-disable">
+  <div class="method-header">
+    <h3 class="method-name"><a href="#method-disable">disable</a></h3>
+    <dl>
+      <dt class="method-signature-label">方法签名:</dt>
+        <dd class="method-signature">.tabs( 'disable', index )</dd>
+    </dl>
+  </div>
+  <div class="method-description">
+    <p>禁用一个tab. 当前选中的tab不能被禁用. 一个禁用多个tab的用法: <code>$('#example').data('disabled.tabs', [1, 2, 3]);</code>  第二个参数是要启用的tab在tabs中的排序位置(从0开始).</p>
+  </div>
+</li>
+
+
+<li class="method" id="method-select">
+  <div class="method-header">
+    <h3 class="method-name"><a href="#method-select">select</a></h3>
+    <dl>
+      <dt class="method-signature-label">方法签名:</dt>
+        <dd class="method-signature">.tabs( 'select', index )</dd>
+    </dl>
+  </div>
+  <div class="method-description">
+    <p>选中一个tab, 如果它被点击过. 第二个参数是要选中的tab在tabs中的排序位置(从0开始)或者是一个选择该tab内容面板区域的选择器(selector)(tab的href片段标识, 例如. 指向面板id的序列).</p>
+  </div>
+</li>
+
+
+<li class="method" id="method-load">
+  <div class="method-header">
+    <h3 class="method-name"><a href="#method-load">load</a></h3>
+    <dl>
+      <dt class="method-signature-label">方法签名:</dt>
+        <dd class="method-signature">.tabs( 'load', index )</dd>
+    </dl>
+  </div>
+  <div class="method-description">
+    <p>使用Ajax加载一个重新面板的内容. 即使cache设置为true这个方法也始终从远程地址获取tab的内容. 第二个参数是要加载的内容区在tabs中的排序位置(从0开始).</p>
+  </div>
+</li>
+
+
+<li class="method" id="method-url">
+  <div class="method-header">
+    <h3 class="method-name"><a href="#method-url">url</a></h3>
+    <dl>
+      <dt class="method-signature-label">方法签名:</dt>
+        <dd class="method-signature">.tabs( 'url', index, url )</dd>
+    </dl>
+  </div>
+  <div class="method-description">
+    <p>改变一个Ajax(远程)tab要加载的url地址. 指定的URL讲在之后的加载中使用. 注意:你不仅可以用此方法更改一个现有的远程tab,还可以用它使一个页内tab成为一个远程tab.  第二个参数标识了第几个tab要更新URL(从0开始).  第三个参数是要加载的地址.</p>
+  </div>
+</li>
+
+
+<li class="method" id="method-length">
+  <div class="method-header">
+    <h3 class="method-name"><a href="#method-length">length</a></h3>
+    <dl>
+      <dt class="method-signature-label">方法签名:</dt>
+        <dd class="method-signature">.tabs( 'length' )</dd>
+    </dl>
+  </div>
+  <div class="method-description">
+    <p>返回tabs第一次匹配的tab的数量.</p>
+  </div>
+</li>
+
+
+<li class="method" id="method-abort">
+  <div class="method-header">
+    <h3 class="method-name"><a href="#method-abort">abort</a></h3>
+    <dl>
+      <dt class="method-signature-label">方法签名:</dt>
+        <dd class="method-signature">.tabs( 'abort' )</dd>
+    </dl>
+  </div>
+  <div class="method-description">
+    <p>终止tab中所有在运行的ajax和动画效果.</p>
+  </div>
+</li>
+
+
+<li class="method" id="method-rotate">
+  <div class="method-header">
+    <h3 class="method-name"><a href="#method-rotate">rotate</a></h3>
+    <dl>
+      <dt class="method-signature-label">方法签名:</dt>
+        <dd class="method-signature">.tabs( 'rotate', ms, <span class="optional">[</span>continuing<span class="optional">] </span> )</dd>
+    </dl>
+  </div>
+  <div class="method-description">
+    <p>设置一个面板自动轮换的tab.  第二个参数是轮换到下个面板之前显示多长的时间(单位毫秒). 设置为0或者null可终止轮换.  第三个参数设置在用户选择了一个tab后是否还自动轮换,默认:false.</p>
+  </div>
+</li>
+
+    </ul>
+  </div>
+  <div id="theming">
+    <h2 class="top-header">主题</h2>
+    <p>jQuery UI Tabs插件使用jQuery UI CSS 框架的外观和风格，包括颜色和背景纹理.我们建议您使用ThemeRoller工具来创建和下载的自定义主题，很容易建立和维护.
+</p>
+  <p>如果有更深层次的个性化需要，有特定类别的工具ui.tabs.css样式可供参考，可以修改这些参考。这些课程是下面以高亮和粗体显示的。
+</p>
+    
+  <h3>jQuery UI CSS Framework classes示例</h3>
+  &lt;div class=&quot;<strong>ui-tabs</strong> ui-widget ui-widget-content ui-corner-all&quot; id=&quot;tabs&quot;&gt;<br />
+&nbsp;&nbsp;&nbsp;&lt;ul class=&quot;<strong>ui-tabs-nav</strong> ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all&quot;&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li class=&quot;ui-state-default ui-corner-top ui-tabs-selected ui-state-active&quot;&gt;&lt;a href=&quot;#tabs-1&quot;&gt;Nunc tincidunt&lt;/a&gt;&lt;/li&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li class=&quot;ui-state-default ui-corner-top&quot;&gt;&lt;a href=&quot;#tabs-2&quot;&gt;Proin dolor&lt;/a&gt;&lt;/li&gt;<br />
+&nbsp;&nbsp;&nbsp;&lt;div class=&quot;<strong>ui-tabs-panel</strong> ui-widget-content ui-corner-bottom&quot; id=&quot;tabs-1&quot;&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Tab one content goes here.&lt;/p&gt;<br />
+&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />
+&nbsp;&nbsp;&nbsp; ...<br />
+&lt;/div&gt;<br />
+  <p class="theme-note">
+    <strong>
+      Note: 注：这是一个示例tabs插件所产生的标记,而不是你应该使用的标记.创建一个tabs唯一需要的标记是 <br />&lt;div id=&quot;tabs&quot;&gt;<br />
+&#160;&#160;&#160;&lt;ul&gt;<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&lt;li&gt;&lt;a href=&quot;#tabs-1&quot;&gt;Nunc tincidunt&lt;/a&gt;&lt;/li&gt;<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&lt;li&gt;&lt;a href=&quot;#tabs-2&quot;&gt;Proin dolor&lt;/a&gt;&lt;/li&gt;<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&lt;li&gt;&lt;a href=&quot;#tabs-3&quot;&gt;Aenean lacinia&lt;/a&gt;&lt;/li&gt;<br />
+&#160;&#160;&#160;&lt;/ul&gt;<br />
+&#160;&#160;&#160;&lt;div id=&quot;tabs-1&quot;&gt;<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&lt;p&gt;Tab 1 content&lt;/p&gt;<br />
+&#160;&#160;&#160;&lt;/div&gt;<br />
+&#160;&#160;&#160;&lt;div id=&quot;tabs-2&quot;&gt;<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&lt;p&gt;Tab 2 content&lt;/p&gt;<br />
+&#160;&#160;&#160;&lt;/div&gt;<br />
+&#160;&#160;&#160;&lt;div id=&quot;tabs-3&quot;&gt;<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&lt;p&gt;Tab 3 content&lt;/p&gt;<br />
+&#160;&#160;&#160;&lt;/div&gt;<br />
+&lt;/div&gt;.
+    </strong>
+  </p>
+
+  </div>
+</div>
+
+</p><!-- 
+Pre-expand include size: 51589 bytes
+Post-expand include size: 90186 bytes
+Template argument size: 55840 bytes
+Maximum: 2097152 bytes
+-->
+
+<!-- Saved in parser cache with key jqdocs_docs:pcache:idhash:3075-1!1!0!!en!2 and timestamp 20090303120120 -->
+
+
+
+						<!-- end content -->
+		</div>
+	</div>
+		</div>
+				</div><!-- /#primaryContent -->				
+			</div><!-- /#content -->
+	</div><!-- /#siteContain -->	
+	</body>
+<!-- Cached 20090303115837 -->
+</html>

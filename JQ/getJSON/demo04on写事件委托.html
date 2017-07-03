@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<!--ul>li#li$*5-->
+		<ul>
+			<li id="li1">第1行</li>
+			<li id="li2">第2行</li>
+			<li id="li3">第3行</li>
+			<li id="li4">第4行</li>
+			<li id="li5">第5行</li>
+		</ul>
+		<input type="button" id="btn01" value="测试" />		
+	</body>
+</html>
+
+<script type="text/javascript" src="js/jquery-1.8.3.js" ></script>
+<script type="text/javascript">
+	$(function(){
+		$("#btn01").click(function(){
+			$("ul").append("<li>我是i新的li</li>");
+		});
+
+		$("ul").on("click","li",{"personName":"宝宝","personSex":"男"},function(e){
+			alert(e.data.personName+$(this).html());
+		});
+		
+	});
+	
+</script>

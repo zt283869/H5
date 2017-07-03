@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	
+	</head>
+	<style>
+		#divId{
+			margin:10px 20px;
+			border:2px solid pink;
+			padding:5px;
+			width:200px;
+			height:150px;
+		}
+	</style>
+	<body>
+		<input type="button" id="but" />
+		<div id="divId"></div>
+	</body>
+</html>
+<script src="../jq框架/jquery-1.8.3.js"></script>
+<script>
+	(function($){
+		alert($("#divId").height());
+		alert($("#divId").innerHeight());
+		alert($("$divId").outerHeight());
+	})(jQuery)
+</script>

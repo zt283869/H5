@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+			<ul>
+		<li>第1行</li>
+		<li>第2行</li>
+		<li>第3行</li>
+		<li>第4行</li>
+	</ul>
+	</body>
+</html>
+<script src="../jq框架/jquery-1.8.3.js"></script>
+<script>
+	(function($){
+		//一次性事件
+		$("li").one("click",function(){
+			alert($(this).html());
+		})
+	})(jQuery)
+</script>

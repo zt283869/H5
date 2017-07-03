@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+			margin:0px;
+			padding:0px;
+		}
+		
+		
+		#tt{
+			position:absolute;
+			left:0px;
+			top:100px;
+			border:5px solid black;
+			background-color:red;
+		}
+		</style>
+		
+	</head>
+	<body>
+		<input id="btn01" type="button" value="显示" />
+	
+	<div id="tt" style="width:400px;height:300px">
+		
+	</div>
+	
+	
+	<br/><br/><br/><br/>
+	</body>
+</html>
+<script src="../jq框架/jquery-1.8.3.js"> </script>
+<script>
+	(function($){
+		$("#btn01")[0].onclick = function(){
+			$("#tt").animate({
+			"left":"500px",
+			"top":"250px",
+			"width":"1px",
+			"height":"1px",
+			"opacity":"0"
+			},1000,obj())
+			
+		}
+	})(jQuery)
+	function obj(){
+	$("#btn01").val()=="显示"?$("#btn01").val("隐藏"):$("#btn01").val("显示");
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

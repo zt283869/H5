@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+	<head>
+		<title></title>
+		<meta charset = "utf-8"/>
+	</head>
+	<style type="text/css">
+		*{
+			margin:0px;
+			padding:0px;
+		}
+	</style>
+<body>	
+<!--
+	<div id="mapId">
+		
+	</div>
+	-->
+</body>
+</html>
+
+<script type="text/javascript">
+"use strict";
+
+function ChairMan(id,name,sex){
+	if(!ChairMan.singleSample){
+		ChairMan.singleSample = this;	
+	}
+	ChairMan.singleSample.id = id;
+	ChairMan.singleSample.name = name;
+	ChairMan.singleSample.sex = sex;
+	return ChairMan.singleSample;
+}
+
+window.onload=function(){
+	//不管new多少次，永远只产生一个实例。
+	let c1 = new ChairMan("007","习大大","男");
+	let c2 = new ChairMan("008","习小小","男");
+	alert(c1.id);
+	alert(c2.id);	
+}
+
+</script>
